@@ -4,20 +4,43 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+const starLayers = [
+  {
+    count: 50,                  // mazāk zvaigžņu
+    radiusRange: [1, 2],
+    speedRange: [0.02, 0.05],
+    colors: ['#fff']
+  },
+  {
+    count: 30,                  // mazāk zvaigžņu
+    radiusRange: [2, 3],
+    speedRange: [0.05, 0.1],
+    colors: ['#fff', '#ffb22c']  // nomainīta krāsa uz #ffb22c
+  },
+  {
+    count: 10,                  // mazāk zvaigžņu
+    radiusRange: [3, 4],
+    speedRange: [0.1, 0.2],
+    colors: ['#ffb22c']          // nomainīta krāsa uz #ffb22c
+  }
+];
+
 let stars = [];
 
 function createStars() {
-  for (let i = 0; i < 150; i++) {
-    let star = {
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      radius: Math.random() * 2 + 0.5,
-      speedX: Math.random() * 0.2 - 0.1,
-      speedY: Math.random() * 0.2 - 0.1,
-      color: Math.random() < 0.5 ? '#fff' : '#ff6600', // White or Orange stars
-    };
-    stars.push(star);
-  }
+  stars = [];
+  starLayers.forEach(layer => {
+    for (let i = 0; i < layer.count; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * (layer.radiusRange[1] - layer.radiusRange[0]) + layer.radiusRange[0],
+        speedX: (Math.random() * (layer.speedRange[1] - layer.speedRange[0]) + layer.speedRange[0]) * (Math.random() < 0.5 ? 1 : -1),
+        speedY: (Math.random() * (layer.speedRange[1] - layer.speedRange[0]) + layer.speedRange[0]) * (Math.random() < 0.5 ? 1 : -1),
+        color: layer.colors[Math.floor(Math.random() * layer.colors.length)],
+      });
+    }
+  });
 }
 
 function animateStars() {
@@ -27,7 +50,6 @@ function animateStars() {
     star.x += star.speedX;
     star.y += star.speedY;
 
-    // Wrap around the stars to the other side of the screen if they go out of bounds
     if (star.x > canvas.width) star.x = 0;
     if (star.x < 0) star.x = canvas.width;
     if (star.y > canvas.height) star.y = 0;
@@ -42,14 +64,11 @@ function animateStars() {
   requestAnimationFrame(animateStars);
 }
 
-createStars();
-animateStars();
-
-// Handle video click events
-document.querySelectorAll('.video-card').forEach(card => {
-  card.addEventListener('click', () => {
-    const videoId = card.getAttribute('data-video-id');
-    window.open(`https://youtu.be/${videoId}`, '_blank');
-  });
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  createStars();
 });
 
+createStars();
+animateStars();
