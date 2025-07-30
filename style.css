@@ -1,1 +1,714 @@
+/* Pamatstils */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Press Start 2P', monospace;
+  background: transparent;
+  color: #fff;
+  overflow-x: hidden;
+  height: 100%;
+  font-size: 10px;
+}
 
+body {
+  background-color: #181717;
+  background-image:
+    linear-gradient(45deg, rgba(128, 128, 128, 0.2) 2px, transparent 2px),
+    linear-gradient(-45deg, rgba(128, 128, 128, 0.2) 2px, transparent 2px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+canvas#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  display: block;
+  background: transparent; /* NE MELNS */
+}
+
+/* Header stils */
+.main-header, .hero, .section, .main-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.main-header {
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+}
+
+.main-nav a {
+  margin: 0 15px;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+  color: #ffb22c;
+}
+
+/* Hero sekcijas stils */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.character-img {
+  max-width: 220px;
+  animation: glow 2.5s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { filter: drop-shadow(0 0 5px #0ff); }
+  50% { filter: drop-shadow(0 0 25px #ff0); }
+}
+
+.btn {
+  background: #fff;
+  color: #000;
+  padding: 12px 25px;
+  margin: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+  background: #ffb22c;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* Sekcijas pamati */
+.section {
+  padding: 60px 30px;
+}
+
+/* Partneru bloki ar baltu robežu */
+.partners-grid, .videos-grid, .store-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.partner-card {
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin: 15px;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3); /* sākuma border */
+  animation: pulse-border 2s infinite ease-in-out;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* mīksts starojums */
+}
+
+/* ANIMĀCIJA — border krāsas pulsācija */
+@keyframes pulse-border {
+  0% {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+  100% {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+}
+
+.partner-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.partner-description {
+  font-size: 1em;
+  margin-bottom: 15px;
+}
+
+.partner-logo {
+  max-width: 80%;
+  margin-bottom: 15px;
+}
+
+.code-block {
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease;
+}
+
+.code-block a {
+  color: white;
+  text-decoration: none;
+}
+
+.skinclub-button {
+  background-color: #ff00ba;
+}
+
+.hellcase-button {
+  background-color: #ff6100;
+}
+
+.skinbaron-button {
+  background-color: #2e2660;
+}
+
+.code-block:hover {
+  filter: brightness(0.9);
+}
+
+.store-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 20px;
+}
+
+.store-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(0, 255, 70, 0.2);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+  cursor: pointer;
+  perspective: 1000px;
+  position: relative;
+  overflow: hidden;
+}
+
+.store-item:hover {
+  transform: translateY(-20px) rotateX(8deg) rotateY(8deg);
+  box-shadow: 0 15px 30px rgba(0, 255, 70, 0.6);
+}
+
+.store-item img {
+  width: 100%;
+  border-radius: 15px;
+  transition: filter 0.6s ease;
+  animation: pulseGlow 3s infinite ease-in-out alternate;
+}
+
+.store-item:hover img {
+  filter: brightness(1.15) saturate(1.2);
+  animation-play-state: paused;
+}
+
+@keyframes pulseGlow {
+  0% {
+    filter: drop-shadow(0 0 4px #00ff47);
+  }
+  100% {
+    filter: drop-shadow(0 0 15px #00ff47);
+  }
+}
+
+.store-item h3 {
+  font-size: 1.7em;
+  margin: 15px 0 10px;
+  color: #00ff47;
+  text-shadow: 0 0 8px #00ff47;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.buy-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 12px 28px;
+  border-radius: 25px;
+  background: linear-gradient(270deg, #ffb22c, #00ff47, #0ff, #ffb22c);
+  background-size: 600% 600%;
+  color: #121212;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+  box-shadow: 0 0 15px rgba(0, 255, 70, 0.7);
+  transition: background-position 3s ease, transform 0.3s ease;
+}
+
+.buy-btn:hover {
+  background-position: 100% 0;
+  transform: scale(1.15);
+  color: #fff;
+  box-shadow: 0 0 25px rgba(0, 255, 70, 1);
+}
+
+.videos-grid {
+  display: flex;
+  gap: 47px; /* aptuveni 1.25 cm atstarpe */
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.video-card {
+  position: relative;
+  display: block;
+  width: 300px;
+  height: 180px;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* text-decoration un color var izņemt, ja nav saite */
+  will-change: transform, box-shadow;
+}
+
+.video-card img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 15px;
+  filter: brightness(1);
+  z-index: 1;
+  /* background-color nav vajadzīgs, izņem */
+  will-change: transform, filter;
+}
+
+.video-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 15px;
+  background: rgba(0, 0, 0, 0.6);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  z-index: 2;
+  color: #fff;
+  font-weight: 700;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.video-info h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  flex-grow: 1;
+  color: #fff;
+}
+
+.video-date {
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: monospace;
+  color: #ddd;
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+.video-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.85);
+}
+
+.video-card:hover img {
+  transform: scale(1.05) rotate(0.5deg);
+  filter: brightness(0.9);
+}
+
+/* hover .video-info fons nemainās — labāk atstāt šādu */
+
+/* Pēdējās daļas stils */
+.main-footer {
+  background: #111;
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  position: relative;
+}
+
+.social-links {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+}
+
+.social-icon img {
+  width: 20px;
+  height: 20px;
+  filter: invert(100%);
+  transition: transform 0.3s;
+}
+
+.social-icon img:hover {
+  transform: scale(1.1);
+}
+
+.promo-banner {
+  display: block;
+  max-width: 1100px;
+  width: 100%;
+  margin: 50px auto;
+  border-radius: 14px;
+  overflow: visible;
+  position: relative;
+  text-decoration: none;
+  transition: box-shadow 0.4s ease;
+}
+
+.promo-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  /* No filter hover effect */
+}
+
+.promo-banner:hover {
+  box-shadow:
+    0 0 10px 3px #5a00cc,
+    0 0 20px 6px #00c3ff;
+}
+
+/* No image brightness change on hover */
+
+hero-content {
+  position: relative;
+  display: inline-block;
+}
+
+.character-img {
+  max-width: 300px; /* lielāks logo */
+  z-index: 10;
+  position: relative;
+}
+.floating-images img {
+  position: absolute;
+  width: 150px;
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
+  opacity: 0.95;
+  animation-name: floatSlow;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+/* Katram attēlam unikālas pozīcijas ap logo */
+.floating-images img:nth-child(1) {
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.floating-images img:nth-child(2) {
+  top: 40%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+}
+
+.floating-images img:nth-child(3) {
+  top: 80%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+}
+
+.floating-images img:nth-child(4) {
+  top: 85%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+}
+
+.floating-images img:nth-child(5) {
+  top: 35%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+}
+
+.floating-images img {
+  position: absolute;
+  width: 150px;
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
+  opacity: 0.95;
+  animation-name: floatSlow;
+  animation-duration: 2.5s; /* vai 2s, vai 3s */
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+.floating-images img {
+  position: absolute;
+  width: 150px;
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
+  opacity: 0.95;
+  animation-name: floatSlow;
+  animation-duration: 3s; /* ātrāka kustība */
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+animation-duration: 2s;
+
+.floating-images img {
+  position: absolute;
+  width: 150px;
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
+  opacity: 0.95;
+  animation-name: floatSlow;
+  animation-duration: 2.5s; /* vai 2s, vai 3s */
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+@keyframes floatSlow {
+  0% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateY(10px);
+  }
+}
+
+.partner-logo {
+  max-width: 220px;
+  max-height: 80px;
+  height: auto;
+  width: auto;
+  margin: 10px auto;
+  display: block;
+  object-fit: contain;
+}
+
+.partner-card {
+  max-width: 320px; /* Lielāks platums */
+  width: 100%;
+  margin: 0 auto;
+  background-color: #232222;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.partner-card:hover {
+  transform: translateY(-5px) scale(1.03) rotateZ(-0.5deg);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+}
+
+.partner-card h3 {
+  background: #ffffff;
+  color: #000;
+  padding: 10px 15px;
+  margin: -20px -20px 15px -20px;
+  font-size: 1.5em;
+  border-bottom: 3px solid #ffb22c;
+  border-radius: 15px 15px 0 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  font-weight: bold;
+}
+
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* šaurāki bloki */
+  gap: 20px;
+  align-items: stretch;
+}
+
+.use-code {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  display: inline-block;
+  font-size: 1.2rem;
+  padding: 16px 40px; /* lielāka poga */
+  margin-top: 15px;
+  background: linear-gradient(135deg, #ff2d78, #ff6a00);
+  color: white;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.use-code:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.use-code::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  transform: scale(0);
+  opacity: 0;
+  transition: all 0.5s ease-out;
+  z-index: 0;
+}
+
+.use-code:hover::after {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.partner-description {
+  font-weight: bold;
+  font-size: 1em;
+  margin-top: 10px;
+}
+
+.social-links a img {
+  width: 25px;
+  height: 25px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.social-links a:hover img {
+  transform: scale(1.3) translateY(-5px);
+  z-index: 10;
+}
+
+.giveaway-card {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 20px 0 0 0; /* izvairamies no centra */
+  max-width: 300px;
+  text-align: center;
+  outline: 2px solid #ffb22c;
+  position: relative;
+}
+
+.giveaway-image-wrapper {
+  position: relative;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  outline: 2px solid #ffb22c;
+  box-shadow: 0 0 8px rgba(255, 178, 44, 0.7);
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.giveaway-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  transition: none; /* no animācijām hover */
+}
+
+.giveaway-title {
+  color: #fff;
+  font-size: 1.3rem;
+  margin: 8px 0 0;
+  font-weight: 700;
+}
+
+/* Active tags, mazāks un iekš bloka, labajā augšējā stūrī */
+.active-tag {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background-color: #00ff29;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px #00ff29;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.btn.enter-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff2d78, #ff6a00);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 0 8px rgba(255, 45, 120, 0.3);
+  transition: background 0.25s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  border: none;
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+.btn.enter-btn:hover {
+  background: linear-gradient(135deg, #ff8a00, #ff3d99);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255, 58, 137, 0.5); /* mazināts glow */
+  filter: brightness(1.05); /* nedaudz mazāks spožums */
+}
+
+img {
+  pointer-events: none;
+}
+
+/* Scrollbar pelēks stils (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 12px; /* platums */
+}
+
+::-webkit-scrollbar-track {
+  background: #2e2e2e; /* tumšāks pelēks fons */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888888; /* pelēks rāmis */
+  border-radius: 10px;
+  border: 3px solid #2e2e2e; /* atstarpe ap bāru */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555555; /* tumšāks pelēks hoverā */
+}
+
+/* Firefox scrollbars */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #888888 #2e2e2e;
+}
+
+canvas#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* zem lapas satura, scroll bar būs virs */
+  pointer-events: none; /* lai klikšķi nokļūst lapas saturā */
+}
