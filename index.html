@@ -1,1 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VideoPower_cs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <canvas id="stars"></canvas>
+
+  <header class="main-header">
+    <div class="logo-container">
+      <img src="https://vegpower.org.uk/wp-content/uploads/2022/11/VegPower_VP_logo.png" alt="Logo" class="logo" />
+    </div>
+    <nav class="main-nav">
+      <a href="#partners" class="with-divider">PARTNERS</a>
+      <a href="#videos">VIDEOS</a>
+      <a href="#specials">SPECIALS</a>
+      <a href="#giveaways" class="with-divider">GIVEAWAYS</a>
+      <a href="#store">STORE</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <img src="https://vegpower.org.uk/wp-content/uploads/2022/11/VegPower_VP_logo.png" alt="VP Logo" class="character-img" />
+      <p>JOIN THE GIVEAWAYS TO WIN EXCLUSIVE REWARDS AND CLAIM SPECIAL BONUSES.</p>
+      <div class="hero-buttons">
+        <a href="#giveaways" class="btn red" id="giveaways-button">🎉 Giveaways</a>
+        <a href="#partners" class="btn">🤝 Partners</a>
+      </div>
+    </div>
+
+    <div class="floating-images">
+      <img src="https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlV61-LPGdCliWzeFkse1WQyC0nQlpsDuGyt-pdnyRPA4hDcYkR-QPuhi-wdPuYbyx5AaMidkQnC_-2ilIuzErvbi4ijV5Mw/360fx360f" alt="Item 1" />
+      <img src="https://cdn.skinbaron.de/steamdata/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAZ3w8zYYzRM-M-ihoWKmsj4OrzZgiUHscYiib6Q8Nj02QWw_EtsMjyhd9LEIFM3MgzX_lXvxLvr05Lt6smc1zI97QkMXi74?optimizer=image" alt="Item 2" />
+      <img src="https://cdn.skinbaron.de/steamdata/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO3lb-NlvPxDLaFlzpC18l4jeHVu42n2Aey-kdrZ2j3LYDHJgJoN1qB_lDtxezpgJPo75XKmHZn6Cgj4X3D30vgjv5IMS8?optimizer=image" alt="Item 3" />
+      <img src="https://cdn.skinbaron.de/steamdata/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DAQ1h3LAVbv6mxFABs3OXNYgJR_Nm1nYGHnuTgDLDYm2Rf5_p1g-jM-oLxm2umrhcDPjynfcPIbAM9ZVvZ_1i_x7vtgMW8vZXKzXVh6SQr5CvfyxCwhRgZbuZm0PHLTw6AR_sebbIuqqc?optimizer=image" alt="Item 4" />
+      <img src="https://cdn.skinbaron.de/steamdata/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfwPjNfThW49KJlYG0kfbwNoTdn2xZ_Islju2T9Imj2AW2_EdlYj2mdoKQIAI7ZFqG-Vbswevng5-47Z6dzXE2pGB8ssSmklVi?optimizer=image" alt="Item 5" />
+    </div>
+  </section>
+
+  <section id="partners" class="section dark-bg" aria-label="Partners section">
+    <h2>Partners</h2>
+    <div class="partners-grid">
+
+      <div class="partner-card">
+        <h3 class="partner-title">Skin.Club</h3>
+        <div class="logo-wrapper skinclub-effect">
+          <img src="https://csdb.gg/wp-content/uploads/2024/05/Skinclub-Background.png" alt="Skin.Club Logo" class="partner-logo" />
+        </div>
+        <p class="partner-description">7% Deposit Bonus</p>
+        <div class="code-block skinclub-button">
+          <a href="https://l.skin.club/725VIDEOPOWER4V" target="_blank" rel="noopener noreferrer">USE CODE</a>
+        </div>
+      </div>
+
+      <div class="partner-card">
+        <h3 class="partner-title">Hellcase</h3>
+        <div class="logo-wrapper hellcase-effect">
+          <img src="https://d1011j0lbv5k1u.cloudfront.net/assets/store-49835/49835-logo-1608740748.png" alt="Hellcase Logo" class="partner-logo" />
+        </div>
+        <p class="partner-description">10% Deposit Bonus, $0.70, and Free Case</p>
+        <div class="code-block hellcase-button">
+          <a href="https://hellca.se/videopower" target="_blank" rel="noopener noreferrer">USE CODE</a>
+        </div>
+      </div>
+
+      <div class="partner-card">
+        <h3 class="partner-title">SkinBaron</h3>
+        <div class="logo-wrapper skinbaron-effect">
+          <img src="https://skinbaron.idevaffiliate.com/media/banners/Logo_horizontal-whitebaron.png" alt="SkinBaron Logo" class="partner-logo" />
+        </div>
+        <p class="partner-description">Exclusive Discounts</p>
+        <div class="code-block skinbaron-button">
+          <a href="https://skinbaron.de/affiliate/804.html" target="_blank" rel="noopener noreferrer">USE CODE</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="videos" class="section" aria-label="Videos section">
+    <h2>Videos</h2>
+    <div class="videos-grid">
+      <a href="https://www.youtube.com/watch?v=rpecynDpgmA" target="_blank" rel="noopener noreferrer" class="video-card">
+        <img src="https://i.ytimg.com/vi/rpecynDpgmA/hqdefault.jpg" alt="Video 1" />
+        <div class="video-info">
+          <h3>SPENDING $1000 ON SKINCLUB...</h3>
+          <span class="video-date">🕓 May 6, 2025</span>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=hrnFSD5MFtQ" target="_blank" rel="noopener noreferrer" class="video-card">
+        <img src="https://i.ytimg.com/vi/hrnFSD5MFtQ/hqdefault.jpg" alt="Video 2" />
+        <div class="video-info">
+          <h3>DOING RISKY UPGRADES ON SKINCLUB…</h3>
+          <span class="video-date">🕓 June 1, 2025</span>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=c8quVP0ASBY" target="_blank" rel="noopener noreferrer" class="video-card">
+        <img src="https://i.ytimg.com/vi/c8quVP0ASBY/hqdefault.jpg" alt="Video 3" />
+        <div class="video-info">
+          <h3>OPENING EVENT CASES ON HELLCASE...</h3>
+          <span class="video-date">🕓 June 5, 2025</span>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=Ur7xBaI2Pnc" target="_blank" rel="noopener noreferrer" class="video-card">
+        <img src="https://i.ytimg.com/vi/Ur7xBaI2Pnc/hqdefault.jpg" alt="Video 4" />
+        <div class="video-info">
+          <h3>DOING CRAZY UPGRADES ON HELLCASE...</h3>
+          <span class="video-date">🕓 June 21, 2025</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+<section id="specials">
+  <h2 style="text-align: center; color: white; margin-bottom: 30px;">Specials</h2>
+
+  <section class="section" style="display: flex; gap: 20px; justify-content: center;">
+    <a href="https://hellca.se/videopower" target="_blank" class="promo-banner custom-banner" style="flex: 0 0 500px; height: 310px;">
+      <div class="banner-hover-bg" style="overflow: hidden; height: 100%;">
+        <img src="https://pbs.twimg.com/media/Gw9ZyR1WMAAPY-r?format=jpg&name=small" alt="Tradeit Banner" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+      </div>
+    </a>
+
+    <a href="https://clash.gg/welcome/r/VIDEOPOWER" target="_blank" class="promo-banner custom-banner" style="flex: 0 0 500px; height: 310px;">
+      <div class="banner-hover-bg" style="overflow: hidden; height: 100%;">
+        <img src="https://pbs.twimg.com/media/GjWn90ZX0AAD6iX?format=jpg&name=large" alt="Tradeit Banner 2" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+      </div>
+    </a>
+  </section>
+</section>
+
+<section id="giveaways" class="section dark-bg" aria-label="Giveaways section">
+  <h2>Giveaways</h2>
+
+  <div class="giveaway-card">
+    <div class="giveaway-image-wrapper">
+      <img src="https://cdn2.csgo.com/item/image/width=916/Glock-18%20%7C%20Shinobu%20(Field-Tested).png" alt="Skin Image" class="giveaway-img" />
+      <div class="active-tag">Active</div>
+    </div>
+    <h3 class="giveaway-title">Glock-18 | Shinobu</h3>
+    <a href="https://x.com/VideoPower_cs/status/1948666892232819144" target="_blank" rel="noopener noreferrer" class="btn enter-btn">Enter Giveaway</a>
+  </div>
+</section>
+
+<section id="store" class="section dark-bg" aria-label="Store section">
+  <h2>Store</h2>
+  <div class="store-items">
+    <div class="store-item">
+      <h3>Rifle</h3>
+      <img src="https://cdn.skinbaron.de/steamdata/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO1gYW0hOPmMq_ehXtZ7dd0teXI8oThxgy3qBdvZ22lJYTGIAU5aArTqQW3l-y91p7q7cmYnSMwuiAm4SvVl0OpwUYbpXBVnmw?optimizer=image" alt="Item 1"/>
+      <a href="https://skinbaron.de/en/csgo/Rifle?sort=PA&affiliateId=804" target="_blank" class="buy-btn" rel="noopener noreferrer">Buy Now</a>
+    </div>
+    <div class="store-item">
+      <h3>SMG</h3>
+      <img src="https://cdn.skinbaron.de/3dviewer/defaultgenerated/a9a58cac4312f92e99c34558e01c7950.png" alt="Item 2"/>
+      <a href="https://skinbaron.de/en/csgo/SMG?sort=PA&affiliateId=804" target="_blank" class="buy-btn" rel="noopener noreferrer">Buy Now</a>
+    </div>
+    <div class="store-item">
+      <h3>Pistol</h3>
+      <img src="https://cdn.skinbaron.de/steamdata/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposr-kLAtl7ODHdAJS4Mm7q4yCkP_gfenSzzxXsJcjiOjHrdSlige2r0o-MTynJoaddQQ5aAvU_QW4yO_o08ei_MOe6928QZw?optimizer=image" alt="Item 3"/>
+      <a href="https://skinbaron.de/en/csgo/Pistol?affiliateId=804" target="_blank" class="buy-btn" rel="noopener noreferrer">Buy Now</a>
+    </div>
+    <div class="store-item">
+      <h3>Agents</h3>
+      <img src="https://cdn.skinbaron.de/steamdata/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXA6Q1NL4kmrAlOA0_FVPCi2t_fUkRxNztDu4W1OQhm1uDbeDJM7dCJgoGZnrmma7rTwT4J7cZyjLyR9I-t2gDhr0VlMDiiIoGSIwA_Z1DYq1G8l73qm9bi63cyi3Zu?optimizer=image" alt="Item 4"/>
+      <a href="https://skinbaron.de/en/csgo/Agents?sort=PA&affiliateId=804" target="_blank" class="buy-btn" rel="noopener noreferrer">Buy Now</a>
+    </div>
+    <div class="store-item">
+      <h3>Zeus</h3>
+      <img src="https://cdn.skinbaron.de/steamdata/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpooru2LhVf0Ob3fitH_sy3h5O0k-X1NLTfqXFU_dZOhuDG_Zi7iwHhqRVlaj_3IICRdwY5Z1zTqVi6kOe8jJe5v8nOyyNquiF0t36Lywv3309clFtxlA?optimizer=image" alt="Item 5"/>
+      <a href="https://skinbaron.de/en/csgo/Zeus?sort=PA&affiliateId=804" target="_blank" class="buy-btn" rel="noopener noreferrer">Buy Now</a>
+    </div>
+  </div>
+</section>
+
+ <script>
+  // Disable right-click
+  document.addEventListener("contextmenu", event => event.preventDefault());
+
+  // Disable text/image selection
+  document.addEventListener("selectstart", event => event.preventDefault());
+</script>  
+  
+<footer class="main-footer" aria-label="Footer">
+  <p>&copy; 2025 VideoPower</p>
+
+  <p class="disclaimer-text">
+    We are not liable for any losses that may arise from gambling activities on the casinos and betting platforms featured on our website(s). You are fully responsible for your wagering decisions.
+  </p>
+
+  <div class="social-links">
+    <a href="https://www.youtube.com/@VideoPower_cs" target="_blank" class="social-icon youtube" rel="noopener noreferrer">
+      <img src="https://img.icons8.com/?size=512&id=85064&format=png" alt="YouTube Logo" />
+    </a>
+    <a href="https://x.com/VideoPower_cs" target="_blank" class="social-icon x" rel="noopener noreferrer">
+      <img src="https://img.icons8.com/?size=512&id=de4vjQ6J061l&format=png" alt="X Logo" />
+    </a>
+  </div>
+
+<p class="age-warning">
+  Participation requires you to<br />
+  be <span class="red-18">18</span> years or older Please<br />
+  gamble responsibly.
+</p>
 
