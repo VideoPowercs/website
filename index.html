@@ -12,11 +12,16 @@
 <canvas id="stars"></canvas>
 
 <header class="main-header">
-  <div class="logo"></div>
+  <div class="logo-container">
+    <img src="https://vegpower.org.uk/wp-content/uploads/2022/11/VegPower_VP_logo.png" alt="Logo" class="logo" />
+  </div>
   <nav class="main-nav">
-    <a href="#giveaways" class="giveaways-btn">GIVEAWAYS</a>
-    <a href="#partners">PARTNERS</a>
+    <a href="#partners" class="with-divider">PARTNERS</a>
     <a href="#videos">VIDEOS</a>
+
+    <a href="#specials">SPECIALS</a>
+
+    <a href="#giveaways" class="with-divider">GIVEAWAYS</a>
     <a href="#store">STORE</a>
   </nav>
 </header>
@@ -29,15 +34,14 @@
       <a href="#giveaways" class="btn red" id="giveaways-button">🎉 Giveaways</a>
       <a href="#partners" class="btn">🤝 Partners</a>
     </div>
+  </div>
 
   <div class="floating-images">
-      <img src="https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlV61-LPGdCliWzeFkse1WQyC0nQlpsDuGyt-pdnyRPA4hDcYkR-QPuhi-wdPuYbyx5AaMidkQnC_-2ilIuzErvbi4ijV5Mw/360fx360f" alt="Item 1" />
-      <img src="https://cdn.skinbaron.de/steamdata/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAZ3w8zYYzRM-M-ihoWKmsj4OrzZgiUHscYiib6Q8Nj02QWw_EtsMjyhd9LEIFM3MgzX_lXvxLvr05Lt6smc1zI97QkMXi74?optimizer=image" alt="Item 2" />
-      <img src="https://cdn.skinbaron.de/steamdata/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO3lb-NlvPxDLaFlzpC18l4jeHVu42n2Aey-kdrZ2j3LYDHJgJoN1qB_lDtxezpgJPo75XKmHZn6Cgj4X3D30vgjv5IMS8?optimizer=image" alt="Item 3" />
-      <img src="https://cdn.skinbaron.de/steamdata/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DAQ1h3LAVbv6mxFABs3OXNYgJR_Nm1nYGHnuTgDLDYm2Rf5_p1g-jM-oLxm2umrhcDPjynfcPIbAM9ZVvZ_1i_x7vtgMW8vZXKzXVh6SQr5CvfyxCwhRgZbuZm0PHLTw6AR_sebbIuqqc?optimizer=image" alt="Item 4" />
-      <img src="https://cdn.skinbaron.de/steamdata/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfwPjNfThW49KJlYG0kfbwNoTdn2xZ_Islju2T9Imj2AW2_EdlYj2mdoKQIAI7ZFqG-Vbswevng5-47Z6dzXE2pGB8ssSmklVi?optimizer=image" alt="Item 5" />
-    </div>
-    
+    <img src="https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlV61-LPGdCliWzeFkse1WQyC0nQlpsDuGyt-pdnyRPA4hDcYkR-QPuhi-wdPuYbyx5AaMidkQnC_-2ilIuzErvbi4ijV5Mw/360fx360f" alt="Item 1" />
+    <img src="https://cdn.skinbaron.de/steamdata/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAZ3w8zYYzRM-M-ihoWKmsj4OrzZgiUHscYiib6Q8Nj02QWw_EtsMjyhd9LEIFM3MgzX_lXvxLvr05Lt6smc1zI97QkMXi74?optimizer=image" alt="Item 2" />
+    <img src="https://cdn.skinbaron.de/steamdata/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO3lb-NlvPxDLaFlzpC18l4jeHVu42n2Aey-kdrZ2j3LYDHJgJoN1qB_lDtxezpgJPo75XKmHZn6Cgj4X3D30vgjv5IMS8?optimizer=image" alt="Item 3" />
+    <img src="https://cdn.skinbaron.de/steamdata/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DAQ1h3LAVbv6mxFABs3OXNYgJR_Nm1nYGHnuTgDLDYm2Rf5_p1g-jM-oLxm2umrhcDPjynfcPIbAM9ZVvZ_1i_x7vtgMW8vZXKzXVh6SQr5CvfyxCwhRgZbuZm0PHLTw6AR_sebbIuqqc?optimizer=image" alt="Item 4" />
+    <img src="https://cdn.skinbaron.de/steamdata/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfwPjNfThW49KJlYG0kfbwNoTdn2xZ_Islju2T9Imj2AW2_EdlYj2mdoKQIAI7ZFqG-Vbswevng5-47Z6dzXE2pGB8ssSmklVi?optimizer=image" alt="Item 5" />
   </div>
 </section>
     
@@ -121,12 +125,22 @@
   </div>
 </section>
 
-<section class="section">  
-  <a href="https://tradeit.gg/?aff=VideoPower" target="_blank" class="promo-banner">
-    <div class="banner-hover-bg">
-      <img src="https://csroi.com/assets/tradeit-banner.png" alt="Tradeit Banner">
-    </div>
-  </a>
+<section id="specials">
+  <h2 style="text-align: center; color: white; margin-bottom: 30px;">Specials</h2>
+
+  <section class="section" style="display: flex; gap: 20px; justify-content: center;">
+    <a href="https://hellca.se/videopower" target="_blank" class="promo-banner custom-banner" style="flex: 0 0 500px; height: 310px;">
+      <div class="banner-hover-bg" style="overflow: hidden; height: 100%;">
+        <img src="https://pbs.twimg.com/media/Gw9ZyR1WMAAPY-r?format=jpg&name=small" alt="Tradeit Banner" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+      </div>
+    </a>
+
+    <a href="https://clash.gg/welcome/r/VIDEOPOWER" target="_blank" class="promo-banner custom-banner" style="flex: 0 0 500px; height: 310px;">
+      <div class="banner-hover-bg" style="overflow: hidden; height: 100%;">
+        <img src="https://pbs.twimg.com/media/GjWn90ZX0AAD6iX?format=jpg&name=large" alt="Tradeit Banner 2" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+      </div>
+    </a>
+  </section>
 </section>
 
 <section id="giveaways" class="section dark-bg" aria-label="Giveaways section">
@@ -183,6 +197,11 @@
   
 <footer class="main-footer" aria-label="Footer">
   <p>&copy; 2025 VideoPower</p>
+
+  <p class="disclaimer-text">
+    We are not liable for any losses that may arise from gambling activities on the casinos and betting platforms featured on our website(s). You are fully responsible for your wagering decisions.
+  </p>
+
   <div class="social-links">
     <a href="https://www.youtube.com/@VideoPower_cs" target="_blank" class="social-icon youtube" rel="noopener noreferrer">
       <img src="https://img.icons8.com/?size=512&id=85064&format=png" alt="YouTube Logo" />
@@ -191,9 +210,9 @@
       <img src="https://img.icons8.com/?size=512&id=de4vjQ6J061l&format=png" alt="X Logo" />
     </a>
   </div>
-</footer>
 
-<script src="script.js"></script>
-  
-</body>
-</html>
+<p class="age-warning">
+  Participation requires you to<br />
+  be <span class="red-18">18</span> years or older Please<br />
+  gamble responsibly.
+</p>
