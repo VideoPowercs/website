@@ -1,4 +1,4 @@
-html, body {
+html, body { 
   margin: 0;
   padding: 0;
   font-family: 'Press Start 2P', monospace;
@@ -200,6 +200,95 @@ canvas#stars {
   margin-bottom: 10px;
 }
 
+/* --- RESPONSĪVIE UZLABOJUMI --- */
+@media (max-width: 768px) {
+  .main-header {
+    height: auto;
+    padding: 10px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .main-nav {
+    position: static;
+    transform: none;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 1rem;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .main-nav a {
+    padding: 10px 0;
+    width: 100%;
+  }
+
+  .hero {
+    padding: 40px 15px;
+  }
+
+  .hero-content {
+    font-size: 1rem;
+    transform: translateY(10px);
+  }
+
+  .character-img {
+    max-width: 180px;
+  }
+
+  .btn {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+
+  .floating-images img {
+    max-width: 240px;
+    margin: 0 5px;
+  }
+
+  .section {
+    padding: 40px 15px;
+  }
+
+  .partners-grid, .videos-grid, .store-items {
+    grid-template-columns: 1fr !important;
+    gap: 15px;
+  }
+
+  .partner-card {
+    margin: 10px 0;
+    padding: 15px;
+  }
+
+  .partner-title {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 480px) {
+  html, body {
+    font-size: 8px;
+  }
+
+  .main-nav {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+
+  .character-img {
+    max-width: 140px;
+  }
+
+  .hero-content {
+    font-size: 0.9rem;
+  }
+}
+
 .partner-description {
   font-size: 1em;
   margin-bottom: 15px;
@@ -320,7 +409,7 @@ canvas#stars {
 
 .videos-grid {
   display: flex;
-  gap: 47px; /* aptuveni 1.25 cm atstarpe */
+  gap: 47px;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -336,7 +425,6 @@ canvas#stars {
   background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  /* text-decoration un color var izņemt, ja nav saite */
   will-change: transform, box-shadow;
 }
 
@@ -350,7 +438,6 @@ canvas#stars {
   border-radius: 15px;
   filter: brightness(1);
   z-index: 1;
-  /* background-color nav vajadzīgs, izņem */
   will-change: transform, filter;
 }
 
@@ -403,8 +490,8 @@ canvas#stars {
 .main-footer {
   background: #111;
   text-align: center;
-  padding: 40px 20px 60px; /* vairāk vietas augšā un apakšā */
-  font-size: 1.2rem; /* lielāks teksts kopumā */
+  padding: 40px 20px 60px;
+  font-size: 1.2rem;
   position: relative;
 }
 
@@ -412,6 +499,94 @@ canvas#stars {
   font-size: 1.4rem;
   font-weight: bold;
   margin-bottom: 15px;
+}
+
+/* RESPONSĪVIE UZLABOJUMI */
+@media (max-width: 768px) {
+  .store-items {
+    grid-template-columns: 1fr !important;
+    padding: 10px;
+  }
+
+  .store-item {
+    padding: 15px;
+  }
+
+  .store-item:hover {
+    transform: none;
+    box-shadow: 0 0 15px rgba(0, 255, 70, 0.4);
+  }
+
+  .store-item img {
+    animation-play-state: paused;
+  }
+
+  .store-item h3 {
+    font-size: 1.3em;
+    margin: 10px 0 8px;
+  }
+
+  .buy-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
+  .videos-grid {
+    gap: 20px;
+  }
+
+  .video-card {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+  }
+
+  .video-card img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+  }
+
+  .video-info {
+    position: relative;
+    padding: 8px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .video-info h3 {
+    font-size: 1rem;
+  }
+
+  .video-date {
+    font-size: 0.8rem;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .partner-description {
+    font-size: 0.9em;
+  }
+
+  .buy-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  .store-item h3 {
+    font-size: 1.1em;
+  }
+
+  .video-info h3 {
+    font-size: 0.9rem;
+  }
+
+  .video-date {
+    font-size: 0.75rem;
+  }
 }
 
 .disclaimer-text {
@@ -488,7 +663,7 @@ canvas#stars {
 
 /* No image brightness change on hover */
 
-hero-content {
+.hero-content {
   position: relative;
   display: inline-block;
 }
@@ -498,13 +673,14 @@ hero-content {
   z-index: 10;
   position: relative;
 }
+
 .floating-images img {
   position: absolute;
   width: 150px;
   filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
   opacity: 0.95;
   animation-name: floatSlow;
-  animation-duration: 6s;
+  animation-duration: 2.5s; /* variē - 2s, 2.5s vai 3s */
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
   animation-direction: alternate;
@@ -539,44 +715,6 @@ hero-content {
   top: 35%;
   left: 15%;
   transform: translate(-50%, -50%);
-}
-
-.floating-images img {
-  position: absolute;
-  width: 150px;
-  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
-  opacity: 0.95;
-  animation-name: floatSlow;
-  animation-duration: 2.5s; /* vai 2s, vai 3s */
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  animation-direction: alternate;
-}
-
-.floating-images img {
-  position: absolute;
-  width: 150px;
-  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
-  opacity: 0.95;
-  animation-name: floatSlow;
-  animation-duration: 3s; /* ātrāka kustība */
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  animation-direction: alternate;
-}
-
-animation-duration: 2s;
-
-.floating-images img {
-  position: absolute;
-  width: 150px;
-  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
-  opacity: 0.95;
-  animation-name: floatSlow;
-  animation-duration: 2.5s; /* vai 2s, vai 3s */
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  animation-direction: alternate;
 }
 
 @keyframes floatSlow {
@@ -701,7 +839,7 @@ animation-duration: 2s;
   background: #1a1a1a;
   border-radius: 12px;
   padding: 14px 16px;
-  margin: 20px 0 0 0; /* izvairamies no centra */
+  margin: 20px 0 0 0; /* izvairāmies no centra */
   max-width: 300px;
   text-align: center;
   outline: 2px solid #ffb22c;
@@ -723,7 +861,7 @@ animation-duration: 2s;
   height: auto;
   border-radius: 8px;
   display: block;
-  transition: none; /* no animācijām hover */
+  transition: none; /* nav hover animācijas */
 }
 
 .giveaway-title {
@@ -843,4 +981,27 @@ canvas#stars {
   height: 100%;
   z-index: -1; /* lai canvas būtu aiz pārējā satura */
   pointer-events: none; /* lai animācija netraucētu klikšķus */
+}
+
+#loading-screen {
+  position: fixed;
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+  background: #181717;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-logo {
+  width: 220px; /* Mazāks logo */
+  animation: scaleUpDown 1s ease-in-out 2; /* 2 cikli, katrs 1s */
+}
+
+@keyframes scaleUpDown {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.4); }
 }
