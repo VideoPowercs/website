@@ -708,53 +708,87 @@ canvas#stars {
 
 .floating-images img {
   position: absolute;
-  width: 150px;
+  width: 200px;
   filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
   opacity: 0.95;
-  animation-name: floatSlow;
-  animation-duration: 2.5s; /* variē - 2s, 2.5s vai 3s */
+  animation-duration: 4s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
   animation-direction: alternate;
+  z-index: -2;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-origin: center center;
 }
 
-/* Katram attēlam unikālas pozīcijas ap logo */
+/* Pārliecinies, ka main-header ir augstākā kārtībā */
+.main-header {
+  position: relative; /* vai fixed/sticky, atkarībā no vajadzības */
+  z-index: 10;
+}
+
+/* Pozīcijas ar 'calc' lai centrētu bez translate(-50%, -50%) */
 .floating-images img:nth-child(1) {
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: calc(10% - 100px);
+  left: calc(50% - 100px);
+  animation-name: floatFancy1;
+  animation-delay: 0s;
+  z-index: -1; /* zem main-header */
 }
 
 .floating-images img:nth-child(2) {
-  top: 40%;
-  left: 85%;
-  transform: translate(-50%, -50%);
+  top: calc(40% - 100px);
+  left: calc(85% - 100px);
+  animation-name: floatFancy2;
+  animation-delay: 0.7s;
+  z-index: -1;
 }
 
 .floating-images img:nth-child(3) {
-  top: 80%;
-  left: 70%;
-  transform: translate(-50%, -50%);
+  top: calc(80% - 100px);
+  left: calc(70% - 100px);
+  animation-name: floatFancy1;
+  animation-delay: 1.4s;
+  z-index: -1;
 }
 
 .floating-images img:nth-child(4) {
-  top: 85%;
-  left: 30%;
-  transform: translate(-50%, -50%);
+  top: calc(85% - 100px);
+  left: calc(30% - 100px);
+  animation-name: floatFancy2;
+  animation-delay: 2.1s;
+  z-index: -1;
 }
 
 .floating-images img:nth-child(5) {
-  top: 35%;
-  left: 15%;
-  transform: translate(-50%, -50%);
+  top: calc(35% - 100px);
+  left: calc(15% - 100px);
+  animation-name: floatFancy1;
+  animation-delay: 2.8s;
+  z-index: -1;
 }
 
-@keyframes floatSlow {
+@keyframes floatFancy1 {
   0% {
-    transform: translate(-50%, -50%) translateY(0);
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(10px, -6px) rotate(3deg);
   }
   100% {
-    transform: translate(-50%, -50%) translateY(10px);
+    transform: translate(0, 6px) rotate(0deg);
+  }
+}
+
+@keyframes floatFancy2 {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(-10px, 6px) rotate(-3deg);
+  }
+  100% {
+    transform: translate(0, -6px) rotate(0deg);
   }
 }
 
@@ -990,26 +1024,31 @@ canvas#stars {
 
 .custom-banner {
   display: block;
-  max-width: calc(600px + 3cm); /* mazāks pamata platums */
-  margin: 20px 40px;
-}
-
-.custom-banner {
-  display: block;
-  max-width: calc(500px + 3cm); /* vēl mazāks platums */
-  margin: 20px 40px;
-}
-
-.custom-banner .banner-hover-bg img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
+  max-width: 600px; /* vai kādu citu piemērotu vērtību */
+  margin: 20px auto; /* centrē horizontāli un mazina sānu atstarpes */
+  position: relative; /* lai bērna img absolūtais pozicionējums strādā */
   border-radius: 12px;
-  display: block;
+  overflow: hidden; /* lai noapaļojumi labi redzami */
+}
+
+/* Attēlam jau ir absolūts pozicionējums, tas ir ok */
+
+@media screen and (max-width: 768px) {
+  .custom-banner {
+    max-width: 90vw; /* aizņem līdz 90% no ekrāna platuma */
+    margin: 10px auto; /* mazāk atstarpes mobilajā */
+    height: auto; /* lai baneris pielāgojas pēc platuma */
+  }
+
+  .custom-banner .banner-hover-bg img {
+    position: relative; /* mainīt uz relative, lai nebūtu problēmas ar izmēru */
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 12px;
+    display: block;
+  }
 }
 
 #stars {
@@ -1022,43 +1061,3 @@ canvas#stars {
   background: black;
 }
 
-.btn,
-.buy-btn,
-.enter-btn {
-  font-size: 1rem;
-  padding: 14px 20px;
-  border-radius: 8px;
-}
-
-@media (max-width: 768px) {
-  .partners-grid,
-  .videos-grid,
-  .store-items {
-    grid-template-columns: 1fr !important;
-  }
-
-  .promo-banner.custom-banner {
-    flex: 1 1 100%;
-    height: auto;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-content {
-    text-align: center;
-    padding: 20px;
-  }
-
-  .character-img {
-    max-width: 150px;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .floating-images {
-    display: none; /* slēpt vizuālo troksni mobilajās ierīcēs */
-  }
-}
