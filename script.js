@@ -14,39 +14,56 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.scale(dpr, dpr);
   }
 
+ function resizeCanvas() {
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    canvas.style.width = window.innerWidth + "px";
+    canvas.style.height = window.innerHeight + "px";
+    ctx.scale(dpr, dpr);
+  }
+
   const starLayers = [
     {
       count: 50,
       radiusRange: [1, 2],
       speedRange: [0.02, 0.05],
-      colors: ['#fff']
+      colors: ["#fff"],
     },
     {
       count: 30,
       radiusRange: [2, 3],
       speedRange: [0.05, 0.1],
-      colors: ['#fff', '#ffb22c']
+      colors: ["#fff", "#ffb22c"],
     },
     {
       count: 10,
       radiusRange: [3, 4],
       speedRange: [0.1, 0.2],
-      colors: ['#ffb22c']
-    }
+      colors: ["#ffb22c"],
+    },
   ];
 
   let stars = [];
 
   function createStars() {
     stars = [];
-    starLayers.forEach(layer => {
+    starLayers.forEach((layer) => {
       for (let i = 0; i < layer.count; i++) {
         stars.push({
-          x: Math.random() * canvas.width / (window.devicePixelRatio || 1),
-          y: Math.random() * canvas.height / (window.devicePixelRatio || 1),
-          radius: Math.random() * (layer.radiusRange[1] - layer.radiusRange[0]) + layer.radiusRange[0],
-          speedX: (Math.random() * (layer.speedRange[1] - layer.speedRange[0]) + layer.speedRange[0]) * (Math.random() < 0.5 ? 1 : -1),
-          speedY: (Math.random() * (layer.speedRange[1] - layer.speedRange[0]) + layer.speedRange[0]) * (Math.random() < 0.5 ? 1 : -1),
+          x: (Math.random() * canvas.width) / (window.devicePixelRatio || 1),
+          y: (Math.random() * canvas.height) / (window.devicePixelRatio || 1),
+          radius:
+            Math.random() * (layer.radiusRange[1] - layer.radiusRange[0]) +
+            layer.radiusRange[0],
+          speedX:
+            (Math.random() * (layer.speedRange[1] - layer.speedRange[0]) +
+              layer.speedRange[0]) *
+            (Math.random() < 0.5 ? 1 : -1),
+          speedY:
+            (Math.random() * (layer.speedRange[1] - layer.speedRange[0]) +
+              layer.speedRange[0]) *
+            (Math.random() < 0.5 ? 1 : -1),
           color: layer.colors[Math.floor(Math.random() * layer.colors.length)],
         });
       }
@@ -56,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function animateStars() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    stars.forEach(star => {
+    stars.forEach((star) => {
       star.x += star.speedX;
       star.y += star.speedY;
 
@@ -76,22 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Debounce resize for better performance
   let resizeTimeout;
-  window.addEventListener('resize', () => {
+  window.addEventListener("resize", () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       resizeCanvas();
       createStars();
     }, 200);
   });
-
-  // Loading screen logic
-  loadingLogo.addEventListener('animationend', () => {
-    loadingScreen.style.display = 'none';
-    mainContent.style.display = 'block';
-  });
-
-  // Initialize
-  resizeCanvas();
-  createStars();
-  animateStars();
-});
+  
