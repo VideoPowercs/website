@@ -224,17 +224,34 @@ canvas#stars {
     align-items: flex-start;
   }
 
-  /* Desktop */
-  @media (max-width: 1440px) {
-  }
+ @media (max-width: 1440px) {
+  /* styles */
+}
 
-  /* Tablet */
-  @media (max-width: 1024px) {
-  }
+@media (max-width: 1024px) {
+  /* styles */
+}
 
-  /* Phones */
-  @media (max-width: 600px) {
+@media (max-width: 768px) {
+  /* styles */
+}
+
+@media (max-width: 600px) {
+  /* styles */
+}
+
+@media (max-width: 480px) {
+  /* styles */
+}
+
+  @media (max-width: 768px) {
+  .main-header {
+    height: auto;
+    padding: 10px 20px;
+    flex-direction: column;
+    align-items: flex-start;
   }
+}
 
   .main-nav {
     position: static;
@@ -535,13 +552,12 @@ canvas#stars {
   margin-bottom: 15px;
 }
 
-/* RESPONSĪVIE UZLABOJUMI */
 @media (max-width: 768px) {
   .store-items {
     grid-template-columns: 1fr !important;
-    padding: 10px;
-  }
-
+    padding: 10px;  
+}
+  
   .store-item {
     padding: 15px;
   }
@@ -1039,7 +1055,7 @@ canvas#stars {
     margin: 10px auto; /* mazāk atstarpes mobilajā */
     height: auto; /* lai baneris pielāgojas pēc platuma */
   }
-
+  
   .custom-banner .banner-hover-bg img {
     position: relative; /* mainīt uz relative, lai nebūtu problēmas ar izmēru */
     width: 100%;
@@ -1060,4 +1076,3 @@ canvas#stars {
   height: 100%;
   background: black;
 }
-
