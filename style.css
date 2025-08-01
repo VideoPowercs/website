@@ -544,12 +544,90 @@ canvas#stars {
   padding: 40px 20px 60px;
   font-size: 1.2rem;
   position: relative;
+  color: white;
 }
 
 .main-footer p:first-child {
   font-size: 1.4rem;
   font-weight: bold;
   margin-bottom: 15px;
+}
+
+.disclaimer-text {
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.25);
+  max-width: 800px;
+  margin: 10px auto 0 auto;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.age-warning {
+  position: absolute;
+  right: 100px;
+  bottom: 90px;
+  font-size: 0.65rem;
+  line-height: 1.2;
+  color: white;
+  text-align: left;
+  max-width: 220px;
+}
+
+.age-warning .red-18 {
+  color: red;
+  font-weight: bold;
+  text-shadow: 0 0 4px red;
+}
+
+.social-links {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+}
+
+.social-icon img {
+  width: 20px;
+  height: 20px;
+  filter: invert(100%);
+  transition: transform 0.3s;
+}
+
+.social-icon img:hover {
+  transform: scale(1.1);
+}
+
+/* ======= MOBILAJIEM IERĪCĒM ======= */
+@media (max-width: 768px) {
+  .main-footer {
+    padding: 30px 15px 50px;
+    font-size: 1rem;
+  }
+
+  .main-footer p:first-child {
+    font-size: 1.2rem;
+  }
+
+  .disclaimer-text {
+    font-size: 0.55rem;
+    padding: 0 10px;
+  }
+
+  .age-warning {
+    position: static;
+    margin-top: 20px;
+    text-align: center;
+    max-width: 90%;
+    font-size: 0.6rem;
+  }
+
+  .social-links {
+    position: static;
+    justify-content: center;
+    margin-top: 20px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -637,52 +715,6 @@ canvas#stars {
   .video-date {
     font-size: 0.75rem;
   }
-}
-
-.disclaimer-text {
-  font-size: 0.6rem; /* mazs teksts */
-  color: rgba(255, 255, 255, 0.25); /* caurspīdīgāks balts */
-  max-width: 800px;
-  margin: 10px auto 0 auto;
-  line-height: 1.4;
-  text-align: center;
-}
-
-.age-warning {
-  position: absolute;
-  right: 100px;
-  bottom: 90px;
-  font-size: 0.65rem;
-  line-height: 1.2;
-  color: white;
-  text-align: left;
-  max-width: 220px;
-}
-
-.age-warning .red-18 {
-  color: red;
-  font-weight: bold;
-  text-shadow: 0 0 4px red;
-}
-
-.social-links {
-  display: flex;
-  justify-content: flex-start;
-  gap: 15px;
-  position: absolute;
-  left: 20px;
-  bottom: 20px;
-}
-
-.social-icon img {
-  width: 20px;
-  height: 20px;
-  filter: invert(100%);
-  transition: transform 0.3s;
-}
-
-.social-icon img:hover {
-  transform: scale(1.1);
 }
 
 .promo-banner {
@@ -1038,32 +1070,45 @@ canvas#stars {
   pointer-events: none; /* lai klikšķi nokļūst lapas saturā */
 }
 
-.custom-banner {
-  display: block;
-  max-width: 600px; /* vai kādu citu piemērotu vērtību */
-  margin: 20px auto; /* centrē horizontāli un mazina sānu atstarpes */
-  position: relative; /* lai bērna img absolūtais pozicionējums strādā */
-  border-radius: 12px;
-  overflow: hidden; /* lai noapaļojumi labi redzami */
+#specials .section {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
 }
 
-/* Attēlam jau ir absolūts pozicionējums, tas ir ok */
+.custom-banner {
+  flex: 0 0 500px;
+  height: 310px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
 
+.custom-banner .banner-hover-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Mobilajā versijā */
 @media screen and (max-width: 768px) {
-  .custom-banner {
-    max-width: 90vw; /* aizņem līdz 90% no ekrāna platuma */
-    margin: 10px auto; /* mazāk atstarpes mobilajā */
-    height: auto; /* lai baneris pielāgojas pēc platuma */
+  #specials .section {
+    flex-direction: column; /* baneri viens zem otra */
+    gap: 15px; /* mazāka atstarpe */
+    align-items: center; /* lai centrētu kolonnā */
   }
-  
+
+  .custom-banner {
+    flex: none; /* atsakāmies no fiksētās flex platuma */
+    width: 90vw; /* aizņem 90% no ekrāna platuma */
+    height: auto; /* automātiska augstums */
+  }
+
   .custom-banner .banner-hover-bg img {
-    position: relative; /* mainīt uz relative, lai nebūtu problēmas ar izmēru */
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    object-position: top;
-    border-radius: 12px;
-    display: block;
+    height: auto; /* lai attēls pielāgotu augstumu proporcionāli */
   }
 }
 
