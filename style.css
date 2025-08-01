@@ -1,7 +1,8 @@
-html, body { 
+html,
+body {
   margin: 0;
   padding: 0;
-  font-family: 'Press Start 2P', monospace;
+  font-family: "Press Start 2P", monospace;
   background: transparent;
   color: #fff;
   overflow-x: hidden;
@@ -11,8 +12,11 @@ html, body {
 
 body {
   background-color: #181717;
-  background-image:
-    linear-gradient(45deg, rgba(128, 128, 128, 0.2) 2px, transparent 2px),
+  background-image: linear-gradient(
+      45deg,
+      rgba(128, 128, 128, 0.2) 2px,
+      transparent 2px
+    ),
     linear-gradient(-45deg, rgba(128, 128, 128, 0.2) 2px, transparent 2px);
   background-size: 30px 30px;
   background-position: 0 0, 15px 15px;
@@ -30,7 +34,10 @@ canvas#stars {
 }
 
 /* Header stils */
-.main-header, .hero, .section, .main-footer {
+.main-header,
+.hero,
+.section,
+.main-footer {
   position: relative;
   z-index: 1;
 }
@@ -54,7 +61,7 @@ canvas#stars {
 
 /* Logo attēls */
 .logo {
-  height: 70px;  /* palielināts logo augstums */
+  height: 70px; /* palielināts logo augstums */
   width: auto;
 }
 
@@ -75,7 +82,7 @@ canvas#stars {
   text-decoration: none;
   transition: color 0.3s ease;
   padding: 10px 15px;
-  position: relative;  /* nepieciešams svītrām */
+  position: relative; /* nepieciešams svītrām */
 }
 
 .main-nav a:hover {
@@ -113,7 +120,9 @@ canvas#stars {
 }
 
 .hero-content {
-  transform: translateY(20px); /* Vēl mazāka nobīde uz leju - pacelts uz augšu */
+  transform: translateY(
+    20px
+  ); /* Vēl mazāka nobīde uz leju - pacelts uz augšu */
   font-size: 1.1rem; /* Palielinām tekstu */
 }
 
@@ -123,8 +132,13 @@ canvas#stars {
 }
 
 @keyframes glow {
-  0%, 100% { filter: drop-shadow(0 0 5px #0ff); }
-  50% { filter: drop-shadow(0 0 25px #ff0); }
+  0%,
+  100% {
+    filter: drop-shadow(0 0 5px #0ff);
+  }
+  50% {
+    filter: drop-shadow(0 0 25px #ff0);
+  }
 }
 
 .btn {
@@ -161,7 +175,9 @@ canvas#stars {
 }
 
 /* Partneru bloki ar baltu robežu */
-.partners-grid, .videos-grid, .store-items {
+.partners-grid,
+.videos-grid,
+.store-items {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
@@ -200,13 +216,24 @@ canvas#stars {
   margin-bottom: 10px;
 }
 
-/* --- RESPONSĪVIE UZLABOJUMI --- */
 @media (max-width: 768px) {
   .main-header {
     height: auto;
     padding: 10px 20px;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  /* Desktop */
+  @media (max-width: 1440px) {
+  }
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+  }
+
+  /* Phones */
+  @media (max-width: 600px) {
   }
 
   .main-nav {
@@ -251,7 +278,9 @@ canvas#stars {
     padding: 40px 15px;
   }
 
-  .partners-grid, .videos-grid, .store-items {
+  .partners-grid,
+  .videos-grid,
+  .store-items {
     grid-template-columns: 1fr !important;
     gap: 15px;
   }
@@ -267,7 +296,8 @@ canvas#stars {
 }
 
 @media (max-width: 480px) {
-  html, body {
+  html,
+  body {
     font-size: 8px;
   }
 
@@ -342,7 +372,8 @@ canvas#stars {
   text-align: center;
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px rgba(0, 255, 70, 0.2);
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease;
   cursor: pointer;
   perspective: 1000px;
   position: relative;
@@ -424,17 +455,20 @@ canvas#stars {
   cursor: pointer;
   background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform, box-shadow;
 }
 
 .video-card img {
   position: absolute;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 15px;
   filter: brightness(1);
   z-index: 1;
@@ -453,7 +487,7 @@ canvas#stars {
   z-index: 2;
   color: #fff;
   font-weight: 700;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -656,9 +690,7 @@ canvas#stars {
 }
 
 .promo-banner:hover {
-  box-shadow:
-    0 0 10px 3px #ffb22c,
-    0 0 20px 6px #ff8a00;
+  box-shadow: 0 0 10px 3px #ffb22c, 0 0 20px 6px #ff8a00;
 }
 
 /* No image brightness change on hover */
@@ -765,14 +797,17 @@ canvas#stars {
   font-size: 1.5em;
   border-bottom: 3px solid #ffb22c;
   border-radius: 15px 15px 0 0;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   font-weight: bold;
 }
 
 .partners-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* šaurāki bloki */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(160px, 1fr)
+  ); /* šaurāki bloki */
   gap: 20px;
   align-items: stretch;
 }
@@ -799,13 +834,17 @@ canvas#stars {
 }
 
 .use-code::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
   transform: scale(0);
   opacity: 0;
   transition: all 0.5s ease-out;
@@ -977,31 +1016,8 @@ canvas#stars {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1; /* lai canvas būtu aiz pārējā satura */
-  pointer-events: none; /* lai animācija netraucētu klikšķus */
-}
-
-#loading-screen {
-  position: fixed;
-  top: 0; 
-  left: 0; 
-  right: 0; 
-  bottom: 0;
-  background: #181717;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-.loading-logo {
-  width: 220px; /* Mazāks logo */
-  animation: scaleUpDown 1s ease-in-out 2; /* 2 cikli, katrs 1s */
-}
-
-@keyframes scaleUpDown {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.4); }
+  width: 100vw;
+  height: 100vh;
+  z-index: 0; /* Apakšā */
+  display: block;
 }
