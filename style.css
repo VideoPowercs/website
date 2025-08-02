@@ -3,29 +3,20 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Press Start 2P", monospace;
+  background: transparent;
+  color: #fff;
+  overflow-x: hidden;
+  height: 100%;
+  font-size: 10px;
+}
+
+body {
   background-color: #181717;
   background-image:
     linear-gradient(45deg, rgba(128, 128, 128, 0.2) 2px, transparent 2px),
     linear-gradient(-45deg, rgba(128, 128, 128, 0.2) 2px, transparent 2px);
   background-size: 30px 30px;
   background-position: 0 0, 15px 15px;
-  color: #fff;
-  overflow-x: hidden;
-  height: 100%;
-  font-size: 10px; /* bāzes fonta izmērs */
-}
-
-/* RESPONSĪVS FONTU MĒROGŠANA */
-@media (min-width: 768px) {
-  html, body {
-    font-size: 14px;
-  }
-}
-
-@media (min-width: 1200px) {
-  html, body {
-    font-size: 16px;
-  }
 }
 
 canvas#stars {
@@ -50,9 +41,9 @@ canvas#stars {
 
 .main-header {
   height: 80px;
-  padding: 0 50px;
+  padding-left: 50px;
+  padding-right: 50px;
   background: rgba(0, 0, 0, 0.8);
-
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -82,19 +73,6 @@ canvas#stars {
   text-transform: uppercase;
 }
 
-/* Responsīvs navigācijas fonta izmērs un pozicionēšana */
-@media (max-width: 767px) {
-  .main-nav {
-    position: static;
-    transform: none;
-    justify-content: center;
-    gap: 20px;
-    font-size: 1rem;
-    flex-wrap: wrap;
-    padding: 10px 0;
-  }
-}
-
 .main-nav a {
   color: #fff;
   text-decoration: none;
@@ -109,6 +87,7 @@ canvas#stars {
   text-shadow: 0 0 8px #ffb22c;
 }
 
+/* Svītras starp atsevišķiem linkiem */
 .main-nav a.with-divider::after {
   content: "";
   position: absolute;
@@ -124,6 +103,7 @@ canvas#stars {
   padding-right: 25px;
 }
 
+/* Labā puse tukša */
 .right-spacer {
   width: 60px;
 }
@@ -141,8 +121,6 @@ canvas#stars {
 
 .character-img {
   max-width: 260px;
-  width: 100%;
-  height: auto;
   animation: glow 2.5s ease-in-out infinite;
 }
 
@@ -176,35 +154,12 @@ canvas#stars {
 
 .floating-images img {
   max-width: 380px;
-  width: 100%;
-  height: auto;
   margin: 0 10px;
   transition: transform 0.3s ease;
 }
 
 .floating-images img:hover {
   transform: scale(1.1);
-}
-
-/* Responsīva hero attēla izmēra samazināšana telefoniem */
-@media (max-width: 767px) {
-  .hero {
-    padding: 40px 10px;
-  }
-
-  .character-img {
-    max-width: 180px;
-  }
-
-  .btn {
-    padding: 12px 24px;
-    font-size: 1rem;
-  }
-
-  .floating-images img {
-    max-width: 200px;
-    margin: 0 5px;
-  }
 }
 
 /* Sekcijas pamati */
@@ -228,9 +183,9 @@ canvas#stars {
   text-align: center;
   margin: 15px;
   color: white;
-  border: 2px solid rgba(255, 255, 255, 0.3); /* sākuma border */
+  border: 2px solid rgba(255, 255, 255, 0.3);
   animation: pulse-border 2s infinite ease-in-out;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* mīksts starojums */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 /* ANIMĀCIJA — border krāsas pulsācija */
@@ -254,6 +209,7 @@ canvas#stars {
   margin-bottom: 10px;
 }
 
+/* ✅ Mobilā versija — līdz 768px */
 @media (max-width: 768px) {
   .main-header {
     height: auto;
@@ -261,35 +217,6 @@ canvas#stars {
     flex-direction: column;
     align-items: flex-start;
   }
-
- @media (max-width: 1440px) {
-  /* styles */
-}
-
-@media (max-width: 1024px) {
-  /* styles */
-}
-
-@media (max-width: 768px) {
-  /* styles */
-}
-
-@media (max-width: 600px) {
-  /* styles */
-}
-
-@media (max-width: 480px) {
-  /* styles */
-}
-
-  @media (max-width: 768px) {
-  .main-header {
-    height: auto;
-    padding: 10px 20px;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
 
   .main-nav {
     position: static;
@@ -336,7 +263,7 @@ canvas#stars {
   .partners-grid,
   .videos-grid,
   .store-items {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
     gap: 15px;
   }
 
@@ -350,6 +277,7 @@ canvas#stars {
   }
 }
 
+/* ✅ Mazāki ekrāni — līdz 480px */
 @media (max-width: 480px) {
   html,
   body {
@@ -374,6 +302,7 @@ canvas#stars {
   }
 }
 
+/* Partneru papildinformācija */
 .partner-description {
   font-size: 1em;
   margin-bottom: 15px;
@@ -384,6 +313,7 @@ canvas#stars {
   margin-bottom: 15px;
 }
 
+/* Promo kodi */
 .code-block {
   padding: 12px;
   border-radius: 8px;
@@ -427,8 +357,7 @@ canvas#stars {
   text-align: center;
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px rgba(0, 255, 70, 0.2);
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
   cursor: pointer;
   perspective: 1000px;
   position: relative;
@@ -493,6 +422,7 @@ canvas#stars {
   box-shadow: 0 0 25px rgba(0, 255, 70, 1);
 }
 
+/* ======= VIDEO BLOKI ======= */
 .videos-grid {
   display: flex;
   gap: 47px;
@@ -574,8 +504,7 @@ canvas#stars {
   filter: brightness(0.9);
 }
 
-/* hover .video-info fons nemainās — labāk atstāt šādu */
-
+/* ======= FOOTER ======= */
 .main-footer {
   background: #111;
   text-align: center;
@@ -637,7 +566,7 @@ canvas#stars {
   transform: scale(1.1);
 }
 
-/* ======= MOBILAJIEM IERĪCĒM ======= */
+/* ======= MOBILAJĀM IERĪCĒM ======= */
 @media (max-width: 768px) {
   .main-footer {
     padding: 30px 15px 50px;
@@ -672,7 +601,7 @@ canvas#stars {
   .store-items {
     grid-template-columns: 1fr !important;
     padding: 10px;  
-}
+  }
   
   .store-item {
     padding: 15px;
@@ -755,6 +684,7 @@ canvas#stars {
   }
 }
 
+/* Promo banner styles */
 .promo-banner {
   display: block;
   max-width: 1100px;
@@ -779,8 +709,7 @@ canvas#stars {
   box-shadow: 0 0 10px 3px #ffb22c, 0 0 20px 6px #ff8a00;
 }
 
-/* No image brightness change on hover */
-
+/* Hero content & floating images */
 .hero-content {
   position: relative;
   display: inline-block;
@@ -807,19 +736,19 @@ canvas#stars {
   transform-origin: center center;
 }
 
-/* Pārliecinies, ka main-header ir augstākā kārtībā */
+/* Main header stacking */
 .main-header {
   position: relative; /* vai fixed/sticky, atkarībā no vajadzības */
   z-index: 10;
 }
 
-/* Pozīcijas ar 'calc' lai centrētu bez translate(-50%, -50%) */
+/* Floating image positions and animations */
 .floating-images img:nth-child(1) {
   top: calc(10% - 100px);
   left: calc(50% - 100px);
   animation-name: floatFancy1;
   animation-delay: 0s;
-  z-index: -1; /* zem main-header */
+  z-index: -1;
 }
 
 .floating-images img:nth-child(2) {
@@ -854,6 +783,7 @@ canvas#stars {
   z-index: -1;
 }
 
+/* Floating animations */
 @keyframes floatFancy1 {
   0% {
     transform: translate(0, 0) rotate(0deg);
@@ -924,10 +854,7 @@ canvas#stars {
 
 .partners-grid {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(160px, 1fr)
-  ); /* šaurāki bloki */
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Šaurāki bloki */
   gap: 20px;
   align-items: stretch;
 }
@@ -960,11 +887,7 @@ canvas#stars {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.1) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
   transform: scale(0);
   opacity: 0;
   transition: all 0.5s ease-out;
