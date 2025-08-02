@@ -1,22 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('stars');
-  if (!canvas) return; // Ja canvas nav, pārtraukt
   const ctx = canvas.getContext('2d');
 
   let animationFrameId;
   const dpr = window.devicePixelRatio || 1;
 
   function resizeCanvas() {
-    // Iegūst īsto elementa izmēru (px)
-    const width = canvas.clientWidth;
-    const height = canvas.clientHeight;
-    
-    // Iestata canvas lielumu ņemot vērā DPR
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    
-    // Reset un mērogo kontekstu
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    canvas.width = canvas.clientWidth * dpr;
+    canvas.height = canvas.clientHeight * dpr;
+    ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset
     ctx.scale(dpr, dpr);
   }
 
@@ -41,15 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     starLayers.forEach(layer => {
       for (let i = 0; i < layer.count; i++) {
-        const speedX = (Math.random() * (layer.speedRange[1] - layer.speedRange[0]) + layer.speedRange[0]);
-        const speedY = (Math.random() * (layer.speedRange[1] - layer.speedRange[0]) + layer.speedRange[0]);
-
         stars.push({
           x: Math.random() * width,
           y: Math.random() * height,
           radius: Math.random() * (layer.radiusRange[1] - layer.radiusRange[0]) + layer.radiusRange[0],
-          speedX: speedX * (Math.random() < 0.5 ? 1 : -1),
-          speedY: speedY * (Math.random() < 0.5 ? 1 : -1),
+          speedX: (Math.random() * (layer.speedRange[1] - layer.speedRange[0]) + layer.speedRange[0]) * (Math.random() < 0.5 ? 1 : -1),
+          speedY: (Math.random() * (layer.speedRange[1] - layer.speedRange[0]) + layer.speedRange[0]) * (Math.random() < 0.5 ? 1 : -1),
           color: layer.colors[Math.floor(Math.random() * layer.colors.length)],
           alpha: Math.random() * 0.5 + 0.5,
           alphaDir: Math.random() > 0.5 ? 1 : -1,
@@ -66,17 +55,15 @@ document.addEventListener('DOMContentLoaded', () => {
       star.x += star.speedX;
       star.y += star.speedY;
 
-      // Wrap stars around edges
+      // Wrap
       if (star.x > width) star.x = 0;
-      else if (star.x < 0) star.x = width;
-
+      if (star.x < 0) star.x = width;
       if (star.y > height) star.y = 0;
-      else if (star.y < 0) star.y = height;
+      if (star.y < 0) star.y = height;
 
-      // Twinkle effect by changing alpha
+      // Twinkle alpha
       star.alpha += 0.01 * star.alphaDir;
-      if (star.alpha <= 0.3) star.alphaDir = 1;
-      else if (star.alpha >= 1) star.alphaDir = -1;
+      if (star.alpha <= 0.3 || star.alpha >= 1) star.alphaDir *= -1;
 
       ctx.beginPath();
       ctx.globalAlpha = star.alpha;
@@ -86,11 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     ctx.globalAlpha = 1; // Reset
-
     animationFrameId = requestAnimationFrame(animateStars);
   }
 
-  // Pauzē animāciju, kad tab ir inaktīvs, atsāk kad aktīvs
+  // Pause when tab is inactive
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
       cancelAnimationFrame(animationFrameId);
@@ -99,20 +85,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Resize debounce ar requestAnimationFrame
-  let resizeScheduled = false;
+  // Resize debounce
+  let resizeTimeout;
   window.addEventListener('resize', () => {
-    if (!resizeScheduled) {
-      resizeScheduled = true;
-      requestAnimationFrame(() => {
-        resizeCanvas();
-        createStars();
-        resizeScheduled = false;
-      });
-    }
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      resizeCanvas();
+      createStars();
+    }, 200);
   });
 
-  // Inicializācija
+  // Start
   resizeCanvas();
   createStars();
   animateStars();
