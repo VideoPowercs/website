@@ -510,6 +510,7 @@ html {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform, box-shadow;
+  text-decoration: none;
 }
 
 .video-card img {
@@ -585,7 +586,6 @@ html {
     max-width: 480px;
     height: auto;
     aspect-ratio: 16 / 9;
-    /* saglabājam hover efektus tādus pašus kā datorā */
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
       box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -597,7 +597,7 @@ html {
   }
 
   .video-info {
-    font-size: 1rem; /* pielāgots lielāks fonts kā datorā */
+    font-size: 1rem; /* lielāks fonts mobilajām */
     padding: 10px 15px;
   }
 
@@ -610,7 +610,7 @@ html {
   }
 
   .video-date {
-    font-size: 0.9rem; /* tāds pats kā datorā */
+    font-size: 0.9rem;
   }
 }
 
