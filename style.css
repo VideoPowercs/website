@@ -460,6 +460,13 @@ html {
   letter-spacing: 1.5px;
 }
 
+/* Mobilā versija - nedaudz ātrāka, maigāka pulsācija */
+@media (max-width: 600px) {
+  .store-item img {
+    animation: pulseGlow 2s infinite ease-in-out alternate;
+  }
+}
+
 .buy-btn {
   display: inline-block;
   margin-top: 12px;
@@ -578,26 +585,32 @@ html {
     max-width: 480px;
     height: auto;
     aspect-ratio: 16 / 9;
+    /* saglabājam hover efektus tādus pašus kā datorā */
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .video-card img {
     height: 100%;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .video-info {
-    font-size: 0.9rem;
-    padding: 8px 12px;
+    font-size: 1rem; /* pielāgots lielāks fonts kā datorā */
+    padding: 10px 15px;
   }
 
   .video-info h3 {
-    font-size: 1rem;
+    font-size: 1.2rem; /* tāds pats kā datorā */
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
+    color: #fff;
   }
 
   .video-date {
-    font-size: 0.8rem;
+    font-size: 0.9rem; /* tāds pats kā datorā */
   }
 }
 
@@ -635,6 +648,10 @@ html {
   text-align: left;
   max-width: 220px;
   z-index: 10; /* lai būtu virs footer */
+
+  background: rgba(0,0,0,0.6); /* viegls fons arī datorā */
+  padding: 8px 12px;
+  border-radius: 8px;
 }
 
 .age-warning .red-18 {
