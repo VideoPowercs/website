@@ -57,12 +57,40 @@ canvas#stars {
 /* Logo konteineris */
 .logo-container {
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Klikšķināmā saite uz augšu (tikai tik liela kā logo) */
+.logo-link {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  text-decoration: none;
 }
 
 /* Logo attēls */
 .logo {
-  height: 70px; /* palielināts logo augstums */
+  height: 70px; /* vai cits vēlamais augstums */
   width: auto;
+  display: block;
+  max-width: 100%;
+}
+
+/* Plūstoša ritināšana */
+html {
+  scroll-behavior: smooth;
+}
+
+/* #top enkura korekcija, lai neatduras pret fixed header */
+#top {
+  position: relative;
+  top: -80px; /* pielāgo, ja header ir cita augstuma */
+  height: 0;
+  visibility: hidden;
 }
 
 /* Navigācijas konteiners */
@@ -466,7 +494,7 @@ canvas#stars {
   position: relative;
   display: block;
   width: 300px;
-  height: 180px;
+  aspect-ratio: 16 / 9;
   border-radius: 15px;
   overflow: hidden;
   cursor: pointer;
@@ -515,6 +543,9 @@ canvas#stars {
   font-size: 1.2rem;
   flex-grow: 1;
   color: #fff;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .video-date {
@@ -538,8 +569,13 @@ canvas#stars {
 
 /* Responsivitāte mobilajiem ekrāniem */
 @media (max-width: 600px) {
+  .videos-grid {
+    gap: 20px;
+  }
+
   .video-card {
     width: 90vw;
+    max-width: 480px;
     height: auto;
     aspect-ratio: 16 / 9;
   }
@@ -555,14 +591,13 @@ canvas#stars {
 
   .video-info h3 {
     font-size: 1rem;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   .video-date {
     font-size: 0.8rem;
-  }
-
-  .videos-grid {
-    gap: 20px;
   }
 }
 
@@ -599,12 +634,27 @@ canvas#stars {
   color: white;
   text-align: left;
   max-width: 220px;
+  z-index: 10; /* lai būtu virs footer */
 }
 
 .age-warning .red-18 {
   color: red;
   font-weight: bold;
   text-shadow: 0 0 4px red;
+}
+
+/* Mobilā versija */
+@media (max-width: 600px) {
+  .age-warning {
+    position: fixed; /* fiksēts ekrānā, lai neiziet ārpus viewport */
+    right: 10px; /* mazāks attālums no labās malas */
+    bottom: 10px; /* mazāks attālums no apakšas */
+    max-width: 90vw; /* neaizņem pārāk daudz vietas */
+    font-size: 0.75rem; /* var nedaudz palielināt */
+    background: rgba(0,0,0,0.6); /* viegls fons, lai teksts būtu labi salasāms */
+    padding: 8px 12px;
+    border-radius: 8px;
+  }
 }
 
 .social-links {
@@ -868,6 +918,38 @@ canvas#stars {
   }
 }
 
+/* Mobilā versija */
+@media (max-width: 600px) {
+  .floating-images img {
+    width: 120px; /* samazināts izmērs, lai nav pārāk lieli */
+  }
+
+  .floating-images img:nth-child(1) {
+    top: calc(15% - 60px);
+    left: calc(50% - 60px);
+  }
+
+  .floating-images img:nth-child(2) {
+    top: calc(45% - 60px);
+    left: calc(85% - 60px);
+  }
+
+  .floating-images img:nth-child(3) {
+    top: calc(75% - 60px);
+    left: calc(70% - 60px);
+  }
+
+  .floating-images img:nth-child(4) {
+    top: calc(80% - 60px);
+    left: calc(25% - 60px);
+  }
+
+  .floating-images img:nth-child(5) {
+    top: calc(40% - 60px);
+    left: calc(15% - 60px);
+  }
+}
+
 .partner-logo {
   max-width: 220px;
   max-height: 80px;
@@ -1109,6 +1191,7 @@ canvas#stars {
   border-radius: 12px;
   overflow: hidden;
   position: relative;
+  max-width: 100%; /* lai nekad nepārsniegtu konteineru */
 }
 
 .custom-banner .banner-hover-bg img {
@@ -1130,12 +1213,14 @@ canvas#stars {
 
   .custom-banner {
     flex: none; /* atsakāmies no fiksētās flex platuma */
-    width: 90vw; /* aizņem 90% no ekrāna platuma */
-    height: auto; /* automātiska augstums */
+    width: 500px;       /* saglabā to pašu platumu */
+    max-width: 90vw;    /* bet ne vairāk par 90% no viewport platuma */
+    height: 310px;      /* fiksēts augstums */
+    max-height: auto;   /* ļauj augstumam pielāgoties, ja vajag */
   }
 
   .custom-banner .banner-hover-bg img {
-    height: auto; /* lai attēls pielāgotu augstumu proporcionāli */
+    height: 100%; /* lai aizpildītu banneru */
   }
 }
 
@@ -1147,4 +1232,38 @@ canvas#stars {
   width: 100%;
   height: 100%;
   background: black;
+}
+
+.plekis {
+  position: fixed;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(255, 178, 44, 0.35), transparent 70%);
+  filter: blur(150px);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.7;
+  transition: opacity 1s ease-in-out;
+}
+
+/* 🟠 1. Pleķis no labās apakšas, liels un izplūst */
+.plekis-1 {
+  bottom: -200px;
+  right: -150px;
+  opacity: 0.5;
+}
+
+/* 🟠 2. Kreisā puse, pa vidu */
+.plekis-2 {
+  top: 50%;
+  left: -200px;
+  transform: translateY(-50%);
+  opacity: 0.4;
+}
+
+/* 🟠 3. Labā puse, netālu no augšas */
+.plekis-3 {
+  top: 150px;
+  right: 80px;
+  opacity: 0.6;
 }
