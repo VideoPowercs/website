@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => { 
   const canvas = document.getElementById('stars');
   const ctx = canvas.getContext('2d');
 
@@ -61,9 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (star.y > height) star.y = 0;
       if (star.y < 0) star.y = height;
 
-      // Twinkle alpha
-      star.alpha += 0.01 * star.alphaDir;
-      if (star.alpha <= 0.3 || star.alpha >= 1) star.alphaDir *= -1;
+      // Mirgošana IZSLĒGTA:
+      // star.alpha += 0.01 * star.alphaDir;
+      // if (star.alpha <= 0.3 || star.alpha >= 1) star.alphaDir *= -1;
 
       ctx.beginPath();
       ctx.globalAlpha = star.alpha;
