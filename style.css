@@ -52,6 +52,7 @@ canvas#stars {
   align-items: center;
   justify-content: space-between;
   position: relative;
+  z-index: 1000;
 }
 
 /* Logo konteineris */
@@ -150,14 +151,28 @@ html {
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 3;
+  z-index: 1100;
 }
 
 .menu-toggle .bar {
-  height: 4px;
+  height: 3px;
   width: 100%;
   background-color: white;
   border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Hamburger atvērts stāvoklis (X formai, ja vajag) */
+.menu-toggle.open .bar:nth-child(1) {
+  transform: rotate(45deg) translateY(9px);
+}
+
+.menu-toggle.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translateY(-9px);
 }
 
 /* ===== MOBILĀ VERSIJA ===== */
@@ -166,51 +181,44 @@ html {
     height: auto;
     padding-left: 20px;
     padding-right: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     flex-wrap: nowrap;
   }
 
-  /* Logo kreisajā pusē */
   .logo-container {
     flex: 1;
     display: flex;
     align-items: center;
   }
 
-  /* Hamburger menu labajā pusē ar atstarpi no malas */
+  /* Parādīt hamburger ikonu */
   .menu-toggle {
     display: flex;
-    order: 2;
-    cursor: pointer;
-    padding: 10px 15px; /* attālums no malas */
-    margin-left: auto; /* lai nostumt uz labo pusi */
+    margin-left: auto;
+    padding: 10px;
   }
 
   /* Slēpt navigāciju pēc noklusējuma */
   .main-nav {
     position: absolute;
-    top: 60px; /* zem header */
-    right: 20px; /* nedaudz no labās malas */
-    background: rgba(0, 0, 0, 0.9);
-    width: 200px;
+    top: 70px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.95);
+    width: 220px;
     flex-direction: column;
     display: none;
-    border-radius: 4px;
-    padding: 10px 0;
+    border-radius: 6px;
+    padding: 12px 0;
     font-size: 1.1rem;
     z-index: 1000;
   }
 
-  /* Rāda izvēlni, kad aktīva */
   .main-nav.active {
     display: flex;
   }
 
   .main-nav a {
-    padding: 12px 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     text-transform: none;
     color: white;
     text-decoration: none;
@@ -221,7 +229,7 @@ html {
   }
 
   .main-nav a.with-divider::after {
-    display: none; /* Noņem svītras mobilajā */
+    display: none;
   }
 }
 
@@ -1488,36 +1496,43 @@ canvas#stars {
   opacity: 0.6;
 }
 
-#promo-code { 
+#promo-code {
   background-color: #ffb22c;
   color: white;
   font-family: 'Press Start 2P', cursive;
-  font-size: 10px; /* nedaudz lielāks fonts */
+  font-size: 10px;
   font-weight: 900;
-  padding: 4px 12px; /* plašāks bloks horizontāli */
+  padding: 4px 12px;
   border-radius: 4px;
   user-select: none;
   white-space: nowrap;
   letter-spacing: 1px;
   display: inline-block;
-  min-width: 140px; /* lai bloks būtu platāks */
+  min-width: 160px;
+  max-width: 100%;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
 }
 
-/* Pielāgošana mobilajiem ekrāniem */
+/* Pielāgošana mazākiem ekrāniem */
 @media (max-width: 480px) {
   #promo-code {
-    font-size: 9px;            /* mazāks fonts */
-    padding: 3px 8px;          /* mazāks padding */
-    min-width: 120px;          /* šaurāks bloks */
-    max-width: 140px;          /* ierobežot platumu */
-    display: block;            /* lai var izmantot margin */
-    margin-left: auto;         /* novieto bloku labajā pusē */
-    margin-right: 10px;        /* atstarpe no labās malas */
-    text-align: center;        /* teksts centrēts blokā */
-    background-color: #222;    /* ja vajag fona krāsu */
-    color: white;              /* teksts balts */
-    border-radius: 4px;        /* noapaļoti stūri */
-    box-sizing: border-box;    /* iekļauj padding */
+    font-size: 9px;
+    padding: 3px 8px;
+    min-width: auto;
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: 10px;
+    text-align: center;
+    background-color: #222;
+    color: white;
+    border-radius: 4px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
