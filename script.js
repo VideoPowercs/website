@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ====== Video karšu slaidera funkcija ======
+  // ====== Video karšu slaidera funkcija ar hover pauzi progress bar (bez kartes pazušanas) ======
   const cards = Array.from(document.querySelectorAll('.video-card'));
   const slideDuration = 4000;
   const slideOutDuration = 600;
@@ -122,13 +122,28 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentIndex = 0;
     let animationFrameId = null;
     let startTime = null;
+    let paused = false;
 
     function animateProgress(timestamp) {
       if (!startTime) startTime = timestamp;
+      if (paused) {
+        animationFrameId = requestAnimationFrame(animateProgress);
+        return;
+      }
+
       const elapsed = timestamp - startTime;
       const progress = Math.min(elapsed / slideDuration, 1);
 
       progressBars[currentIndex].style.width = `${progress * 100}%`;
+
+      // Pievienots pointer-events kontrole atkarībā no opacity (lai caurspīdīgajiem blokiem nevar klikšķināt)
+      const card = cards[currentIndex];
+      const opacity = parseFloat(window.getComputedStyle(card).opacity);
+      if (opacity < 0.1) {
+        card.style.pointerEvents = 'none';
+      } else {
+        card.style.pointerEvents = 'auto';
+      }
 
       if (progress < 1) {
         animationFrameId = requestAnimationFrame(animateProgress);
@@ -136,6 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cards[currentIndex].style.transition = 'transform 0.5s ease, opacity 0.5s ease';
         cards[currentIndex].style.transform = 'translateX(-150%)';
         cards[currentIndex].style.opacity = '0';
+        cards[currentIndex].style.pointerEvents = 'none'; // Papildu drošība
 
         setTimeout(() => {
           progressBars[currentIndex].style.width = '0%';
@@ -147,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.transition = 'none';
                 card.style.transform = 'translateX(0)';
                 card.style.opacity = '1';
+                card.style.pointerEvents = 'auto'; // Atjauno pointer-events
               });
               currentIndex = 0;
               startTime = null;
@@ -162,6 +179,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     animationFrameId = requestAnimationFrame(animateProgress);
 
+    // Pievieno mouseenter un mouseleave notikumus tikai .new klasēm, lai pauzētu progressu, bet netraucētu kartes stāvokli
+    cards.forEach((card, index) => {
+      if (!card.classList.contains('new')) return;
+
+      card.addEventListener('mouseenter', () => {
+        if (index === currentIndex) {
+          paused = true;
+          progressBars[currentIndex].style.transition = 'none';
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        if (index === currentIndex) {
+          paused = false;
+          const currentWidth = parseFloat(progressBars[currentIndex].style.width) || 0;
+          startTime = performance.now() - (currentWidth / 100) * slideDuration;
+          progressBars[currentIndex].style.transition = `width linear`;
+        }
+      });
+    });
+
     // Klikšķu notikums video kartēm
     cards.forEach((card) => {
       const link = card.querySelector('a');
@@ -173,6 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
             c.style.transition = 'none';
             c.style.transform = 'translateX(0)';
             c.style.opacity = '1';
+            c.style.pointerEvents = 'auto'; // Atjauno pointer-events
           });
           currentIndex = 0;
           startTime = null;
