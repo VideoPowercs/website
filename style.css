@@ -166,49 +166,62 @@ html {
     height: auto;
     padding-left: 20px;
     padding-right: 20px;
-    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
   }
 
   /* Logo kreisajā pusē */
   .logo-container {
-    flex: 1 1 100%;
-    justify-content: center;
-    margin-bottom: 10px;
+    flex: 1;
+    display: flex;
+    align-items: center;
   }
 
-  /* Izslēdzam horizontālo navigāciju */
+  /* Hamburger menu labajā pusē ar atstarpi no malas */
+  .menu-toggle {
+    display: flex;
+    order: 2;
+    cursor: pointer;
+    padding: 10px 15px; /* attālums no malas */
+    margin-left: auto; /* lai nostumt uz labo pusi */
+  }
+
+  /* Slēpt navigāciju pēc noklusējuma */
   .main-nav {
-    position: static;
-    transform: none;
-    display: none; /* noklusējuma slēpta */
-    flex-direction: column;
-    width: 100%;
+    position: absolute;
+    top: 60px; /* zem header */
+    right: 20px; /* nedaudz no labās malas */
     background: rgba(0, 0, 0, 0.9);
+    width: 200px;
+    flex-direction: column;
+    display: none;
+    border-radius: 4px;
     padding: 10px 0;
     font-size: 1.1rem;
-    text-align: center;
+    z-index: 1000;
   }
 
-  /* Navigācijas linki vertikālā sarakstā */
+  /* Rāda izvēlni, kad aktīva */
+  .main-nav.active {
+    display: flex;
+  }
+
   .main-nav a {
-    padding: 12px 0;
+    padding: 12px 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    text-transform: none; /* Ja gribi, var noņemt uppercase */
+    text-transform: none;
+    color: white;
+    text-decoration: none;
+  }
+
+  .main-nav a:last-child {
+    border-bottom: none;
   }
 
   .main-nav a.with-divider::after {
     display: none; /* Noņem svītras mobilajā */
-  }
-
-  /* Rāda izvēlnes pogu */
-  .menu-toggle {
-    display: flex;
-    order: 1;
-  }
-
-  /* Kad izvēlne aktīva, rāda navigāciju */
-  .main-nav.active {
-    display: flex;
   }
 }
 
@@ -664,9 +677,12 @@ html {
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
-.video-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(255, 178, 44, 0.6);
+/* Hover efekts tikai desktop */
+@media (hover: hover) and (pointer: fine) {
+  .video-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(255, 178, 44, 0.6);
+  }
 }
 
 .video-card img {
@@ -699,7 +715,7 @@ html {
 }
 
 .video-date {
-  font-family: Press+Start+2P;
+  font-family: 'Press Start 2P', cursive;
   font-size: 0.85rem;
   color: #aaa;
   margin-left: 10px;
@@ -792,6 +808,12 @@ html {
   }
   .video-card img {
     height: 200px;
+  }
+
+  /* No hover efektu mobilajās */
+  .video-card:hover {
+    transform: none !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.8) !important;
   }
 }
 
@@ -1485,12 +1507,17 @@ canvas#stars {
 /* Pielāgošana mobilajiem ekrāniem */
 @media (max-width: 480px) {
   #promo-code {
-    font-size: 9px; /* mazliet mazāks fonts */
-    padding: 3px 8px; /* mazāks padding */
-    min-width: 120px; /* nedaudz šaurāks bloks */
-    display: block;      /* lai var izmantot margin */
-    margin-left: auto;   /* lai novieto labajā pusē */
-    margin-right: 0;
-    text-align: center;  /* saglabā centrēšanu tekstam blokā */
+    font-size: 9px;            /* mazāks fonts */
+    padding: 3px 8px;          /* mazāks padding */
+    min-width: 120px;          /* šaurāks bloks */
+    max-width: 140px;          /* ierobežot platumu */
+    display: block;            /* lai var izmantot margin */
+    margin-left: auto;         /* novieto bloku labajā pusē */
+    margin-right: 10px;        /* atstarpe no labās malas */
+    text-align: center;        /* teksts centrēts blokā */
+    background-color: #222;    /* ja vajag fona krāsu */
+    color: white;              /* teksts balts */
+    border-radius: 4px;        /* noapaļoti stūri */
+    box-sizing: border-box;    /* iekļauj padding */
   }
 }
