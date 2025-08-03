@@ -56,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
         star.x += star.speedX;
         star.y += star.speedY;
 
-        // Wrap
         if (star.x > width) star.x = 0;
         if (star.x < 0) star.x = width;
         if (star.y > height) star.y = 0;
@@ -100,8 +99,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const nav = document.querySelector('.main-nav');
 
   if (toggle && nav) {
-    toggle.addEventListener('click', () => {
-      nav.classList.toggle('show');
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation(); // Neļauj izsaukt dokumenta klikšķi
+      nav.classList.toggle('active');
+      toggle.classList.toggle('open');
+    });
+
+    // Aizver izvēlni, ja klikšķina ārpus tās
+    document.addEventListener('click', (e) => {
+      if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+        nav.classList.remove('active');
+        toggle.classList.remove('open');
+      }
+    });
+
+    // Aizver izvēlni, kad klikšķina uz kāda linka iekšā
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+        toggle.classList.remove('open');
+      });
     });
   }
 
@@ -136,14 +153,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       progressBars[currentIndex].style.width = `${progress * 100}%`;
 
-      // Pievienots pointer-events kontrole atkarībā no opacity (lai caurspīdīgajiem blokiem nevar klikšķināt)
       const card = cards[currentIndex];
       const opacity = parseFloat(window.getComputedStyle(card).opacity);
-      if (opacity < 0.1) {
-        card.style.pointerEvents = 'none';
-      } else {
-        card.style.pointerEvents = 'auto';
-      }
+      card.style.pointerEvents = opacity < 0.1 ? 'none' : 'auto';
 
       if (progress < 1) {
         animationFrameId = requestAnimationFrame(animateProgress);
@@ -151,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cards[currentIndex].style.transition = 'transform 0.5s ease, opacity 0.5s ease';
         cards[currentIndex].style.transform = 'translateX(-150%)';
         cards[currentIndex].style.opacity = '0';
-        cards[currentIndex].style.pointerEvents = 'none'; // Papildu drošība
+        cards[currentIndex].style.pointerEvents = 'none';
 
         setTimeout(() => {
           progressBars[currentIndex].style.width = '0%';
@@ -163,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.transition = 'none';
                 card.style.transform = 'translateX(0)';
                 card.style.opacity = '1';
-                card.style.pointerEvents = 'auto'; // Atjauno pointer-events
+                card.style.pointerEvents = 'auto';
               });
               currentIndex = 0;
               startTime = null;
@@ -179,7 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     animationFrameId = requestAnimationFrame(animateProgress);
 
-    // Pievieno mouseenter un mouseleave notikumus tikai .new klasēm, lai pauzētu progressu, bet netraucētu kartes stāvokli
     cards.forEach((card, index) => {
       if (!card.classList.contains('new')) return;
 
@@ -200,7 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Klikšķu notikums video kartēm
     cards.forEach((card) => {
       const link = card.querySelector('a');
       if (link) {
@@ -211,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
             c.style.transition = 'none';
             c.style.transform = 'translateX(0)';
             c.style.opacity = '1';
-            c.style.pointerEvents = 'auto'; // Atjauno pointer-events
+            c.style.pointerEvents = 'auto';
           });
           currentIndex = 0;
           startTime = null;
