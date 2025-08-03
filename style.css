@@ -74,7 +74,7 @@ canvas#stars {
 
 /* Logo attēls */
 .logo {
-  height: 70px; /* vai cits vēlamais augstums */
+  height: 70px;
   width: auto;
   display: block;
   max-width: 100%;
@@ -88,7 +88,7 @@ html {
 /* #top enkura korekcija, lai neatduras pret fixed header */
 #top {
   position: relative;
-  top: -80px; /* pielāgo, ja header ir cita augstuma */
+  top: -80px;
   height: 0;
   visibility: hidden;
 }
@@ -110,7 +110,7 @@ html {
   text-decoration: none;
   transition: color 0.3s ease;
   padding: 10px 15px;
-  position: relative; /* nepieciešams svītrām */
+  position: relative;
 }
 
 .main-nav a:hover {
@@ -131,7 +131,6 @@ html {
   opacity: 0.5;
 }
 
-/* Papildu labāka atstarpe pie svītras */
 .main-nav a.with-divider {
   padding-right: 25px;
 }
@@ -180,6 +179,7 @@ html {
     padding: 20px 0;
     gap: 20px;
     transform: none;
+    z-index: 2;
   }
 
   .main-nav.show {
@@ -194,7 +194,6 @@ html {
     display: none;
   }
 
-  /* Svītras starp linkiem mobilajā versijā nav vajadzīgas */
   .main-nav a.with-divider::after {
     display: none;
   }
@@ -634,15 +633,16 @@ html {
   cursor: pointer;
   opacity: 1; /* lai visi redzami */
   pointer-events: auto;
-  transition: opacity 0.5s ease, transform 0.3s ease;
+  transition: opacity 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
 }
 
-/* Hover efekts saglabāts */
+/* Hover efekts: neliela palielināšanās un ēna */
 .video-card:hover {
   transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(255, 178, 44, 0.6);
 }
 
 .video-card img {
@@ -711,14 +711,16 @@ html {
 
 @media (max-width: 600px) {
   .videos-grid {
-    width: 90vw;
+    width: max-content;
     height: 220px;
-    flex-wrap: wrap; /* Ja gribi, lai mazos ekrānos video varētu rakties zemāk */
+    flex-wrap: nowrap;
     gap: 10px;
+    overflow-x: auto;
   }
   .video-card {
-    width: 90vw;
+    width: 250px;
     height: 220px;
+    flex-shrink: 0;
   }
   .video-card img {
     height: 180px;
