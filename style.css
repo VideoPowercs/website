@@ -160,49 +160,6 @@ html {
   border-radius: 2px;
 }
 
-/* Responsīvā izvēlne mobilajām ierīcēm */
-@media (max-width: 768px) {
-  .main-header {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .main-nav {
-    position: absolute;
-    top: 80px;
-    left: 0;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.95);
-    display: none;
-    padding: 20px 0;
-    gap: 20px;
-    transform: none;
-    z-index: 2;
-  }
-
-  .main-nav.show {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: flex;
-  }
-
-  .right-spacer {
-    display: none;
-  }
-
-  .main-nav a.with-divider::after {
-    display: none;
-  }
-
-  .main-nav a.with-divider {
-    padding-right: 15px;
-  }
-}
-
 /* Hero sekcijas stils */
 .hero {
   text-align: center;
@@ -607,21 +564,19 @@ html {
   box-shadow: 0 0 25px rgba(0, 255, 70, 1);
 }
 
-/* Videos grid tagad parādīs visus video blakus, nevis tikai vienu */
+/* Videos grid tagad parādīs visus video blakus datora versijā */
 .videos-grid {
   position: relative;
-  width: max-content; /* vai var arī konkrēts platums */
-  height: 220px;
-  overflow: visible; /* nav jāslēpj video */
-  margin: 0 auto;
-
+  width: 100%;
   display: flex;
-  gap: 16px; /* atstarpe starp video */
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
 }
 
-/* Video kartes nu nav absolūti pozicionētas, lai stāvētu blakus */
+/* Video kartes */
 .video-card {
-  position: relative; /* lai progress-bar strādā normāli */
+  position: relative;
   width: 300px;
   height: 220px;
   border-radius: 12px;
@@ -631,7 +586,7 @@ html {
   color: #fff;
   text-decoration: none;
   cursor: pointer;
-  opacity: 1; /* lai visi redzami */
+  opacity: 1;
   pointer-events: auto;
   transition: opacity 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
@@ -639,7 +594,6 @@ html {
   flex-shrink: 0;
 }
 
-/* Hover efekts: neliela palielināšanās un ēna */
 .video-card:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 16px rgba(255, 178, 44, 0.6);
@@ -694,12 +648,8 @@ html {
   border-radius: 0 0 12px 12px;
 }
 
-/* Responsīvais */
+/* Responsīvais — planšetēm */
 @media (max-width: 900px) {
-  .videos-grid {
-    width: max-content;
-    height: 190px;
-  }
   .video-card {
     width: 250px;
     height: 190px;
@@ -709,21 +659,63 @@ html {
   }
 }
 
-@media (max-width: 600px) {
+/* Mobilā versija — video uz leju un navigācija pilna */
+@media (max-width: 768px) {
+  .main-header {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .main-nav {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: none;
+    padding: 20px 0;
+    gap: 20px;
+    transform: none;
+    z-index: 2;
+  }
+
+  .main-nav.show {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .right-spacer {
+    display: none;
+  }
+
+  .main-nav a.with-divider::after {
+    display: none;
+  }
+
+  .main-nav a.with-divider {
+    padding-right: 15px;
+  }
+
+  /* Video grid uz leju */
   .videos-grid {
-    width: max-content;
-    height: 220px;
-    flex-wrap: nowrap;
-    gap: 10px;
-    overflow-x: auto;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+    overflow-x: hidden;
   }
   .video-card {
-    width: 250px;
-    height: 220px;
-    flex-shrink: 0;
+    width: 100%;
+    max-width: 350px;
+    height: auto;
   }
   .video-card img {
-    height: 180px;
+    height: 200px;
   }
 }
 
