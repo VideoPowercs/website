@@ -1488,5 +1488,9 @@ canvas#stars {
     font-size: 9px; /* mazliet mazāks fonts */
     padding: 3px 8px; /* mazāks padding */
     min-width: 120px; /* nedaudz šaurāks bloks */
+    display: block;      /* lai var izmantot margin */
+    margin-left: auto;   /* lai novieto labajā pusē */
+    margin-right: 0;
+    text-align: center;  /* saglabā centrēšanu tekstam blokā */
   }
 }
