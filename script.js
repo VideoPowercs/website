@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => { 
+document.addEventListener('DOMContentLoaded', () => {
+  // ====== Zvaigžņu animācija ======
   const canvas = document.getElementById('stars');
   const ctx = canvas.getContext('2d');
 
@@ -61,10 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (star.y > height) star.y = 0;
       if (star.y < 0) star.y = height;
 
-      // Mirgošana IZSLĒGTA:
-      // star.alpha += 0.01 * star.alphaDir;
-      // if (star.alpha <= 0.3 || star.alpha >= 1) star.alphaDir *= -1;
-
       ctx.beginPath();
       ctx.globalAlpha = star.alpha;
       ctx.fillStyle = star.color;
@@ -95,8 +92,103 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 200);
   });
 
-  // Start
+  // Start animation
   resizeCanvas();
   createStars();
   animateStars();
+
+  // ====== Hamburger izvēlne mobilajām ierīcēm ======
+  const toggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.main-nav');
+
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('show');
+    });
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = Array.from(document.querySelectorAll('.video-card'));
+  const slideDuration = 4000; // 4 sekundes progress
+  const slideOutDuration = 600; // slide-out animācija
+  const restartDelay = 800; // pauze pirms atkārtošanas
+
+  const progressBars = cards.map(card => {
+    const bar = document.createElement('div');
+    bar.classList.add('progress-bar');
+    card.appendChild(bar);
+    return bar;
+  });
+
+  let currentIndex = 0;
+  let animationFrameId = null;
+  let startTime = null;
+
+  function animateProgress(timestamp) {
+    if (!startTime) startTime = timestamp;
+    const elapsed = timestamp - startTime;
+    const progress = Math.min(elapsed / slideDuration, 1);
+
+    progressBars[currentIndex].style.width = `${progress * 100}%`;
+
+    if (progress < 1) {
+      animationFrameId = requestAnimationFrame(animateProgress);
+    } else {
+      cards[currentIndex].style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+      cards[currentIndex].style.transform = 'translateX(-150%)';
+      cards[currentIndex].style.opacity = '0';
+
+      setTimeout(() => {
+        progressBars[currentIndex].style.width = '0%';
+        currentIndex++;
+
+        if (currentIndex >= cards.length) {
+          setTimeout(() => {
+            cards.forEach(card => {
+              card.style.transition = 'none';
+              card.style.transform = 'translateX(0)';
+              card.style.opacity = '1';
+            });
+            currentIndex = 0;
+            startTime = null;
+            animationFrameId = requestAnimationFrame(animateProgress);
+          }, restartDelay);
+        } else {
+          startTime = null;
+          animationFrameId = requestAnimationFrame(animateProgress);
+        }
+      }, slideOutDuration);
+    }
+  }
+
+  // Sākam pirmo ciklu
+  animationFrameId = requestAnimationFrame(animateProgress);
+
+  // Klikšķa apstrāde – vienmēr restartē no sākuma un ļauj iet uz video
+  cards.forEach((card) => {
+    const link = card.querySelector('a');
+
+    if (link) {
+      link.addEventListener('click', (event) => {
+        // Pārtrauc automātisko slideru
+        if (animationFrameId) cancelAnimationFrame(animationFrameId);
+        progressBars.forEach(bar => bar.style.width = '0%');
+        cards.forEach(c => {
+          c.style.transition = 'none';
+          c.style.transform = 'translateX(0)';
+          c.style.opacity = '1';
+        });
+        currentIndex = 0; // Vienmēr no paša sākuma
+        startTime = null;
+
+        // Neliels aizkaves restartēšanai, pirms dodas uz video
+        event.preventDefault();
+        animationFrameId = requestAnimationFrame(animateProgress);
+        setTimeout(() => {
+          window.location.href = link.href;
+        }, 100);
+      });
+    }
+  });
 });
