@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
             speedY: (Math.random() * (layer.speedRange[1] - layer.speedRange[0]) + layer.speedRange[0]) * (Math.random() < 0.5 ? 1 : -1),
             color: layer.colors[Math.floor(Math.random() * layer.colors.length)],
             alpha: Math.random() * 0.5 + 0.5,
-            alphaDir: Math.random() > 0.5 ? 1 : -1,
           });
         }
       });
@@ -100,12 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (toggle && nav) {
     toggle.addEventListener('click', (e) => {
-      e.stopPropagation(); // Neļauj izsaukt dokumenta klikšķi
+      e.stopPropagation();
       nav.classList.toggle('active');
       toggle.classList.toggle('open');
     });
 
-    // Aizver izvēlni, ja klikšķina ārpus tās
     document.addEventListener('click', (e) => {
       if (!nav.contains(e.target) && !toggle.contains(e.target)) {
         nav.classList.remove('active');
@@ -113,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Aizver izvēlni, kad klikšķina uz kāda linka iekšā
     nav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         nav.classList.remove('active');
@@ -122,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ====== Video karšu slaidera funkcija ar hover pauzi progress bar (bez kartes pazušanas) ======
+  // ====== Video karšu slaideris ar hover pauzi ======
   const cards = Array.from(document.querySelectorAll('.video-card'));
   const slideDuration = 4000;
   const slideOutDuration = 600;
@@ -152,10 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const progress = Math.min(elapsed / slideDuration, 1);
 
       progressBars[currentIndex].style.width = `${progress * 100}%`;
-
-      const card = cards[currentIndex];
-      const opacity = parseFloat(window.getComputedStyle(card).opacity);
-      card.style.pointerEvents = opacity < 0.1 ? 'none' : 'auto';
 
       if (progress < 1) {
         animationFrameId = requestAnimationFrame(animateProgress);
@@ -206,7 +199,6 @@ document.addEventListener('DOMContentLoaded', () => {
           paused = false;
           const currentWidth = parseFloat(progressBars[currentIndex].style.width) || 0;
           startTime = performance.now() - (currentWidth / 100) * slideDuration;
-          progressBars[currentIndex].style.transition = `width linear`;
         }
       });
     });
