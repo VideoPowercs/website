@@ -160,6 +160,58 @@ html {
   border-radius: 2px;
 }
 
+/* ===== MOBILĀ VERSIJA ===== */
+@media (max-width: 768px) {
+  .main-header {
+    height: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    flex-wrap: wrap;
+  }
+
+  /* Logo kreisajā pusē */
+  .logo-container {
+    flex: 1 1 100%;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  /* Izslēdzam horizontālo navigāciju */
+  .main-nav {
+    position: static;
+    transform: none;
+    display: none; /* noklusējuma slēpta */
+    flex-direction: column;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 10px 0;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  /* Navigācijas linki vertikālā sarakstā */
+  .main-nav a {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    text-transform: none; /* Ja gribi, var noņemt uppercase */
+  }
+
+  .main-nav a.with-divider::after {
+    display: none; /* Noņem svītras mobilajā */
+  }
+
+  /* Rāda izvēlnes pogu */
+  .menu-toggle {
+    display: flex;
+    order: 1;
+  }
+
+  /* Kad izvēlne aktīva, rāda navigāciju */
+  .main-nav.active {
+    display: flex;
+  }
+}
+
 /* Hero sekcijas stils */
 .hero {
   text-align: center;
@@ -629,7 +681,7 @@ html {
 }
 
 .video-date {
-  font-family: monospace;
+  font-family: Press+Start+2P;
   font-size: 0.85rem;
   color: #aaa;
   margin-left: 10px;
