@@ -1519,6 +1519,7 @@ canvas#stars {
 /* Pielāgošana mazākiem ekrāniem */
 @media (max-width: 480px) {
   #promo-code {
+ background-color: #ffb22c;
     font-size: 9px;
     padding: 3px 8px;
     min-width: auto;
