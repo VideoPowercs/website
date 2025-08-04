@@ -47,7 +47,6 @@ canvas#stars {
   padding-left: 50px;
   padding-right: 50px;
   background: rgba(0, 0, 0, 0.8);
-
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -210,6 +209,8 @@ html {
     padding: 12px 0;
     font-size: 1.1rem;
     z-index: 1000;
+    text-align: center; /* centrē tekstu */
+    align-items: center; /* centrē saites konteinerī */
   }
 
   .main-nav.active {
@@ -222,6 +223,8 @@ html {
     text-transform: none;
     color: white;
     text-decoration: none;
+    width: 100%;
+    text-align: center;
   }
 
   .main-nav a:last-child {
