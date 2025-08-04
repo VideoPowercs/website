@@ -1519,7 +1519,8 @@ canvas#stars {
 /* Pielāgošana mazākiem ekrāniem */
 @media (max-width: 480px) {
   #promo-code {
- background-color: #ffb22c;
+    background-color: #ffb22c; /* Saglabājam oranžo krāsu arī telefonā */
+    color: white;
     font-size: 9px;
     padding: 3px 8px;
     min-width: auto;
@@ -1528,8 +1529,6 @@ canvas#stars {
     margin-left: auto;
     margin-right: 10px;
     text-align: center;
-    background-color: #222;
-    color: white;
     border-radius: 4px;
     box-sizing: border-box;
     white-space: nowrap;
