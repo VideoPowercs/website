@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
       toggle.classList.toggle('open');
     });
 
+    // Klikšķis ārpus izvēlnes - aizver
     document.addEventListener('click', (e) => {
       if (!nav.contains(e.target) && !toggle.contains(e.target)) {
         nav.classList.remove('active');
@@ -111,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    // Klikšķis uz kādas izvēlnes saites - aizver
     nav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         nav.classList.remove('active');
