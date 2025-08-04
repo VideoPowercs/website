@@ -1296,15 +1296,23 @@ use-code {
   z-index: 10;
 }
 
+.giveaway-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* ← no 'center' uz 'flex-start' */
+  gap: 40px; /* horizontālā atstarpe starp blokiem */
+  margin-top: 20px; /* atstarpe zem h2 */
+}
+
 .giveaway-card {
   background: #1a1a1a;
   border-radius: 12px;
   padding: 14px 16px;
-  margin: 20px 0 0 0; /* izvairāmies no centra */
   max-width: 300px;
   text-align: center;
   outline: 2px solid #ffb22c;
   position: relative;
+  flex: 1 1 300px;
 }
 
 .giveaway-image-wrapper {
@@ -1322,7 +1330,7 @@ use-code {
   height: auto;
   border-radius: 8px;
   display: block;
-  transition: none; /* nav hover animācijas */
+  transition: none;
 }
 
 .giveaway-title {
@@ -1332,7 +1340,6 @@ use-code {
   font-weight: 700;
 }
 
-/* Active tags, mazāks un iekš bloka, labajā augšējā stūrī */
 .active-tag {
   position: absolute;
   top: 10px;
@@ -1367,12 +1374,24 @@ use-code {
 .btn.enter-btn:hover {
   background: linear-gradient(135deg, #ff8a00, #ff3d99);
   transform: scale(1.05);
-  box-shadow: 0 0 12px rgba(255, 58, 137, 0.5); /* mazināts glow */
-  filter: brightness(1.05); /* nedaudz mazāks spožums */
+  box-shadow: 0 0 12px rgba(255, 58, 137, 0.5);
+  filter: brightness(1.05);
 }
 
 img {
   pointer-events: none;
+}
+
+/* Responsive – Telefona versija: viens zem otra */
+@media (max-width: 768px) {
+  .giveaway-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .giveaway-card {
+    max-width: 90%;
+  }
 }
 
 /* Scrollbar pelēks stils (Chrome, Edge, Safari) */
