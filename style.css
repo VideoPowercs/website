@@ -271,6 +271,7 @@ html {
     text-decoration: none;
     width: 100%;
     transition: background 0.2s ease;
+    position: relative; /* nepieciešams, lai ::after pozicionētos pareizi */
   }
 
   .main-nav a:hover {
@@ -281,8 +282,16 @@ html {
     border-bottom: none;
   }
 
+  /* Svītras starp linkiem mobilajā versijā - palielinātas un paceltas */
   .main-nav a.with-divider::after {
-    display: none;
+    content: "";
+    position: absolute;
+    right: 10px;      /* nedaudz tālāk no malas */
+    top: 15%;         /* pacelta augstāk */
+    height: 70%;      /* palielināts augstums */
+    width: 2px;       /* platāka svītra */
+    background-color: white;
+    opacity: 0.7;
   }
 
   /* === Animācija izvēlnes atvēršanai === */
@@ -298,16 +307,14 @@ html {
   }
 }
 
-/* Hero sekcijas stils */
+/* Hero sekcijas stils */ 
 .hero {
   text-align: center;
   padding: 80px 20px;
 }
 
 .hero-content {
-  transform: translateY(
-    20px
-  ); /* Vēl mazāka nobīde uz leju - pacelts uz augšu */
+  transform: translateY(20px); /* Vēl mazāka nobīde uz leju - pacelts uz augšu */
   font-size: 1.1rem; /* Palielinām tekstu */
 }
 
@@ -339,7 +346,9 @@ html {
   cursor: pointer;
   transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
   user-select: none;
-  border: 2px solid #333;
+  /* Noņemam border un arī outline */
+  border: none;
+  outline: none;
   background: #fff;
   color: #333;
   box-shadow: none;
@@ -358,7 +367,7 @@ html {
     0 0 8px 2px rgba(255, 178, 44, 0.8),
     0 0 15px 6px rgba(255, 178, 44, 0.6);
   transform: translateY(-4px) scale(1.05);
-  border-color: transparent;
+  border-color: transparent; /* Var atstāt vai izņemt, jo border:none */
   z-index: 1;
 }
 
@@ -371,6 +380,8 @@ html {
   justify-content: center;
   overflow: hidden;
   transition: width 0.4s ease, padding 0.4s ease, border-radius 0.4s ease;
+  border: none; /* Noņemam līniju */
+  outline: none;
 }
 
 /* Slēpj tekstu span sākumā */
@@ -397,6 +408,22 @@ html {
 /* Hover — rāda tekstu */
 .btn.red.partners:hover span {
   display: inline;
+}
+
+/* Media query telefona versijai - mazāks character-img */
+@media (max-width: 600px) {
+  .character-img {
+    max-width: 140px; /* Piemērots mazākiem ekrāniem */
+  }
+
+  .hero {
+    padding: 40px 10px; /* Kompaktāks padding mobilajiem */
+  }
+
+  .hero-content {
+    font-size: 1rem;
+    transform: translateY(10px);
+  }
 }
 
 .floating-images img {
@@ -1090,7 +1117,7 @@ html {
     font-size: 1rem;
   }
 
-  .videos-grid {
+.videos-grid {
     gap: 20px;
   }
 
@@ -1652,7 +1679,7 @@ canvas#stars {
   background-size: 1400% 1400%;
   color: white;
   font-family: 'Press Start 2P', cursive;
-  font-size: 8px;
+  font-size: 8px; /* Desktop versija */
   font-weight: 900;
   padding: 4px 10px;
   border-radius: 5px;
@@ -1687,9 +1714,9 @@ canvas#stars {
 /* ==== PLANŠETE ==== */
 @media (max-width: 768px) {
   #promo-code {
-    font-size: 7px;
-    padding: 3px 8px;
-    min-width: 120px;
+    font-size: 12px;      /* PALIELINĀTS fonts */
+    padding: 6px 12px;    /* PALIELINĀTS padding */
+    min-width: 140px;
     max-width: 90%;
     border-radius: 5px;
     margin: 10px auto;
@@ -1700,9 +1727,9 @@ canvas#stars {
 /* ==== MOBILĀ ==== */
 @media (max-width: 480px) {
   #promo-code {
-    font-size: 6px;
-    padding: 2px 6px;
-    min-width: 100px;
+    font-size: 14px;      /* vēl lielāks fonts mazākos ekrānos */
+    padding: 8px 14px;    /* vairāk vietas */
+    min-width: 140px;
     max-width: 90%;
     border-radius: 5px;
     margin: 8px auto;
