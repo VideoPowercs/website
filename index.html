@@ -45,14 +45,14 @@
   </div>
 
   <!-- Hamburgera poga -->
-  <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+  <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
 
   <!-- Navigācija -->
-  <nav class="main-nav" id="main-nav">
+  <nav class="main-nav" id="main-nav" aria-label="Primary Navigation" hidden>
     <a href="#partners" class="with-divider">PARTNERS</a>
     <a href="#videos" class="with-divider">VIDEOS</a>
     <a href="#specials" class="with-divider">SPECIALS</a>
@@ -60,8 +60,10 @@
     <a href="#store">STORE</a>
   </nav>
 
-  <div id="promo-code">USE CODE VIDEOPOWER</div>
-       </header>
+  <div id="promo-code" tabindex="0" role="link" aria-label="Use promo code VIDEOPOWER" style="cursor:pointer;">
+    USE CODE VIDEOPOWER
+  </div>
+</header>
 
     <section class="hero">
       <div class="hero-content">
