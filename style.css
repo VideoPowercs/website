@@ -33,7 +33,42 @@ canvas#stars {
   background: transparent; /* NE MELNS */
 }
 
-/* Header stils */
+/* ========================= */
+/*        Bāzes stils       */
+/* ========================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Kanva - lai neblķētu klikšķus */
+#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* #top enkura korekcija */
+#top {
+  position: relative;
+  top: -80px;
+  height: 0;
+  visibility: hidden;
+}
+
+/* ========================= */
+/*     Header un Layout      */
+/* ========================= */
+
 .main-header,
 .hero,
 .section,
@@ -44,26 +79,25 @@ canvas#stars {
 
 .main-header {
   height: 80px;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding: 0 50px;
   background: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
   z-index: 1000;
 }
 
-/* Logo konteineris */
+/* ========================= */
+/*        Logo stili         */
+/* ========================= */
+
 .logo-container {
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  /* nav padding/margin, lai nesaturētu lieku vietu */
 }
 
-/* Klikšķināmā saite tieši ap attēlu */
 .logo-link {
   display: inline-block;
   cursor: pointer;
@@ -71,10 +105,8 @@ canvas#stars {
   margin: 0;
   line-height: 0;
   text-decoration: none;
-  /* Šeit nav papildu platuma vai augstuma */
 }
 
-/* Logo attēls — hover efekts tieši šeit */
 .logo {
   height: 70px;
   width: auto;
@@ -84,26 +116,15 @@ canvas#stars {
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-/* Hover efekts tikai pašam logo attēlam */
 .logo:hover {
   box-shadow: 0 0 15px 5px rgba(255, 178, 44, 0.8);
   transform: scale(1.05) rotate(3deg);
 }
 
-/* Plūstoša ritināšana */
-html {
-  scroll-behavior: smooth;
-}
+/* ========================= */
+/*     Navigācija - desktop */
+/* ========================= */
 
-/* #top enkura korekcija, lai neatduras pret fixed header */
-#top {
-  position: relative;
-  top: -80px;
-  height: 0;
-  visibility: hidden;
-}
-
-/* Navigācijas konteiners */
 .main-nav {
   position: absolute;
   left: 50%;
@@ -113,6 +134,7 @@ html {
   font-size: 1.2rem;
   font-weight: bold;
   text-transform: uppercase;
+  z-index: 1001;
 }
 
 .main-nav a {
@@ -129,7 +151,6 @@ html {
   text-shadow: 0 0 8px #ffb22c;
 }
 
-/* Svītras starp atsevišķiem linkiem */
 .main-nav a.with-divider::after {
   content: "";
   position: absolute;
@@ -145,12 +166,18 @@ html {
   padding-right: 25px;
 }
 
-/* Labā puse tukša */
+/* ========================= */
+/*     Tukša vieta labajā   */
+/* ========================= */
+
 .right-spacer {
   width: 60px;
 }
 
-/* Hamburga izvēlnes poga */
+/* ========================= */
+/*     Hamburger izvēlne    */
+/* ========================= */
+
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -171,7 +198,6 @@ html {
   transition: all 0.3s ease;
 }
 
-/* Hamburger atvērts stāvoklis (X formai, ja vajag) */
 .menu-toggle.open .bar:nth-child(1) {
   transform: rotate(45deg) translateY(9px);
 }
@@ -184,15 +210,15 @@ html {
   transform: rotate(-45deg) translateY(-9px);
 }
 
-/* ===== MOBILĀ VERSIJA ===== */
+/* ========================= */
+/*        Mobilā versija     */
+/* ========================= */
+
 @media (max-width: 768px) {
   .main-header {
     height: auto;
     padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
+    flex-wrap: wrap;
     z-index: 1200;
   }
 
@@ -202,7 +228,6 @@ html {
     align-items: center;
   }
 
-  /* === HAMBURGERA IKONA === */
   .menu-toggle {
     display: flex;
     flex-direction: column;
@@ -213,9 +238,9 @@ html {
     margin-left: auto;
     padding: 10px;
     cursor: pointer;
-    z-index: 1100;
     background: transparent;
     border: none;
+    z-index: 1100;
   }
 
   .menu-toggle span {
@@ -227,7 +252,6 @@ html {
     transition: transform 0.3s ease, opacity 0.3s ease;
   }
 
-  /* === Animē uz "X", kad atvērts === */
   .menu-toggle.open span:nth-child(1) {
     transform: translateY(9px) rotate(45deg);
   }
@@ -240,22 +264,21 @@ html {
     transform: translateY(-9px) rotate(-45deg);
   }
 
-  /* === MOBILĀ NAVIGĀCIJA === */
+  /* Mobilā izvēlne */
   .main-nav {
-    position: absolute;
-    top: 70px;
-    right: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.95);
-    width: 240px;
     display: none;
     flex-direction: column;
-    border-radius: 8px;
-    padding: 14px 0;
-    font-size: 1.1rem;
-    z-index: 1000;
-    text-align: center;
+    justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 1050;
+    padding: 40px 20px;
+    font-size: 1.2rem;
     backdrop-filter: blur(6px);
   }
 
@@ -265,13 +288,13 @@ html {
   }
 
   .main-nav a {
-    padding: 14px 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 16px;
+    width: 100%;
+    text-align: center;
     color: white;
     text-decoration: none;
-    width: 100%;
-    transition: background 0.2s ease;
-    position: relative; /* nepieciešams, lai ::after pozicionētos pareizi */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
   }
 
   .main-nav a:hover {
@@ -282,25 +305,23 @@ html {
     border-bottom: none;
   }
 
-  /* Svītras starp linkiem mobilajā versijā - palielinātas un paceltas */
   .main-nav a.with-divider::after {
     content: "";
     position: absolute;
-    right: 10px;      /* nedaudz tālāk no malas */
-    top: 15%;         /* pacelta augstāk */
-    height: 70%;      /* palielināts augstums */
-    width: 2px;       /* platāka svītra */
+    right: 10px;
+    top: 15%;
+    height: 70%;
+    width: 2px;
     background-color: white;
     opacity: 0.7;
   }
 
-  /* === Animācija izvēlnes atvēršanai === */
   @keyframes slideIn {
-    0% {
-      transform: translateY(-10px);
+    from {
+      transform: translateY(-20px);
       opacity: 0;
     }
-    100% {
+    to {
       transform: translateY(0);
       opacity: 1;
     }
@@ -1679,7 +1700,7 @@ canvas#stars {
   background-size: 1400% 1400%;
   color: white;
   font-family: 'Press Start 2P', cursive;
-  font-size: 8px; /* Desktop versija */
+  font-size: 8px; /* Mazs fonts desktopā */
   font-weight: 900;
   padding: 4px 10px;
   border-radius: 5px;
@@ -1696,7 +1717,7 @@ canvas#stars {
   animation: rainbowShift 20s ease infinite;
   transition: transform 0.2s ease;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
-  cursor: pointer; /* Padara kursoru par roci */
+  cursor: pointer;
 }
 
 /* Hover efekts desktopā */
@@ -1704,38 +1725,36 @@ canvas#stars {
   transform: scale(1.05);
 }
 
-/* Lēnā varavīksnes animācija */
+/* Varavīksnes fona animācija */
 @keyframes rainbowShift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* ==== PLANŠETE ==== */
+/* ==== PLANŠETES ==== */
 @media (max-width: 768px) {
   #promo-code {
-    font-size: 12px;      /* PALIELINĀTS fonts */
-    padding: 6px 12px;    /* PALIELINĀTS padding */
-    min-width: 140px;
+    font-size: 10px;
+    padding: 6px 12px;
+    min-width: 120px;
     max-width: 90%;
-    border-radius: 5px;
     margin: 10px auto;
     display: block;
+    border-radius: 6px;
   }
 }
 
-/* ==== MOBILĀ ==== */
+/* ==== MOBILĀ VERSIJA ==== */
 @media (max-width: 480px) {
   #promo-code {
-    font-size: 16px;       /* tāds pats kā desktopā */
-    padding: 10px 16px;    /* tāds pats kā desktopā */
-    min-width: 180px;
-    max-width: 90%;
-    border-radius: 5px;
+    font-size: 9px;
+    padding: 5px 10px;
+    min-width: 100px;
+    max-width: 85%;
     margin: 8px auto;
     display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
   }
 }
