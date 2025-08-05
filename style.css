@@ -87,10 +87,7 @@ body {
   z-index: 1000;
 }
 
-/* ========================= */
-/*        Logo stili         */
-/* ========================= */
-
+/* Logo */
 .logo-container {
   flex-shrink: 0;
   display: flex;
@@ -121,10 +118,7 @@ body {
   transform: scale(1.05) rotate(3deg);
 }
 
-/* ========================= */
-/*     Navigācija - desktop */
-/* ========================= */
-
+/* Navigācija desktop */
 .main-nav {
   position: absolute;
   left: 50%;
@@ -166,18 +160,12 @@ body {
   padding-right: 25px;
 }
 
-/* ========================= */
-/*     Tukša vieta labajā   */
-/* ========================= */
-
+/* Tukša vieta labajā */
 .right-spacer {
   width: 60px;
 }
 
-/* ========================= */
-/*     Hamburger izvēlne    */
-/* ========================= */
-
+/* Hamburger izvēlne */
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -210,10 +198,7 @@ body {
   transform: rotate(-45deg) translateY(-9px);
 }
 
-/* ========================= */
-/*        Mobilā versija     */
-/* ========================= */
-
+/* Mobilā versija */
 @media (max-width: 768px) {
   .main-header {
     height: auto;
@@ -243,8 +228,7 @@ body {
     z-index: 1100;
   }
 
-  .menu-toggle span {
-    display: block;
+  .menu-toggle .bar {
     height: 3px;
     width: 100%;
     background: white;
@@ -252,15 +236,15 @@ body {
     transition: transform 0.3s ease, opacity 0.3s ease;
   }
 
-  .menu-toggle.open span:nth-child(1) {
+  .menu-toggle.open .bar:nth-child(1) {
     transform: translateY(9px) rotate(45deg);
   }
 
-  .menu-toggle.open span:nth-child(2) {
+  .menu-toggle.open .bar:nth-child(2) {
     opacity: 0;
   }
 
-  .menu-toggle.open span:nth-child(3) {
+  .menu-toggle.open .bar:nth-child(3) {
     transform: translateY(-9px) rotate(-45deg);
   }
 
