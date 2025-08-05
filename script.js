@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let animationFrameId;
     const dpr = window.devicePixelRatio || 1;
 
-    // Nodrošina, ka canvas nerada klikšķu problēmas
     canvas.style.position = 'fixed';
     canvas.style.top = '0';
     canvas.style.left = '0';
