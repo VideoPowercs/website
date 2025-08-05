@@ -102,6 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
       e.stopPropagation();
       nav.classList.toggle('active');
       toggle.classList.toggle('open');
+
+      // === Pievienojam animāciju, piemēram, pulsēšanas efektu ===
+      toggle.classList.add('clicked-animation');
+      setTimeout(() => toggle.classList.remove('clicked-animation'), 300);
     });
 
     document.addEventListener('click', (e) => {
@@ -111,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Aizver izvēlni arī, kad uzspiež uz jebkura linka
+    // Aizver izvēlni, kad klikšķina uz linkiem
     nav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         nav.classList.remove('active');
@@ -120,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ====== Video karšu slaideris ar hover pauzi ======
+  // ====== Video karšu slaideris ======
   const cards = Array.from(document.querySelectorAll('.video-card'));
   const slideDuration = 4000;
   const slideOutDuration = 600;
@@ -226,6 +230,15 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 100);
         });
       }
+    });
+  }
+
+  // ====== Promo koda klikšķis ======
+  const promoCode = document.getElementById('promo-code');
+  if (promoCode) {
+    promoCode.style.cursor = 'pointer';
+    promoCode.addEventListener('click', () => {
+      window.location.href = 'https://hellca.se/videopower';
     });
   }
 });
