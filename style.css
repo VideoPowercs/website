@@ -60,9 +60,10 @@ canvas#stars {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  /* nav padding/margin, lai nesaturētu lieku vietu */
 }
 
-/* Klikšķināmā saite uz augšu (tikai tik liela kā logo) */
+/* Klikšķināmā saite tieši ap attēlu */
 .logo-link {
   display: inline-block;
   cursor: pointer;
@@ -70,14 +71,23 @@ canvas#stars {
   margin: 0;
   line-height: 0;
   text-decoration: none;
+  /* Šeit nav papildu platuma vai augstuma */
 }
 
-/* Logo attēls */
+/* Logo attēls — hover efekts tieši šeit */
 .logo {
   height: 70px;
   width: auto;
   display: block;
   max-width: 100%;
+  border-radius: 8px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover efekts tikai pašam logo attēlam */
+.logo:hover {
+  box-shadow: 0 0 15px 5px rgba(255, 178, 44, 0.8);
+  transform: scale(1.05) rotate(3deg);
 }
 
 /* Plūstoša ritināšana */
@@ -178,9 +188,12 @@ html {
 @media (max-width: 768px) {
   .main-header {
     height: auto;
-    padding-left: 20px;
-    padding-right: 20px;
-    flex-wrap: nowrap;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1200;
   }
 
   .logo-container {
@@ -189,42 +202,79 @@ html {
     align-items: center;
   }
 
-  /* Parādīt hamburger ikonu */
+  /* === HAMBURGERA IKONA === */
   .menu-toggle {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 30px;
+    height: 24px;
     margin-left: auto;
     padding: 10px;
+    cursor: pointer;
+    z-index: 1100;
+    background: transparent;
+    border: none;
   }
 
-  /* Slēpt navigāciju pēc noklusējuma */
+  .menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: white;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* === Animē uz "X", kad atvērts === */
+  .menu-toggle.open span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.open span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  /* === MOBILĀ NAVIGĀCIJA === */
   .main-nav {
     position: absolute;
     top: 70px;
     right: 20px;
     background: rgba(0, 0, 0, 0.95);
-    width: 220px;
-    flex-direction: column;
+    width: 240px;
     display: none;
-    border-radius: 6px;
-    padding: 12px 0;
+    flex-direction: column;
+    border-radius: 8px;
+    padding: 14px 0;
     font-size: 1.1rem;
     z-index: 1000;
-    text-align: center; /* centrē tekstu */
-    align-items: center; /* centrē saites konteinerī */
+    text-align: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(6px);
   }
 
   .main-nav.active {
     display: flex;
+    animation: slideIn 0.3s ease forwards;
   }
 
   .main-nav a {
     padding: 14px 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    text-transform: none;
     color: white;
     text-decoration: none;
     width: 100%;
-    text-align: center;
+    transition: background 0.2s ease;
+  }
+
+  .main-nav a:hover {
+    background: rgba(255, 255, 255, 0.05);
   }
 
   .main-nav a:last-child {
@@ -233,6 +283,18 @@ html {
 
   .main-nav a.with-divider::after {
     display: none;
+  }
+
+  /* === Animācija izvēlnes atvēršanai === */
+  @keyframes slideIn {
+    0% {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 }
 
@@ -733,22 +795,82 @@ html {
   white-space: nowrap;
 }
 
-/* Progress bar absolūti apakšā */
+/* Ultra-krutais progress bar absolūti apakšā */
 .progress-bar {
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 4px;
-  background: #ffb22c;
+  height: 8px;
   width: 0%;
-  border-radius: 0 0 12px 12px;
-  transition: none; /* nav animācijas pēc noklusējuma */
+  background: linear-gradient(270deg, #ff6a00, #ffd500, #ff6a00);
+  background-size: 400% 400%;
+  border-radius: 0 0 16px 16px;
+  box-shadow:
+    0 0 12px rgba(255, 106, 0, 0.8),
+    0 0 20px rgba(255, 214, 0, 0.6),
+    inset 0 0 6px rgba(255, 255, 255, 0.4);
+  transition: none;
+  overflow: hidden;
+  animation: gradientFlow 6s ease infinite, glowPulse 2.5s ease-in-out infinite;
 }
 
-/* Animācija, kas tiek pieslēgta, kad progress sāk kustēties */
+/* Kad tiek aktivizēta animācija */
 .progress-bar.animate {
   transition: width 5s linear;
   width: 100%;
+}
+
+/* Shine efekts uz virsmas */
+.progress-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -30%;
+  width: 30%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: skewX(-25deg);
+  animation: shine 2s infinite;
+  pointer-events: none;
+}
+
+/* Shine kustība */
+@keyframes shine {
+  0% {
+    left: -30%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Kustīgs gradients */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Glow efekts, kas pulsē */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 12px rgba(255, 106, 0, 0.8),
+      0 0 20px rgba(255, 214, 0, 0.6),
+      inset 0 0 6px rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 0 18px rgba(255, 106, 0, 1),
+      0 0 30px rgba(255, 214, 0, 0.8),
+      inset 0 0 10px rgba(255, 255, 255, 0.5);
+  }
 }
 
 /* Responsīvais — planšetēm */
@@ -1235,7 +1357,7 @@ html {
   align-items: stretch;
 }
 
-use-code {
+.use-code {
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -1248,14 +1370,19 @@ use-code {
   border-radius: 12px;
   text-decoration: none;
   font-weight: bold;
-  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform, box-shadow;
+  box-shadow: 0 4px 8px rgba(255, 106, 0, 0.4);
+  background-size: 200% 200%;
+  background-position: 0% 50%;
 }
 
 .use-code:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 22px rgba(255, 255, 255, 0.4);
+  transform: scale(1.08);
+  box-shadow: 0 0 30px rgba(255, 106, 0, 0.8);
+  background-position: 100% 50%;
 }
 
 .use-code::after {
@@ -1265,12 +1392,13 @@ use-code {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
   transform: scale(0);
   opacity: 0;
-  transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
   z-index: 0;
   pointer-events: none;
+  border-radius: 12px;
 }
 
 .use-code:hover::after {
@@ -1518,43 +1646,66 @@ canvas#stars {
   opacity: 0.6;
 }
 
+/* ==== PROMO KODS AR MAZĀKU RAINBOW ANIMĀCIJU ==== */
 #promo-code {
-  background-color: #ffb22c;
+  background: linear-gradient(270deg, #ff4d4d, #ffb22c, #ffff4d, #4dff4d, #4dd2ff, #b24dff, #ff4da6);
+  background-size: 1400% 1400%;
   color: white;
   font-family: 'Press Start 2P', cursive;
-  font-size: 10px;
+  font-size: 8px;
   font-weight: 900;
-  padding: 4px 12px;
-  border-radius: 4px;
+  padding: 4px 10px;
+  border-radius: 5px;
   user-select: none;
   white-space: nowrap;
   letter-spacing: 1px;
   display: inline-block;
-  min-width: 160px;
+  min-width: 140px;
   max-width: 100%;
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
   box-sizing: border-box;
+  animation: rainbowShift 20s ease infinite;
+  transition: transform 0.2s ease;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer; /* Padara kursoru par roci */
 }
 
-/* Pielāgošana mazākiem ekrāniem */
+/* Hover efekts desktopā */
+#promo-code:hover {
+  transform: scale(1.05);
+}
+
+/* Lēnā varavīksnes animācija */
+@keyframes rainbowShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ==== PLANŠETE ==== */
+@media (max-width: 768px) {
+  #promo-code {
+    font-size: 7px;
+    padding: 3px 8px;
+    min-width: 120px;
+    max-width: 90%;
+    border-radius: 5px;
+    margin: 10px auto;
+    display: block;
+  }
+}
+
+/* ==== MOBILĀ ==== */
 @media (max-width: 480px) {
   #promo-code {
-    background-color: #ffb22c; /* Saglabājam oranžo krāsu arī telefonā */
-    color: white;
-    font-size: 9px;
-    padding: 3px 8px;
-    min-width: auto;
-    max-width: 100%;
+    font-size: 6px;
+    padding: 2px 6px;
+    min-width: 100px;
+    max-width: 90%;
+    border-radius: 5px;
+    margin: 8px auto;
     display: block;
-    margin-left: auto;
-    margin-right: 10px;
-    text-align: center;
-    border-radius: 4px;
-    box-sizing: border-box;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 }
