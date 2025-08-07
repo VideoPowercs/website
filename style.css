@@ -248,7 +248,7 @@ body {
     transform: translateY(-9px) rotate(-45deg);
   }
 
-  /* Mobilā izvēlne (atjaunota) */
+  /* Mobilā izvēlne */
   .main-nav {
     position: fixed;
     top: 0;
@@ -264,6 +264,8 @@ body {
     font-size: 1.2rem;
     backdrop-filter: blur(6px);
     text-align: center;
+    flex-direction: row; /* Rindā */
+    flex-wrap: wrap;     /* Ja ir vairāk, iepakot nākamā rindā */
   }
 
   .main-nav.active {
@@ -276,7 +278,7 @@ body {
     padding: 0;
     margin: 0;
     display: flex;
-    flex-direction: column; /* stacked vertically, can be changed */
+    flex-direction: column;
     gap: 20px;
     align-items: center;
   }
