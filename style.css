@@ -248,7 +248,7 @@ body {
     transform: translateY(-9px) rotate(-45deg);
   }
 
-  /* Mobilā izvēlne */
+  /* Mobilā izvēlne (atjaunota) */
   .main-nav {
     position: fixed;
     top: 0;
@@ -257,13 +257,13 @@ body {
     height: 100vh;
     background: rgba(0, 0, 0, 0.95);
     display: none;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 1050;
-    padding: 40px 20px;
+    padding: 20px;
     font-size: 1.2rem;
     backdrop-filter: blur(6px);
+    text-align: center;
   }
 
   .main-nav.active {
@@ -271,33 +271,31 @@ body {
     animation: slideIn 0.3s ease forwards;
   }
 
+  .main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* stacked vertically, can be changed */
+    gap: 20px;
+    align-items: center;
+  }
+
+  .main-nav li {
+    display: inline-block;
+  }
+
   .main-nav a {
-    padding: 16px;
-    width: 100%;
-    text-align: center;
     color: white;
     text-decoration: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    position: relative;
+    font-size: 1.4rem;
+    padding: 10px 20px;
+    border-radius: 6px;
+    transition: background 0.3s;
   }
 
   .main-nav a:hover {
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .main-nav a:last-child {
-    border-bottom: none;
-  }
-
-  .main-nav a.with-divider::after {
-    content: "";
-    position: absolute;
-    right: 10px;
-    top: 15%;
-    height: 70%;
-    width: 2px;
-    background-color: white;
-    opacity: 0.7;
+    background: rgba(255, 255, 255, 0.1);
   }
 
   @keyframes slideIn {
@@ -764,24 +762,6 @@ body {
   flex-shrink: 0;
 }
 
-/* “NEW” uzraksts uz video kartēm ar klasi .new */
-.video-card.new::before {
-  content: "NEW";
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background-color: red;
-  color: white;
-  font-weight: 700;
-  font-size: 12px;
-  padding: 3px 8px;
-  border-radius: 4px;
-  z-index: 10;
-  pointer-events: none;
-  font-family: Arial, sans-serif;
-  box-shadow: 0 0 5px rgba(0,0,0,0.5);
-}
-
 /* Hover efekts tikai desktop */
 @media (hover: hover) and (pointer: fine) {
   .video-card:hover {
@@ -960,19 +940,29 @@ body {
 
   /* Video grid uz leju */
   .videos-grid {
+    display: flex;             /* pārliecināmies, ka ir flex */
     flex-direction: column;
     align-items: center;
     width: 100%;
     gap: 12px;
     overflow-x: hidden;
+    box-sizing: border-box;   /* svarīgi, lai padding iekļautos platumā */
+    padding-bottom: 20px;     /* mazliet vietas apakšā */
   }
+
   .video-card {
     width: 100%;
     max-width: 350px;
     height: auto;
+    box-sizing: border-box;
+    margin-bottom: 12px;
   }
+
   .video-card img {
-    height: 200px;
+    width: 100%;       /* lai bilde aizpilda konteineru */
+    height: auto;      /* saglabā proporcijas */
+    display: block;    /* lai nebūtu apakšā neliela atstarpe */
+    border-radius: 6px;
   }
 
   /* No hover efektu mobilajās */
@@ -1511,6 +1501,22 @@ body {
   padding: 4px 8px;
   border-radius: 8px;
   box-shadow: 0 0 6px #00ff29;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.inactive-tag {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background-color: #ff0000;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px #ff0000;
   user-select: none;
   white-space: nowrap;
   z-index: 10;
