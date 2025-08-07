@@ -101,54 +101,55 @@ document.addEventListener('DOMContentLoaded', () => {
     animateStars();
   }
 
-  // ====== Hamburger izvēlne ======
-  const toggle = document.querySelector('.menu-toggle');
-  const nav = document.querySelector('.main-nav');
+// ====== Hamburger izvēlne ======
+const toggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.main-nav');
 
-  if (toggle && nav) {
-    // Poga klikšķim - atver/aizver izvēlni
-    toggle.addEventListener('click', (e) => {
-      e.stopPropagation();
+if (toggle && nav) {
+  // Poga klikšķim - atver/aizver izvēlni
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
 
-      const isActive = nav.classList.toggle('active');
+    const isActive = nav.classList.toggle('active');
 
-      // Toggle hidden atribūtu
-      if (isActive) {
-        nav.removeAttribute('hidden');
-      } else {
-        nav.setAttribute('hidden', '');
-      }
+    // Toggle hidden atribūtu
+    if (isActive) {
+      nav.removeAttribute('hidden');
+      toggle.setAttribute('aria-expanded', 'true');
+    } else {
+      nav.setAttribute('hidden', '');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
 
-      toggle.classList.toggle('open');
+    toggle.classList.toggle('open');
 
-      // Atjaunot aria-expanded
-      toggle.setAttribute('aria-expanded', isActive);
+    // Īslaicīga klikšķa animācija
+    toggle.classList.add('clicked-animation');
+    setTimeout(() => {
+      toggle.classList.remove('clicked-animation');
+    }, 300);
+  });
 
-      // Īslaicīga klikšķa animācija
-      toggle.classList.add('clicked-animation');
-      setTimeout(() => toggle.classList.remove('clicked-animation'), 300);
+  // Klikšķis ārpus izvēlnes aizver izvēlni
+  document.addEventListener('click', (e) => {
+    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+      nav.classList.remove('active');
+      nav.setAttribute('hidden', '');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Klikšķis uz izvēlnes saites aizver izvēlni
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('active');
+      nav.setAttribute('hidden', '');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
     });
-
-    // Klikšķis ārpus izvēlnes aizver izvēlni
-    document.addEventListener('click', (e) => {
-      if (!nav.contains(e.target) && !toggle.contains(e.target)) {
-        nav.classList.remove('active');
-        nav.setAttribute('hidden', '');
-        toggle.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    // Klikšķis uz izvēlnes saites aizver izvēlni
-    nav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        nav.classList.remove('active');
-        nav.setAttribute('hidden', '');
-        toggle.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-  }
+  });
+}
 
   // ====== Video karšu slaideris ======
   const cards = Array.from(document.querySelectorAll('.video-card'));
