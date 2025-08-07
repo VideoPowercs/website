@@ -101,34 +101,40 @@ document.addEventListener('DOMContentLoaded', () => {
     animateStars();
   }
 
-  // ====== Hamburger izvēlne ======
+// ====== Hamburger izvēlne ======
+document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.main-nav');
 
-  if (toggle && nav) {
-    toggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      nav.classList.toggle('active');
-      toggle.classList.toggle('open');
+  if (!toggle || !nav) return;
 
-      toggle.classList.add('clicked-animation');
-      setTimeout(() => toggle.classList.remove('clicked-animation'), 300);
-    });
+  // Poga klikšķim
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    nav.classList.toggle('active');
+    toggle.classList.toggle('open');
 
-    document.addEventListener('click', (e) => {
-      if (!nav.contains(e.target) && !toggle.contains(e.target)) {
-        nav.classList.remove('active');
-        toggle.classList.remove('open');
-      }
-    });
+    // Animācija klikšķim
+    toggle.classList.add('clicked-animation');
+    setTimeout(() => toggle.classList.remove('clicked-animation'), 300);
+  });
 
-    nav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        nav.classList.remove('active');
-        toggle.classList.remove('open');
-      });
+  // Klikšķis ārpus izvēlnes - aizver izvēlni
+  document.addEventListener('click', (e) => {
+    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+      nav.classList.remove('active');
+      toggle.classList.remove('open');
+    }
+  });
+
+  // Klikšķis uz izvēlnes saites - aizver izvēlni
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('active');
+      toggle.classList.remove('open');
     });
-  }
+  });
+});
 
   // ====== Video karšu slaideris ======
   const cards = Array.from(document.querySelectorAll('.video-card'));
