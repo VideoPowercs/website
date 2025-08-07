@@ -69,7 +69,7 @@ body {
 /*     Header un Layout      */
 /* ========================= */
 
-.main-header,
+.main-header, 
 .hero,
 .section,
 .main-footer {
@@ -175,7 +175,7 @@ body {
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 1100;
+  z-index: 1100; /* Lai būtu virs navigācijas */
 }
 
 .menu-toggle .bar {
@@ -213,6 +213,7 @@ body {
     align-items: center;
   }
 
+  /* Parādi hamburgeri */
   .menu-toggle {
     display: flex;
     flex-direction: column;
@@ -225,7 +226,7 @@ body {
     cursor: pointer;
     background: transparent;
     border: none;
-    z-index: 1100;
+    z-index: 1300; /* augstāks par visu */
   }
 
   .menu-toggle .bar {
@@ -256,18 +257,19 @@ body {
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.95);
-    display: none;
+    display: none; /* Sākumā nav redzama */
     justify-content: center;
     align-items: center;
-    z-index: 1050;
+    z-index: 1200;
     padding: 20px;
     font-size: 1.2rem;
     backdrop-filter: blur(6px);
     text-align: center;
-    flex-direction: row; /* Rindā */
-    flex-wrap: wrap;     /* Ja ir vairāk, iepakot nākamā rindā */
+    flex-direction: column; /* Izvēlne vertikāla */
+    flex-wrap: nowrap;
   }
 
+  /* Kad atvērta */
   .main-nav.active {
     display: flex;
     animation: slideIn 0.3s ease forwards;
@@ -284,7 +286,7 @@ body {
   }
 
   .main-nav li {
-    display: inline-block;
+    display: block;
   }
 
   .main-nav a {
@@ -298,6 +300,18 @@ body {
 
   .main-nav a:hover {
     background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Sekciju nosaukumu stils - piemērs */
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: lowercase; /* Piemērs, nosaukums citādāks */
+    letter-spacing: 2px;
+    color: #ffb22c;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ffb22c;
+    padding-bottom: 8px;
   }
 
   @keyframes slideIn {
