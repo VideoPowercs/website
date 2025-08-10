@@ -6,14 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let animationFrameId;
     const dpr = window.devicePixelRatio || 1;
 
-    canvas.style.position = 'fixed';
-    canvas.style.top = '0';
-    canvas.style.left = '0';
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-    canvas.style.zIndex = '0';
-    canvas.style.pointerEvents = 'none';
-
     function resizeCanvas() {
       canvas.width = canvas.clientWidth * dpr;
       canvas.height = canvas.clientHeight * dpr;
@@ -101,57 +93,45 @@ document.addEventListener('DOMContentLoaded', () => {
     animateStars();
   }
 
-// ====== Hamburger izvēlne ======
-const toggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('.main-nav');
+  // ====== Hamburger izvēlne mobilajām ierīcēm ======
+  const toggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.main-nav');
 
-if (toggle && nav) {
-  // Poga klikšķim - atver/aizver izvēlni
-  toggle.addEventListener('click', (e) => {
-    e.stopPropagation();
+  if (toggle && nav) {
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isActive = nav.classList.toggle('active');
+      toggle.classList.toggle('open');
 
-    const isActive = nav.classList.toggle('active');
-
-    // Toggle hidden atribūtu
-    if (isActive) {
-      nav.removeAttribute('hidden');
-      toggle.setAttribute('aria-expanded', 'true');
-    } else {
-      nav.setAttribute('hidden', '');
-      toggle.setAttribute('aria-expanded', 'false');
-    }
-
-    toggle.classList.toggle('open');
-
-    // Īslaicīga klikšķa animācija
-    toggle.classList.add('clicked-animation');
-    setTimeout(() => {
-      toggle.classList.remove('clicked-animation');
-    }, 300);
-  });
-
-  // Klikšķis ārpus izvēlnes aizver izvēlni
-  document.addEventListener('click', (e) => {
-    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
-      nav.classList.remove('active');
-      nav.setAttribute('hidden', '');
-      toggle.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  // Klikšķis uz izvēlnes saites aizver izvēlni
-  nav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('active');
-      nav.setAttribute('hidden', '');
-      toggle.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
+      // Pieejamības atjauninājums
+      toggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+      if (isActive) {
+        nav.removeAttribute('hidden');
+      } else {
+        nav.setAttribute('hidden', '');
+      }
     });
-  });
-}
 
-  // ====== Video karšu slaideris ======
+    document.addEventListener('click', (e) => {
+      if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+        nav.classList.remove('active');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        nav.setAttribute('hidden', '');
+      }
+    });
+
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        nav.setAttribute('hidden', '');
+      });
+    });
+  }
+
+  // ====== Video karšu slaideris ar hover pauzi ======
   const cards = Array.from(document.querySelectorAll('.video-card'));
   const slideDuration = 4000;
   const slideOutDuration = 600;
@@ -257,15 +237,6 @@ if (toggle && nav) {
           }, 100);
         });
       }
-    });
-  }
-
-  // ====== Promo koda klikšķis ======
-  const promoCode = document.getElementById('promo-code');
-  if (promoCode) {
-    promoCode.style.cursor = 'pointer';
-    promoCode.addEventListener('click', () => {
-      window.location.href = 'https://hellca.se/videopower';
     });
   }
 });
