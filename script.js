@@ -93,43 +93,69 @@ document.addEventListener('DOMContentLoaded', () => {
     animateStars();
   }
 
-  // ====== Hamburger izvēlne mobilajām ierīcēm ======
-  const toggle = document.querySelector('.menu-toggle');
-  const nav = document.querySelector('.main-nav');
+// ====== Hamburger izvēlne mobilajām ierīcēm ======
+const toggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.main-nav');
 
-  if (toggle && nav) {
-    toggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isActive = nav.classList.toggle('active');
-      toggle.classList.toggle('open');
+if (toggle && nav) {
+  // Sākotnēji izvēlne ir slēgta
+  nav.setAttribute('hidden', '');
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-label', 'Atvērt izvēlni');
 
-      // Pieejamības atjauninājums
-      toggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
-      if (isActive) {
-        nav.removeAttribute('hidden');
-      } else {
-        nav.setAttribute('hidden', '');
-      }
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isActive = nav.classList.toggle('active');
+    toggle.classList.toggle('open');
+
+    toggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+    toggle.setAttribute('aria-label', isActive ? 'Aizvērt izvēlni' : 'Atvērt izvēlni');
+
+    if (isActive) {
+      nav.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden'; // bloķē scroll fonā
+    } else {
+      nav.setAttribute('hidden', '');
+      document.body.style.overflow = ''; // atjauno scroll
+    }
+  });
+
+  // Slēdz izvēlni, ja klikšķis ārpus tās vai hamburgera
+  document.addEventListener('click', (e) => {
+    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+      nav.classList.remove('active');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Atvērt izvēlni');
+      nav.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Slēgt izvēlni, nospiežot uz jebkura izvēlnes linka
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('active');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Atvērt izvēlni');
+      nav.setAttribute('hidden', '');
+      document.body.style.overflow = '';
     });
+  });
 
-    document.addEventListener('click', (e) => {
-      if (!nav.contains(e.target) && !toggle.contains(e.target)) {
-        nav.classList.remove('active');
-        toggle.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        nav.setAttribute('hidden', '');
-      }
-    });
-
-    nav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        nav.classList.remove('active');
-        toggle.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        nav.setAttribute('hidden', '');
-      });
-    });
-  }
+  // Slēgt izvēlni ar ESC taustiņu
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('active')) {
+      nav.classList.remove('active');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Atvērt izvēlni');
+      nav.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+    }
+  });
+}
 
   // ====== Video karšu slaideris ar hover pauzi ======
   const cards = Array.from(document.querySelectorAll('.video-card'));
