@@ -51,10 +51,11 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: calc(100% - 12px); /* nogriež 12px joslu scrollbar vietai */
   height: 100%;
   z-index: 0;
   pointer-events: none;
+  background: black; /* rezerves fons */
 }
 
 /* #top enkura korekcija */
@@ -1724,6 +1725,7 @@ canvas#stars {
   transition: transform 0.2s ease;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
   cursor: pointer;
+  text-decoration: none; /* Noņem apakšsvītru */
 }
 
 /* Hover efekts desktopā */
