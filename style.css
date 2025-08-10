@@ -166,46 +166,57 @@ body {
   width: 60px;
 }
 
-/* Hamburger izvēlne */
+/* Desktop versija - pamata stils (nav ierobežojumu) */
 .menu-toggle {
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 30px;
-  height: 22px;
+  width: 35px;
+  height: 25px;
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 1100; /* Lai būtu virs navigācijas */
+  z-index: 1100;
+  padding: 0;
+  transition: transform 0.3s ease;
 }
 
 .menu-toggle .bar {
-  height: 3px;
+  height: 4px;
   width: 100%;
-  background-color: white;
-  border-radius: 2px;
-  transition: all 0.3s ease;
+  background-color: black; /* Desktopam melns */
+  border-radius: 3px;
+  transition: all 0.4s ease;
+  box-shadow: none;
 }
 
 .menu-toggle.open .bar:nth-child(1) {
-  transform: rotate(45deg) translateY(9px);
+  transform: rotate(45deg) translate(6px, 6px);
+  background-color: #ff4757;
+  box-shadow: 0 0 8px #ff4757;
 }
 
 .menu-toggle.open .bar:nth-child(2) {
   opacity: 0;
+  transform: translateX(-20px);
 }
 
 .menu-toggle.open .bar:nth-child(3) {
-  transform: rotate(-45deg) translateY(-9px);
+  transform: rotate(-45deg) translate(7px, -7px);
+  background-color: #ff4757;
+  box-shadow: 0 0 8px #ff4757;
 }
 
-/* Mobilā versija */
+/* Šeit var būt desktop navigācijas stils */
+
+/* Mobilā versija tikai šeit */
 @media (max-width: 768px) {
   .main-header {
     height: auto;
     padding: 10px 20px;
     flex-wrap: wrap;
     z-index: 1200;
+    background: #222;
   }
 
   .logo-container {
@@ -214,66 +225,53 @@ body {
     align-items: center;
   }
 
-  /* Parādi hamburgeri */
   .menu-toggle {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 6px;
-    width: 30px;
-    height: 24px;
+    width: 35px;
+    height: 25px;
     margin-left: auto;
-    padding: 10px;
+    padding: 5px;
     cursor: pointer;
     background: transparent;
     border: none;
-    z-index: 1300; /* augstāks par visu */
+    z-index: 1300;
+    filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
   }
 
   .menu-toggle .bar {
-    height: 3px;
+    height: 4px;
     width: 100%;
     background: white;
-    border-radius: 2px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 3px;
+    transition: transform 0.4s ease, opacity 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
   }
 
-  .menu-toggle.open .bar:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-  }
-
-  .menu-toggle.open .bar:nth-child(2) {
-    opacity: 0;
-  }
-
-  .menu-toggle.open .bar:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-  }
-
-  /* Mobilā izvēlne */
   .main-nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.95);
-    display: none; /* Sākumā nav redzama */
+    background: rgba(20, 20, 20, 0.97);
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 1200;
     padding: 20px;
-    font-size: 1.2rem;
-    backdrop-filter: blur(6px);
+    font-size: 1.3rem;
+    backdrop-filter: blur(8px);
     text-align: center;
-    flex-direction: column; /* Izvēlne vertikāla */
+    flex-direction: column;
     flex-wrap: nowrap;
+    animation-fill-mode: forwards;
   }
 
-  /* Kad atvērta */
   .main-nav.active {
     display: flex;
-    animation: slideIn 0.3s ease forwards;
+    animation: slideIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
   .main-nav ul {
@@ -282,7 +280,7 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
     align-items: center;
   }
 
@@ -291,38 +289,31 @@ body {
   }
 
   .main-nav a {
-    color: white;
+    color: #ff4757;
     text-decoration: none;
-    font-size: 1.4rem;
-    padding: 10px 20px;
-    border-radius: 6px;
-    transition: background 0.3s;
+    font-weight: 600;
+    font-size: 1.6rem;
+    padding: 12px 30px;
+    border-radius: 10px;
+    transition: background 0.3s, color 0.3s;
+    box-shadow: 0 0 15px rgba(255, 71, 87, 0.5);
+    letter-spacing: 0.05em;
   }
 
   .main-nav a:hover {
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  /* Sekciju nosaukumu stils - piemērs */
-  .section-title {
-    font-size: 2rem;
-    font-weight: 700;
-    text-transform: lowercase; /* Piemērs, nosaukums citādāks */
-    letter-spacing: 2px;
-    color: #ffb22c;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #ffb22c;
-    padding-bottom: 8px;
+    background: #ff4757;
+    color: white;
+    box-shadow: 0 0 25px #ff6f81;
   }
 
   @keyframes slideIn {
-    from {
-      transform: translateY(-20px);
+    0% {
       opacity: 0;
+      transform: translateY(-15px);
     }
-    to {
-      transform: translateY(0);
+    100% {
       opacity: 1;
+      transform: translateY(0);
     }
   }
 }
