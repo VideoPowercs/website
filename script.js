@@ -98,10 +98,18 @@ const toggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.main-nav');
 
 if (toggle && nav) {
+  // Funkcija izvēlnes slēgšanai
+  const closeMenu = () => {
+    nav.classList.remove('active');
+    toggle.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Atvērt izvēlni');
+    nav.setAttribute('hidden', '');
+    document.body.style.overflow = '';
+  };
+
   // Sākotnēji izvēlne ir slēgta
-  nav.setAttribute('hidden', '');
-  toggle.setAttribute('aria-expanded', 'false');
-  toggle.setAttribute('aria-label', 'Atvērt izvēlni');
+  closeMenu();
 
   toggle.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -115,44 +123,26 @@ if (toggle && nav) {
       nav.removeAttribute('hidden');
       document.body.style.overflow = 'hidden'; // bloķē scroll fonā
     } else {
-      nav.setAttribute('hidden', '');
-      document.body.style.overflow = ''; // atjauno scroll
+      closeMenu();
     }
   });
 
   // Slēdz izvēlni, ja klikšķis ārpus tās vai hamburgera
   document.addEventListener('click', (e) => {
     if (!nav.contains(e.target) && !toggle.contains(e.target)) {
-      nav.classList.remove('active');
-      toggle.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Atvērt izvēlni');
-      nav.setAttribute('hidden', '');
-      document.body.style.overflow = '';
+      closeMenu();
     }
   });
 
   // Slēgt izvēlni, nospiežot uz jebkura izvēlnes linka
   nav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('active');
-      toggle.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Atvērt izvēlni');
-      nav.setAttribute('hidden', '');
-      document.body.style.overflow = '';
-    });
+    link.addEventListener('click', closeMenu);
   });
 
   // Slēgt izvēlni ar ESC taustiņu
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && nav.classList.contains('active')) {
-      nav.classList.remove('active');
-      toggle.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Atvērt izvēlni');
-      nav.setAttribute('hidden', '');
-      document.body.style.overflow = '';
+      closeMenu();
     }
   });
 }
