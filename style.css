@@ -342,14 +342,19 @@ body {
     box-shadow: none;
   }
 
-  /* Izvēlnes stils mobilajā - horizontāli centrēts, ar hover efektu */
+  /* Izvēlnes stils mobilajā - sākumā paslēpta, atveras ar .open klasi */
   .main-nav {
-    display: flex;
+    display: none;  /* PASLĒPTA PĒC NOKLUSĒJUMA */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 25px;
     padding: 15px 0;
     background-color: #222;
+  }
+
+  .main-nav.open {
+    display: flex; /* PARĀDĀS KAD IR .open KLASE */
   }
 
   .main-nav span {
