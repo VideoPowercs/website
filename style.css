@@ -190,10 +190,11 @@ body {
   box-shadow: none;
 }
 
+/* Izņemam sarkano krāsu un ēnas efektu uz atvērtās izvēlnes, lai svītras paliek melnas */
 .menu-toggle.open .bar:nth-child(1) {
   transform: rotate(45deg) translate(6px, 6px);
-  background-color: #ff4757;
-  box-shadow: 0 0 8px #ff4757;
+  background-color: black; /* Paliek melna */
+  box-shadow: none;
 }
 
 .menu-toggle.open .bar:nth-child(2) {
@@ -203,8 +204,8 @@ body {
 
 .menu-toggle.open .bar:nth-child(3) {
   transform: rotate(-45deg) translate(7px, -7px);
-  background-color: #ff4757;
-  box-shadow: 0 0 8px #ff4757;
+  background-color: black; /* Paliek melna */
+  box-shadow: none;
 }
 
 /* Hero sekcijas stils */ 
@@ -311,16 +312,63 @@ body {
     position: relative;
   }
 
-  /* Mobilajā parādām menu toggle labajā pusē un baltu */
+  /* Mobilajā parādām menu toggle labajā pusē un melnu svītru krāsu */
   .menu-toggle {
     display: flex;
     position: absolute;
     top: 15px;
     right: 20px; /* Pārvietots uz labo pusi */
+    background: none; /* caurspīdīgs fons */
   }
 
   .menu-toggle .bar {
-    background-color: white; /* Mobilajam baltas līnijas */
+    background-color: black; /* Mobilajam melnas līnijas */
+  }
+
+  .menu-toggle.open .bar:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+    background-color: black; /* Melna */
+    box-shadow: none;
+  }
+
+  .menu-toggle.open .bar:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  .menu-toggle.open .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+    background-color: black; /* Melna */
+    box-shadow: none;
+  }
+
+  /* Izvēlnes stils mobilajā - horizontāli centrēts, ar hover efektu */
+  .main-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding: 15px 0;
+    background-color: #222;
+  }
+
+  .main-nav span {
+    font-size: 1.1rem;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    padding: 5px 8px;
+    transition: color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .main-nav span:hover,
+  .main-nav span:focus {
+    color: #ffb22c;
+    box-shadow:
+      0 0 8px 2px rgba(255, 178, 44, 0.8),
+      0 0 15px 6px rgba(255, 178, 44, 0.6);
+    transform: translateY(-4px) scale(1.05);
+    outline: none;
   }
 
   .hero {
@@ -353,9 +401,9 @@ body {
     padding: 12px 25px;
   }
 
+  /* Slēptas parastās saites mobilajā, jo izmantojam span */
   .main-nav a {
-    font-size: 1.1rem;
-    padding: 12px 20px;
+    display: none;
   }
 }
 
@@ -375,6 +423,10 @@ body {
   .btn {
     font-size: 0.9rem;
     padding: 10px 20px;
+  }
+
+  .main-nav span {
+    font-size: 1rem;
   }
 
   .main-nav a {
