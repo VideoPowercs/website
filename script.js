@@ -111,9 +111,10 @@ if (toggle && nav) {
   // Sākotnēji izvēlne ir slēgta
   closeMenu();
 
-  // Tikai mobilajām ierīcēm pārrakstām saturu
+  // Ja ekrāna platums ir 768px vai mazāks, pielāgojam izvēlnes saturu
   if (window.innerWidth <= 768) {
     const menuItems = ['PARTNERS', 'VIDEOS', 'SPECIALS', 'GIVEAWAYS', 'STORE'];
+
     nav.innerHTML = `
       <div style="
         display: flex;
@@ -128,15 +129,15 @@ if (toggle && nav) {
       </div>
     `;
 
-    // Aizver izvēlni, ja klikšķis uz jebkura jaunā elementa
+    // Pievienojam klikšķa event listenerus katram span, lai aizvērtu izvēlni
     nav.querySelectorAll('span').forEach(span => {
       span.addEventListener('click', closeMenu);
     });
   }
 
-  // Atver / aizver izvēlni uz klikšķa
+  // Toggle izvēlni, kad klikšķinām uz hamburgera pogas
   toggle.addEventListener('click', (e) => {
-    e.stopPropagation();
+    e.stopPropagation(); // Lai klikšķis neizplatītos tālāk
     const isActive = nav.classList.toggle('active');
     toggle.classList.toggle('open');
 
@@ -145,20 +146,20 @@ if (toggle && nav) {
 
     if (isActive) {
       nav.removeAttribute('hidden');
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'; // Aizliedz scrollu, kamēr izvēlne vaļā
     } else {
       closeMenu();
     }
   });
 
-  // Aizver izvēlni, ja klikšķis ārpus tās vai hamburgera
+  // Aizver izvēlni, ja klikšķis ārpus izvēlnes un hamburgera pogas
   document.addEventListener('click', (e) => {
     if (!nav.contains(e.target) && !toggle.contains(e.target)) {
       closeMenu();
     }
   });
 
-  // Aizver izvēlni ar ESC taustiņu
+  // Aizver izvēlni, ja nospiež ESC taustiņu
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && nav.classList.contains('active')) {
       closeMenu();
