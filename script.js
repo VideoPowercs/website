@@ -98,7 +98,7 @@ const toggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.main-nav');
 
 if (toggle && nav) {
-  // Funkcija izvēlnes slēgšanai
+  // Funkcija izvēlnes aizvēršanai
   const closeMenu = () => {
     nav.classList.remove('active');
     toggle.classList.remove('open');
@@ -111,6 +111,30 @@ if (toggle && nav) {
   // Sākotnēji izvēlne ir slēgta
   closeMenu();
 
+  // Tikai mobilajām ierīcēm pārrakstām saturu
+  if (window.innerWidth <= 768) {
+    const menuItems = ['PARTNERS', 'VIDEOS', 'SPECIALS', 'GIVEAWAYS', 'STORE'];
+    nav.innerHTML = `
+      <div style="
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        font-size: 1rem;
+      ">
+        ${menuItems.map(item => `<span style="cursor:pointer;">${item}</span>`).join('')}
+      </div>
+    `;
+
+    // Aizver izvēlni, ja klikšķis uz jebkura jaunā elementa
+    nav.querySelectorAll('span').forEach(span => {
+      span.addEventListener('click', closeMenu);
+    });
+  }
+
+  // Atver / aizver izvēlni uz klikšķa
   toggle.addEventListener('click', (e) => {
     e.stopPropagation();
     const isActive = nav.classList.toggle('active');
@@ -121,25 +145,20 @@ if (toggle && nav) {
 
     if (isActive) {
       nav.removeAttribute('hidden');
-      document.body.style.overflow = 'hidden'; // bloķē scroll fonā
+      document.body.style.overflow = 'hidden';
     } else {
       closeMenu();
     }
   });
 
-  // Slēdz izvēlni, ja klikšķis ārpus tās vai hamburgera
+  // Aizver izvēlni, ja klikšķis ārpus tās vai hamburgera
   document.addEventListener('click', (e) => {
     if (!nav.contains(e.target) && !toggle.contains(e.target)) {
       closeMenu();
     }
   });
 
-  // Slēgt izvēlni, nospiežot uz jebkura izvēlnes linka
-  nav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
-
-  // Slēgt izvēlni ar ESC taustiņu
+  // Aizver izvēlni ar ESC taustiņu
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && nav.classList.contains('active')) {
       closeMenu();
