@@ -207,8 +207,6 @@ body {
   box-shadow: 0 0 8px #ff4757;
 }
 
-/* Šeit var būt desktop navigācijas stils */
-
 /* Hero sekcijas stils */ 
 .hero {
   text-align: center;
@@ -305,13 +303,24 @@ body {
   display: inline;
 }
 
-/* Mobilā versija - tikai pielāgo izmērus, paddingus utt. */
-/* Nomainām tikai dažas lietas, neko neizslēdzot vai neslēpjot */
-
+/* Mobilā versija */
 @media (max-width: 768px) {
   .main-header {
     padding: 15px 20px;
     background: #222;
+    position: relative;
+  }
+
+  /* Mobilajā parādām menu toggle labajā pusē un baltu */
+  .menu-toggle {
+    display: flex;
+    position: absolute;
+    top: 15px;
+    right: 20px; /* Pārvietots uz labo pusi */
+  }
+
+  .menu-toggle .bar {
+    background-color: white; /* Mobilajam baltas līnijas */
   }
 
   .hero {
@@ -324,7 +333,7 @@ body {
   }
 
   .character-img {
-    max-width: 180px; /* mazāks, bet saglabā animāciju */
+    max-width: 180px;
   }
 
   .btn {
@@ -344,7 +353,6 @@ body {
     padding: 12px 25px;
   }
 
-  /* Navigācijas fonti un pogas mazliet pielāgotas */
   .main-nav a {
     font-size: 1.1rem;
     padding: 12px 20px;
