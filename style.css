@@ -344,13 +344,15 @@ body {
     transform: rotate(-45deg) translate(7px, -7px);
   }
 
+  /* Hamburger izvēlne mobilajā versijā */
   .main-nav {
     display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;      /* vertikāli */
+    justify-content: flex-start;  /* var regulēt ar padding-top */
+    align-items: center;          /* horizontāli centrēta */
     gap: 25px;
-    padding: 15px 0;
+    padding-top: 40%;             /* sākas no vidus uz leju */
+    height: 100vh;                /* aizpilda visu augstumu */
     background-color: #222;
     z-index: 1000;
   }
@@ -359,16 +361,20 @@ body {
     display: flex;
   }
 
+  /* Saites izskats */
+  .main-nav a,
   .main-nav span {
     font-size: 1.1rem;
     color: white;
     cursor: pointer;
-    position: relative;
-    padding: 5px 8px;
+    text-align: center;
+    padding: 10px 15px;
     transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   }
 
+  .main-nav a:hover,
   .main-nav span:hover,
+  .main-nav a:focus,
   .main-nav span:focus {
     color: #ffb22c;
     transform: translateY(-4px) scale(1.05);
@@ -408,13 +414,9 @@ body {
     padding: 12px 25px;
     font-size: 1rem;
   }
-
-  /* main-nav a tagiem - ļaut redzēt, ja vajag */
-  .main-nav a {
-    display: inline-block;
-  }
 }
 
+/* Ļoti maza ekrāna versija */
 @media (max-width: 480px) {
   .hero {
     padding: 40px 10px;
@@ -433,11 +435,8 @@ body {
     padding: 10px 20px;
   }
 
+  .main-nav a,
   .main-nav span {
-    font-size: 1rem;
-  }
-
-  .main-nav a {
     font-size: 1rem;
     padding: 10px 15px;
   }
