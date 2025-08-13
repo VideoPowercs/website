@@ -311,17 +311,28 @@ body {
     top: 15px;
     right: 20px;
     background: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 35px;
+    height: 25px;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+    padding: 0;
+    transition: transform 0.3s ease;
   }
 
-  /* Hamburgera līnijas tagad baltas */
+  /* Hamburgera līnijas baltas */
   .menu-toggle .bar {
-    background-color: white; /* Baltas līnijas mobilajā */
+    height: 4px;
+    width: 100%;
+    background-color: white;
+    border-radius: 3px;
+    transition: all 0.4s ease;
   }
 
   .menu-toggle.open .bar:nth-child(1) {
     transform: rotate(45deg) translate(6px, 6px);
-    background-color: white;
-    box-shadow: none;
   }
 
   .menu-toggle.open .bar:nth-child(2) {
@@ -331,8 +342,6 @@ body {
 
   .menu-toggle.open .bar:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -7px);
-    background-color: white;
-    box-shadow: none;
   }
 
   .main-nav {
@@ -343,6 +352,7 @@ body {
     gap: 25px;
     padding: 15px 0;
     background-color: #222;
+    z-index: 1000;
   }
 
   .main-nav.open {
@@ -355,19 +365,19 @@ body {
     cursor: pointer;
     position: relative;
     padding: 5px 8px;
-    transition: color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .main-nav span:hover,
   .main-nav span:focus {
     color: #ffb22c;
-    box-shadow:
-      0 0 8px 2px rgba(255, 178, 44, 0.8),
-      0 0 15px 6px rgba(255, 178, 44, 0.6);
     transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 0 8px 2px rgba(255, 178, 44, 0.8),
+                0 0 15px 6px rgba(255, 178, 44, 0.6);
     outline: none;
   }
 
+  /* Hero sekcija mobilajā */
   .hero {
     padding: 60px 15px;
   }
@@ -394,75 +404,14 @@ body {
   }
 
   .btn.red.partners:hover {
-    font-size: 1rem;
+    width: auto;
     padding: 12px 25px;
+    font-size: 1rem;
   }
 
+  /* main-nav a tagiem - ļaut redzēt, ja vajag */
   .main-nav a {
-    display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero {
-    padding: 40px 10px;
-  }
-
-  .hero-content {
-    font-size: 0.9rem;
-  }
-
-  .character-img {
-    max-width: 140px;
-  }
-
-  .btn {
-    font-size: 0.9rem;
-    padding: 10px 20px;
-  }
-
-  .main-nav span {
-    font-size: 1rem;
-  }
-
-  .main-nav a {
-    font-size: 1rem;
-    padding: 10px 15px;
-  }
-}
-
-  .hero {
-    padding: 60px 15px;
-  }
-
-  .hero-content {
-    font-size: 1rem;
-    transform: translateY(15px);
-  }
-
-  .character-img {
-    max-width: 180px;
-  }
-
-  .btn {
-    font-size: 1rem;
-    padding: 12px 25px;
-    margin: 6px;
-  }
-
-  .btn.red.partners {
-    width: 50px;
-    padding: 12px 0;
-    font-size: 1.1rem;
-  }
-
-  .btn.red.partners:hover {
-    font-size: 1rem;
-    padding: 12px 25px;
-  }
-
-  .main-nav a {
-    display: none;
+    display: inline-block;
   }
 }
 
