@@ -22,16 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let stars = [];
 
     function getCanvasSize() {
-      return {
-        width: canvas.clientWidth,
-        height: canvas.clientHeight,
-      };
+      return { width: canvas.clientWidth, height: canvas.clientHeight };
     }
 
     function createStars() {
       stars = [];
       const { width, height } = getCanvasSize();
-
       starLayers.forEach(layer => {
         for (let i = 0; i < layer.count; i++) {
           stars.push({
@@ -93,32 +89,34 @@ document.addEventListener('DOMContentLoaded', () => {
     animateStars();
   }
 
-const menuToggle = document.getElementById('menu-toggle');
-const mainNav = document.getElementById('main-nav');
+  // ====== Hamburger menu ======
+  const menuToggle = document.getElementById('menu-toggle');
+  const mainNav = document.getElementById('main-nav');
 
-menuToggle.addEventListener('click', () => {
-    const isOpen = menuToggle.classList.contains('open');
-    menuToggle.classList.toggle('open');
-    mainNav.classList.toggle('open');
-    mainNav.hidden = isOpen; // ja atvērta, paslēpt, ja slēgta, parādīt
-});
+  if (menuToggle && mainNav) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.classList.contains('open');
+      menuToggle.classList.toggle('open');
+      mainNav.classList.toggle('open');
+      mainNav.hidden = isOpen;
+    });
 
-// Aizver izvēlni, kad klikšķina uz saites
-mainNav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
+    mainNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
         menuToggle.classList.remove('open');
         mainNav.classList.remove('open');
         mainNav.hidden = true;
+      });
     });
-});
+  }
 
-  // ====== Video karšu slaideris ar hover pauzi ======
+  // ====== Video cards slider with hover pause ======
   const cards = Array.from(document.querySelectorAll('.video-card'));
-  const slideDuration = 4000;
-  const slideOutDuration = 600;
-  const restartDelay = 800;
-
   if (cards.length > 0) {
+    const slideDuration = 4000;
+    const slideOutDuration = 600;
+    const restartDelay = 800;
+
     const progressBars = cards.map(card => {
       const bar = document.createElement('div');
       bar.classList.add('progress-bar');
@@ -140,7 +138,6 @@ mainNav.querySelectorAll('a').forEach(link => {
 
       const elapsed = timestamp - startTime;
       const progress = Math.min(elapsed / slideDuration, 1);
-
       progressBars[currentIndex].style.width = `${progress * 100}%`;
 
       if (progress < 1) {
@@ -194,9 +191,7 @@ mainNav.querySelectorAll('a').forEach(link => {
           startTime = performance.now() - (currentWidth / 100) * slideDuration;
         }
       });
-    });
 
-    cards.forEach((card) => {
       const link = card.querySelector('a');
       if (link) {
         link.addEventListener('click', (event) => {
