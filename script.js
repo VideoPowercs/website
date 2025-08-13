@@ -93,27 +93,24 @@ document.addEventListener('DOMContentLoaded', () => {
     animateStars();
   }
 
-  // ====== Hamburger menu ======
-  const menuToggle = document.getElementById('menu-toggle');
-  const mainNav = document.getElementById('main-nav');
+const menuToggle = document.getElementById('menu-toggle');
+const mainNav = document.getElementById('main-nav');
 
-  if (menuToggle && mainNav) {
-    menuToggle.addEventListener('click', () => {
-      const isOpen = menuToggle.classList.contains('open');
-      menuToggle.classList.toggle('open');
-      mainNav.classList.toggle('open');
-      mainNav.hidden = isOpen; // ja atvērta, paslēpt; ja slēgta, parādīt
-    });
-
-    // Aizver izvēlni, kad klikšķina uz saites
-    mainNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        menuToggle.classList.remove('open');
-        mainNav.classList.remove('open');
-        mainNav.hidden = true;
-      });
-    });
+menuToggle.addEventListener('click', () => {
+  const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+  
+  if (isExpanded) {
+    menuToggle.setAttribute('aria-expanded', 'false');
+    mainNav.setAttribute('data-open', 'false');
+    setTimeout(() => {
+      mainNav.hidden = true;
+    }, 300);
+  } else {
+    menuToggle.setAttribute('aria-expanded', 'true');
+    mainNav.hidden = false;
+    mainNav.setAttribute('data-open', 'true');
   }
+});
 
   // ====== Video karšu slaideris ar hover pauzi ======
   const cards = Array.from(document.querySelectorAll('.video-card'));
