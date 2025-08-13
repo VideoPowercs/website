@@ -190,10 +190,9 @@ body {
   box-shadow: none;
 }
 
-/* Izņemam sarkano krāsu un ēnas efektu uz atvērtās izvēlnes, lai svītras paliek melnas */
 .menu-toggle.open .bar:nth-child(1) {
   transform: rotate(45deg) translate(6px, 6px);
-  background-color: black; /* Paliek melna */
+  background-color: black;
   box-shadow: none;
 }
 
@@ -204,7 +203,7 @@ body {
 
 .menu-toggle.open .bar:nth-child(3) {
   transform: rotate(-45deg) translate(7px, -7px);
-  background-color: black; /* Paliek melna */
+  background-color: black;
   box-shadow: none;
 }
 
@@ -306,28 +305,22 @@ body {
 
 /* Mobilā versija */
 @media (max-width: 768px) {
-  .main-header {
-    padding: 15px 20px;
-    background: #222;
-    position: relative;
-  }
-
-  /* Mobilajā parādām menu toggle labajā pusē un melnu svītru krāsu */
   .menu-toggle {
     display: flex;
     position: absolute;
     top: 15px;
-    right: 20px; /* Pārvietots uz labo pusi */
-    background: none; /* caurspīdīgs fons */
+    right: 20px;
+    background: none;
   }
 
+  /* Hamburgera līnijas tagad baltas */
   .menu-toggle .bar {
-    background-color: black; /* Mobilajam melnas līnijas */
+    background-color: white; /* Baltas līnijas mobilajā */
   }
 
   .menu-toggle.open .bar:nth-child(1) {
     transform: rotate(45deg) translate(6px, 6px);
-    background-color: black; /* Melna */
+    background-color: white;
     box-shadow: none;
   }
 
@@ -338,13 +331,12 @@ body {
 
   .menu-toggle.open .bar:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -7px);
-    background-color: black; /* Melna */
+    background-color: white;
     box-shadow: none;
   }
 
-  /* Izvēlnes stils mobilajā - sākumā paslēpta, atveras ar .open klasi */
   .main-nav {
-    display: none;  /* PASLĒPTA PĒC NOKLUSĒJUMA */
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -354,7 +346,7 @@ body {
   }
 
   .main-nav.open {
-    display: flex; /* PARĀDĀS KAD IR .open KLASE */
+    display: flex;
   }
 
   .main-nav span {
@@ -406,7 +398,6 @@ body {
     padding: 12px 25px;
   }
 
-  /* Slēptas parastās saites mobilajā, jo izmantojam span */
   .main-nav a {
     display: none;
   }
