@@ -322,7 +322,6 @@ body {
     transition: transform 0.3s ease;
   }
 
-  /* Hamburgera līnijas baltas */
   .menu-toggle .bar {
     height: 4px;
     width: 100%;
@@ -347,12 +346,11 @@ body {
   /* Hamburger izvēlne mobilajā versijā */
   .main-nav {
     display: none;
-    flex-direction: column;       /* vertikāli */
-    justify-content: center;      /* vertikāli centrēta */
-    align-items: center;          /* horizontāli centrēta */
-    gap: 25px;                    /* starpība starp saitēm */
-    padding-top: 10vh;            /* sākas nedaudz no vidus uz leju */
-    height: 100vh;                /* aizpilda visu augstumu */
+    flex-direction: column;
+    justify-content: space-between;  /* izstiepj saturu līdz apakšai */
+    align-items: center;
+    padding: 5vh 0;                 /* nedaudz augšā/lejā */
+    height: 100vh;                  /* aizpilda visu ekrānu */
     background-color: #222;
     z-index: 1000;
   }
@@ -364,11 +362,11 @@ body {
   /* Saites izskats */
   .main-nav a,
   .main-nav span {
-    font-size: 1.1rem;
+    font-size: 2rem;                /* lielāki nosaukumi */
     color: white;
     cursor: pointer;
     text-align: center;
-    padding: 10px 15px;
+    padding: 15px 20px;
     transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   }
 
@@ -381,6 +379,24 @@ body {
     box-shadow: 0 0 8px 2px rgba(255, 178, 44, 0.8),
                 0 0 15px 6px rgba(255, 178, 44, 0.6);
     outline: none;
+  }
+
+  /* Poga USE CODE VIDEOPOWER */
+  .main-nav .special-btn {
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 30px;            /* atstarpes līdz ekrāna apakšai */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .main-nav .special-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px 3px rgba(255, 102, 0, 0.7);
   }
 
   /* Hero sekcija mobilajā */
@@ -437,8 +453,13 @@ body {
 
   .main-nav a,
   .main-nav span {
-    font-size: 1rem;
-    padding: 10px 15px;
+    font-size: 1.5rem;  /* saglabā lielākus nosaukumus pat mazajos ekrānos */
+    padding: 12px 15px;
+  }
+
+  .main-nav .special-btn {
+    font-size: 1.3rem;
+    padding: 12px 25px;
   }
 }
 
