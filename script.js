@@ -22,16 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let stars = [];
 
     function getCanvasSize() {
-      return {
-        width: canvas.clientWidth,
-        height: canvas.clientHeight,
-      };
+      return { width: canvas.clientWidth, height: canvas.clientHeight };
     }
 
     function createStars() {
       stars = [];
       const { width, height } = getCanvasSize();
-
       starLayers.forEach(layer => {
         for (let i = 0; i < layer.count; i++) {
           stars.push({
@@ -50,33 +46,26 @@ document.addEventListener('DOMContentLoaded', () => {
     function animateStars() {
       const { width, height } = getCanvasSize();
       ctx.clearRect(0, 0, width, height);
-
       stars.forEach(star => {
         star.x += star.speedX;
         star.y += star.speedY;
-
         if (star.x > width) star.x = 0;
         if (star.x < 0) star.x = width;
         if (star.y > height) star.y = 0;
         if (star.y < 0) star.y = height;
-
         ctx.beginPath();
         ctx.globalAlpha = star.alpha;
         ctx.fillStyle = star.color;
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
         ctx.fill();
       });
-
       ctx.globalAlpha = 1;
       animationFrameId = requestAnimationFrame(animateStars);
     }
 
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        cancelAnimationFrame(animationFrameId);
-      } else {
-        animateStars();
-      }
+      if (document.hidden) cancelAnimationFrame(animationFrameId);
+      else animateStars();
     });
 
     let resizeTimeout;
@@ -92,25 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
     createStars();
     animateStars();
   }
-
-const menuToggle = document.getElementById('menu-toggle');
-const mainNav = document.getElementById('main-nav');
-
-menuToggle.addEventListener('click', () => {
-  const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-  
-  if (isExpanded) {
-    menuToggle.setAttribute('aria-expanded', 'false');
-    mainNav.setAttribute('data-open', 'false');
-    setTimeout(() => {
-      mainNav.hidden = true;
-    }, 300);
-  } else {
-    menuToggle.setAttribute('aria-expanded', 'true');
-    mainNav.hidden = false;
-    mainNav.setAttribute('data-open', 'true');
-  }
-});
 
   // ====== Video karšu slaideris ar hover pauzi ======
   const cards = Array.from(document.querySelectorAll('.video-card'));
@@ -140,7 +110,6 @@ menuToggle.addEventListener('click', () => {
 
       const elapsed = timestamp - startTime;
       const progress = Math.min(elapsed / slideDuration, 1);
-
       progressBars[currentIndex].style.width = `${progress * 100}%`;
 
       if (progress < 1) {
@@ -154,7 +123,6 @@ menuToggle.addEventListener('click', () => {
         setTimeout(() => {
           progressBars[currentIndex].style.width = '0%';
           currentIndex++;
-
           if (currentIndex >= cards.length) {
             setTimeout(() => {
               cards.forEach(card => {
@@ -179,14 +147,12 @@ menuToggle.addEventListener('click', () => {
 
     cards.forEach((card, index) => {
       if (!card.classList.contains('new')) return;
-
       card.addEventListener('mouseenter', () => {
         if (index === currentIndex) {
           paused = true;
           progressBars[currentIndex].style.transition = 'none';
         }
       });
-
       card.addEventListener('mouseleave', () => {
         if (index === currentIndex) {
           paused = false;
@@ -210,7 +176,6 @@ menuToggle.addEventListener('click', () => {
           });
           currentIndex = 0;
           startTime = null;
-
           event.preventDefault();
           animationFrameId = requestAnimationFrame(animateProgress);
           setTimeout(() => {
@@ -218,6 +183,17 @@ menuToggle.addEventListener('click', () => {
           }, 100);
         });
       }
+    });
+  }
+
+  // ====== Mobilās izvēlnes hamburger ======
+  const menuToggle = document.getElementById('menu-toggle');
+  const mainNav = document.getElementById('main-nav');
+
+  if (menuToggle && mainNav) {
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('open');
+      mainNav.classList.toggle('open');
     });
   }
 });
