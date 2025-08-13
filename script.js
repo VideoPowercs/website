@@ -192,8 +192,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (menuToggle && mainNav) {
     menuToggle.addEventListener('click', () => {
-      menuToggle.classList.toggle('open');
-      mainNav.classList.toggle('open');
+      const isOpen = mainNav.getAttribute('data-open') === 'true';
+      mainNav.setAttribute('data-open', !isOpen);
+      menuToggle.classList.toggle('open', !isOpen);
+      menuToggle.setAttribute('aria-expanded', String(!isOpen));
     });
   }
 });
