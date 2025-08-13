@@ -93,79 +93,24 @@ document.addEventListener('DOMContentLoaded', () => {
     animateStars();
   }
 
-// ====== Hamburger izvēlne mobilajām ierīcēm ======
-const toggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('.main-nav');
+const menuToggle = document.getElementById('menu-toggle');
+const mainNav = document.getElementById('main-nav');
 
-if (toggle && nav) {
-  // Funkcija izvēlnes aizvēršanai
-  const closeMenu = () => {
-    nav.classList.remove('active');
-    toggle.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
-    toggle.setAttribute('aria-label', 'Atvērt izvēlni');
-    nav.setAttribute('hidden', '');
-    document.body.style.overflow = '';
-  };
+menuToggle.addEventListener('click', () => {
+    const isOpen = menuToggle.classList.contains('open');
+    menuToggle.classList.toggle('open');
+    mainNav.classList.toggle('open');
+    mainNav.hidden = isOpen; // ja atvērta, paslēpt, ja slēgta, parādīt
+});
 
-  // Sākotnēji izvēlne ir slēgta
-  closeMenu();
-
-  // Ja ekrāna platums ir 768px vai mazāks, pielāgojam izvēlnes saturu
-  if (window.innerWidth <= 768) {
-    const menuItems = ['PARTNERS', 'VIDEOS', 'SPECIALS', 'GIVEAWAYS', 'STORE'];
-
-    nav.innerHTML = `
-      <div style="
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-        padding: 15px;
-        font-size: 1rem;
-      ">
-        ${menuItems.map(item => `<span style="cursor:pointer;">${item}</span>`).join('')}
-      </div>
-    `;
-
-    // Pievienojam klikšķa event listenerus katram span, lai aizvērtu izvēlni
-    nav.querySelectorAll('span').forEach(span => {
-      span.addEventListener('click', closeMenu);
+// Aizver izvēlni, kad klikšķina uz saites
+mainNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        menuToggle.classList.remove('open');
+        mainNav.classList.remove('open');
+        mainNav.hidden = true;
     });
-  }
-
-  // Toggle izvēlni, kad klikšķinām uz hamburgera pogas
-  toggle.addEventListener('click', (e) => {
-    e.stopPropagation(); // Lai klikšķis neizplatītos tālāk
-    const isActive = nav.classList.toggle('active');
-    toggle.classList.toggle('open');
-
-    toggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
-    toggle.setAttribute('aria-label', isActive ? 'Aizvērt izvēlni' : 'Atvērt izvēlni');
-
-    if (isActive) {
-      nav.removeAttribute('hidden');
-      document.body.style.overflow = 'hidden'; // Aizliedz scrollu, kamēr izvēlne vaļā
-    } else {
-      closeMenu();
-    }
-  });
-
-  // Aizver izvēlni, ja klikšķis ārpus izvēlnes un hamburgera pogas
-  document.addEventListener('click', (e) => {
-    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
-      closeMenu();
-    }
-  });
-
-  // Aizver izvēlni, ja nospiež ESC taustiņu
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && nav.classList.contains('active')) {
-      closeMenu();
-    }
-  });
-}
+});
 
   // ====== Video karšu slaideris ar hover pauzi ======
   const cards = Array.from(document.querySelectorAll('.video-card'));
