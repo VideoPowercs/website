@@ -22,12 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let stars = [];
 
     function getCanvasSize() {
-      return { width: canvas.clientWidth, height: canvas.clientHeight };
+      return {
+        width: canvas.clientWidth,
+        height: canvas.clientHeight,
+      };
     }
 
     function createStars() {
       stars = [];
       const { width, height } = getCanvasSize();
+
       starLayers.forEach(layer => {
         for (let i = 0; i < layer.count; i++) {
           stars.push({
@@ -98,9 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const isOpen = menuToggle.classList.contains('open');
       menuToggle.classList.toggle('open');
       mainNav.classList.toggle('open');
-      mainNav.hidden = isOpen;
+      mainNav.hidden = isOpen; // ja atvērta, paslēpt; ja slēgta, parādīt
     });
 
+    // Aizver izvēlni, kad klikšķina uz saites
     mainNav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         menuToggle.classList.remove('open');
@@ -110,13 +115,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ====== Video cards slider with hover pause ======
+  // ====== Video karšu slaideris ar hover pauzi ======
   const cards = Array.from(document.querySelectorAll('.video-card'));
-  if (cards.length > 0) {
-    const slideDuration = 4000;
-    const slideOutDuration = 600;
-    const restartDelay = 800;
+  const slideDuration = 4000;
+  const slideOutDuration = 600;
+  const restartDelay = 800;
 
+  if (cards.length > 0) {
     const progressBars = cards.map(card => {
       const bar = document.createElement('div');
       bar.classList.add('progress-bar');
@@ -138,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const elapsed = timestamp - startTime;
       const progress = Math.min(elapsed / slideDuration, 1);
+
       progressBars[currentIndex].style.width = `${progress * 100}%`;
 
       if (progress < 1) {
@@ -191,12 +197,14 @@ document.addEventListener('DOMContentLoaded', () => {
           startTime = performance.now() - (currentWidth / 100) * slideDuration;
         }
       });
+    });
 
+    cards.forEach(card => {
       const link = card.querySelector('a');
       if (link) {
-        link.addEventListener('click', (event) => {
+        link.addEventListener('click', event => {
           if (animationFrameId) cancelAnimationFrame(animationFrameId);
-          progressBars.forEach(bar => bar.style.width = '0%');
+          progressBars.forEach(bar => (bar.style.width = '0%'));
           cards.forEach(c => {
             c.style.transition = 'none';
             c.style.transform = 'translateX(0)';
