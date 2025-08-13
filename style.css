@@ -347,11 +347,11 @@ body {
   /* Hamburger izvēlne mobilajā versijā */
   .main-nav {
     display: none;
-    flex-direction: column;      /* vertikāli */
-    justify-content: flex-start;  /* var regulēt ar padding-top */
+    flex-direction: column;       /* vertikāli */
+    justify-content: center;      /* vertikāli centrēta */
     align-items: center;          /* horizontāli centrēta */
-    gap: 25px;
-    padding-top: 40%;             /* sākas no vidus uz leju */
+    gap: 25px;                    /* starpība starp saitēm */
+    padding-top: 10vh;            /* sākas nedaudz no vidus uz leju */
     height: 100vh;                /* aizpilda visu augstumu */
     background-color: #222;
     z-index: 1000;
