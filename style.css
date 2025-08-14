@@ -271,16 +271,18 @@ body {
 /* ===== Mobilā versija ===== */
 @media (max-width: 768px) {
   .main-nav {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    background-color: white;
+    display: flex;            /* ļauj izmantot flexbox */
+    flex-direction: column;   /* viens zem otra */
+    align-items: center;      /* horizontāli centrēts */
+    gap: 15px;                /* atstarpe starp linkiem */
+    background-color: white;  /* fona krāsa */
     position: absolute;
     top: 60px;
     right: 20px;
     padding: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
   }
+}
   
   .main-nav.active {
     display: flex;
