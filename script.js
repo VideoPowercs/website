@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (star.x < 0) star.x = width;
         if (star.y > height) star.y = 0;
         if (star.y < 0) star.y = height;
+
         ctx.beginPath();
         ctx.globalAlpha = star.alpha;
         ctx.fillStyle = star.color;
@@ -194,14 +195,10 @@ document.addEventListener('DOMContentLoaded', () => {
     menuToggle.addEventListener('click', () => {
       const isOpen = mainNav.classList.contains('open');
 
-      // pārslēdz klases
       menuToggle.classList.toggle('open', !isOpen);
       mainNav.classList.toggle('open', !isOpen);
 
-      // atjauno data-open
       mainNav.setAttribute('data-open', !isOpen ? 'true' : 'false');
-
-      // atjauno aria-expanded pieejamībai
       menuToggle.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
     });
   }
