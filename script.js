@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ====== Mobilās izvēlnes hamburger ======
+  // ====== Mobilās izvēlnes hamburger ar X animāciju ======
   const menuToggle = document.getElementById('menu-toggle');
   const mainNav = document.getElementById('main-nav');
 
@@ -195,7 +195,9 @@ document.addEventListener('DOMContentLoaded', () => {
     menuToggle.addEventListener('click', () => {
       const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
       menuToggle.setAttribute('aria-expanded', !isExpanded);
-      mainNav.classList.toggle('active'); // CSS klase "active" rāda/slēpj izvēlni
+
+      mainNav.classList.toggle('active');     // rāda/slēpj izvēlni
+      menuToggle.classList.toggle('active');  // X animācija
     });
   }
 });
