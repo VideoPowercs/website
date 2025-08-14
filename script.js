@@ -193,13 +193,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (menuToggle && mainNav) {
     menuToggle.addEventListener('click', () => {
-      const isOpen = mainNav.classList.contains('open');
-
-      menuToggle.classList.toggle('open', !isOpen);
-      mainNav.classList.toggle('open', !isOpen);
-
-      mainNav.setAttribute('data-open', !isOpen ? 'true' : 'false');
-      menuToggle.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !isExpanded);
+      mainNav.classList.toggle('active'); // CSS klase "active" rāda/slēpj izvēlni
     });
   }
 });
