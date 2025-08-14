@@ -268,7 +268,7 @@ body {
   border-radius: 2px;
 }
 
-/* Mobilā versija */
+/* ===== Mobilā versija ===== */
 @media (max-width: 768px) {
   .main-nav {
     display: none;
@@ -288,6 +288,15 @@ body {
   
   .menu-toggle {
     display: flex;
+    position: absolute;
+    top: 20px;   /* attālums no augšas */
+    right: 20px; /* attālums no labās puses */
+    z-index: 1100;
+  }
+  
+  /* Baltas svītras mobilajā */
+  .menu-toggle .bar {
+    background-color: white;
   }
 }
 
