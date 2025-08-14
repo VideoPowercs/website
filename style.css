@@ -268,36 +268,41 @@ body {
   border-radius: 2px;
 }
 
-/* ===== Mobilā versija ===== */
 @media (max-width: 768px) {
   .main-nav {
     display: none;               /* sākumā paslēpta */
     flex-direction: column;      /* viens zem otra */
-    justify-content: center;     /* vertikāla centrēšana */
-    align-items: center;         /* horizontāla centrēšana */
-    gap: 20px;                    /* atstarpes starp linkiem */
-    background-color: white;
-    position: fixed;              /* lai paliek pa visu ekrānu */
+    justify-content: center;     /* vertikāli centrē */
+    align-items: center;         /* horizontāli centrē */
+    gap: 20px;                    /* atstarpe starp linkiem */
+    background-color: white;     
+    position: fixed;              /* pārklāj visu ekrānu */
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;                 /* pilns ekrāna augstums */
+    height: 100%;
     z-index: 1000;
   }
-  
-  .main-nav.active {
-    display: flex;
+
+  .main-nav a {
+    color: black;                 /* lai mobilajā redzams uz baltā */
+    font-size: 20px;
+    text-decoration: none;
   }
-  
+
+  .main-nav.active {
+    display: flex; /* parādās tikai, kad aktīva */
+  }
+
   .menu-toggle {
     display: flex;
     position: absolute;
     top: 20px;   /* attālums no augšas */
-    right: 20px; /* attālums no labās puses */
-    z-index: 1100;
+    right: 20px; /* attālums no labās */
+    z-index: 1101; /* lai poga vienmēr virs izvēlnes */
   }
-  
-  /* Baltas svītras mobilajā */
+
+  /* Baltas svītras hamburgerī */
   .menu-toggle .bar {
     background-color: white;
   }
