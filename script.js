@@ -192,10 +192,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (menuToggle && mainNav) {
     menuToggle.addEventListener('click', () => {
-      const isOpen = mainNav.getAttribute('data-open') === 'true';
-      mainNav.setAttribute('data-open', !isOpen);
+      const isOpen = mainNav.classList.contains('open');
+
+      // pārslēdz klases
       menuToggle.classList.toggle('open', !isOpen);
-      menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      mainNav.classList.toggle('open', !isOpen);
+
+      // atjauno data-open
+      mainNav.setAttribute('data-open', !isOpen ? 'true' : 'false');
+
+      // atjauno aria-expanded pieejamībai
+      menuToggle.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
     });
   }
 });
