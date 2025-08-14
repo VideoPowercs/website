@@ -271,29 +271,37 @@ body {
 /* ===== Mobilā versija ===== */
 @media (max-width: 768px) {
   .main-nav {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
+    display: none;               /* sākumā paslēpta */
+    flex-direction: column;      /* viens zem otra */
+    align-items: flex-start;     /* noformē pa kreisi */
+    gap: 15px;                    /* atstarpe starp linkiem */
     background-color: white;
     position: absolute;
     top: 60px;
     right: 20px;
-    padding: 10px;
+    padding: 15px 30px;           /* vairāk padding pa labi, lai būtu pabīdīti */
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    border-radius: 8px;
   }
-  
+
+  .main-nav a {
+    color: black;                 /* mobilajā redzams uz baltā */
+    font-size: 18px;
+    text-decoration: none;
+  }
+
   .main-nav.active {
-    display: flex;
+    display: flex; /* parādās tikai, kad aktīva */
   }
-  
+
   .menu-toggle {
     display: flex;
     position: absolute;
-    top: 20px;   /* attālums no augšas */
-    right: 20px; /* attālums no labās puses */
+    top: 20px;
+    right: 20px;
     z-index: 1100;
   }
-  
+
   /* Baltas svītras mobilajā */
   .menu-toggle .bar {
     background-color: white;
