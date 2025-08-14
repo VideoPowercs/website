@@ -196,8 +196,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
       menuToggle.setAttribute('aria-expanded', !isExpanded);
 
-      mainNav.classList.toggle('active');     // rāda/slēpj izvēlni
-      menuToggle.classList.toggle('active');  // X animācija
+      mainNav.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+    });
+
+    // Automātiska aizvēršana, ja uzspiež uz linka mobilajā
+    mainNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mainNav.classList.remove('active');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
     });
   }
 });
