@@ -215,15 +215,15 @@ body {
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 1100;
   padding: 0;
   transition: transform 0.3s ease;
+  z-index: 1101; /* virs navigācijas */
 }
 
 .menu-toggle .bar {
   height: 4px;
   width: 100%;
-  background-color: black;
+  background-color: black; /* noklusējuma desktop */
   border-radius: 3px;
   transition: all 0.4s ease;
 }
@@ -243,128 +243,63 @@ body {
 
 /* ===== Mobilā versija ===== */
 @media (max-width: 768px) {
-  /* Mobilajā - izvēlne sākumā slēpta */
-  .main-nav {
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    background-color: white;
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    padding: 15px 10px; /* 10px no kreisās malas */
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    border-radius: 8px;
-    min-width: 180px;
-  }
-
-  .main-nav a {
-    color: black; /* melns teksts */
-    font-size: 16px;
-    text-decoration: none;
-    padding: 5px 0 5px 10px; /* papildus 10px tikai kreisajai malai */
-    width: 100%;
-    text-align: left; /* teksta novietojums kreisajā pusē */
-  }
-
-  /* Kad aktīva */
-  .main-nav.active {
-    display: flex;
-  }
-
   /* Hamburgera poga mobilajā */
   .menu-toggle {
     display: flex;
     position: absolute;
     top: 20px;
     right: 20px;
-    z-index: 1101;
   }
 
   /* Baltas svītras mobilajā */
   .menu-toggle .bar {
     background-color: white;
   }
-}
 
-  /* Hero sekcija mobilajā */
-  .hero {
-    padding: 60px 15px;
+  /* Mobilajā - izvēlne sākumā slēpta */
+  .main-nav {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    background-color: white;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    padding: 20px 25px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    min-width: 200px;
+    z-index: 1100;
   }
 
-  .hero-content {
-    font-size: 1rem;
-    transform: translateY(15px);
+  .main-nav a {
+    color: black;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 5px 0;
+    width: 100%;
   }
 
-  .character-img {
-    max-width: 180px;
-  }
-
-  .btn {
-    font-size: 1rem;
-    padding: 12px 25px;
-    margin: 6px;
-  }
-
-  .btn.red.partners {
-    width: 50px;
-    padding: 12px 0;
-    font-size: 1.1rem;
-  }
-
-  .btn.red.partners:hover {
-    width: auto;
-    padding: 12px 25px;
-    font-size: 1rem;
+  /* Kad aktīva */
+  .main-nav.active {
+    display: flex;
   }
 }
 
-/* Ļoti maza ekrāna versija */
-@media (max-width: 480px) {
-  .hero {
-    padding: 40px 10px;
-  }
-
-  .hero-content {
-    font-size: 0.9rem;
-  }
-
-  .character-img {
-    max-width: 140px;
-  }
-
-  .btn {
-    font-size: 0.9rem;
-    padding: 10px 20px;
-  }
-
-  .main-nav a,
-  .main-nav span {
-    font-size: 1.5rem;  /* saglabā lielākus nosaukumus pat mazajos ekrānos */
-    padding: 12px 15px;
-  }
-
-  .main-nav .special-btn {
-    font-size: 1.3rem;
-    padding: 12px 25px;
-  }
-}
-
-/* Hero sekcijas stils */ 
+/* ====== Hero sekcija ====== */
 .hero {
   text-align: center;
   padding: 80px 20px;
 }
 
 .hero-content {
-  transform: translateY(20px); /* Vēl mazāka nobīde uz leju - pacelts uz augšu */
-  font-size: 1.1rem; /* Palielinām tekstu */
+  font-size: 1.1rem;
+  margin-bottom: 20px;
 }
 
 .character-img {
-  max-width: 260px; /* Palielināts attēla izmērs */
+  max-width: 300px; /* Palielināts attēla izmērs */
   animation: glow 2.5s ease-in-out infinite;
 }
 
@@ -378,96 +313,59 @@ body {
   }
 }
 
+/* ====== Vienkārša poga ====== */
 .btn {
   font-weight: 600;
   font-size: 1.1rem;
-  padding: 14px 30px;
+  padding: 12px 30px;
   margin: 8px;
   border-radius: 8px;
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
   cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-  user-select: none;
-  /* Noņemam border un arī outline */
+  transition: background-color 0.3s ease, color 0.3s ease;
   border: none;
   outline: none;
-  background: #fff;
+  background-color: #fff; /* sākuma balta */
   color: #333;
-  box-shadow: none;
-  white-space: nowrap;
-  overflow: hidden;
-  width: auto;
-  position: relative;
-  z-index: 0;
 }
 
-/* Hover efekts - fons #ffb22c + glow + paceļas */
+/* Hover efekts — maina fona krāsu uz dzeltenu */
 .btn:hover {
+  background-color: #ffb22c; /* dzeltena */
   color: #fff;
-  background: #ffb22c;
-  box-shadow:
-    0 0 8px 2px rgba(255, 178, 44, 0.8),
-    0 0 15px 6px rgba(255, 178, 44, 0.6);
-  transform: translateY(-4px) scale(1.05);
-  border-color: transparent; /* Var atstāt vai izņemt, jo border:none */
-  z-index: 1;
 }
 
-/* Partners poga sākuma stils (apaļa) un hover efekts */
-.btn.red.partners {
-  width: 60px;
-  padding: 14px 0;
-  border-radius: 50%;
-  font-size: 1.3rem;
-  justify-content: center;
-  overflow: hidden;
-  transition: width 0.4s ease, padding 0.4s ease, border-radius 0.4s ease;
-  border: none; /* Noņemam līniju */
-  outline: none;
-}
-
-/* Slēpj tekstu span sākumā */
-.btn.red.partners span {
-  display: none;
-}
-
-/* Hover — izplešas, rāda tekstu */
-.btn.red.partners:hover {
-  width: auto;
-  padding: 14px 30px;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  background: #ffb22c;
-  color: #fff;
-  box-shadow:
-    0 0 8px 2px rgba(255, 178, 44, 0.8),
-    0 0 15px 6px rgba(255, 178, 44, 0.6);
-  transform: translateY(-4px) scale(1.05);
-  border-color: transparent;
-  z-index: 1;
-}
-
-/* Hover — rāda tekstu */
-.btn.red.partners:hover span {
-  display: inline;
-}
-
-/* Media query telefona versijai - mazāks character-img */
-@media (max-width: 600px) {
-  .character-img {
-    max-width: 140px; /* Piemērots mazākiem ekrāniem */
-  }
-
+/* ====== Responsive mobilajam ====== */
+@media (max-width: 768px) {
   .hero {
-    padding: 40px 10px; /* Kompaktāks padding mobilajiem */
+    padding: 60px 15px;
   }
-
   .hero-content {
     font-size: 1rem;
-    transform: translateY(10px);
+  }
+  .character-img {
+    max-width: 180px;
+  }
+  .btn {
+    font-size: 1rem;
+    padding: 10px 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 40px 10px;
+  }
+  .hero-content {
+    font-size: 0.9rem;
+  }
+  .character-img {
+    max-width: 140px;
+  }
+  .btn {
+    font-size: 0.9rem;
+    padding: 10px 20px;
   }
 }
 
@@ -486,7 +384,7 @@ body {
   padding: 60px 30px;
 }
 
-/* Partneru bloki ar baltu robežu */
+/* ====== Partneru režģi ====== */
 .partners-grid,
 .videos-grid,
 .store-items {
@@ -495,6 +393,7 @@ body {
   gap: 20px;
 }
 
+/* ====== Partneru kartiņas ar pulsējošu border ====== */
 .partner-card {
   background-color: #1a1a1a;
   padding: 20px;
@@ -503,11 +402,21 @@ body {
   margin: 15px;
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.3); /* sākuma border */
-  animation: pulse-border 2s infinite ease-in-out;
+  animation: pulse-border 2s infinite ease-in-out; /* pulsēšana */
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* mīksts starojums */
+  cursor: default; /* nav pointer uz kartiņas */
+  pointer-events: none; /* ignorē hover un klikšķus kartiņām */
+  position: relative; /* lai pogai varētu atļaut klikšķus */
 }
 
-/* ANIMĀCIJA — border krāsas pulsācija */
+/* ====== Pogas - visu pogas laukumu var klikšķināt ====== */
+.partner-card .code-block {
+  pointer-events: auto; /* ļauj klikšķus */
+  display: inline-block; /* saglabā iepriekšējo pogas lielumu */
+  cursor: pointer;
+}
+
+/* ====== Pulsējošās border animācija ====== */
 @keyframes pulse-border {
   0% {
     border-color: rgba(255, 255, 255, 0.3);
@@ -523,11 +432,54 @@ body {
   }
 }
 
+/* ====== Partneru saturs ====== */
 .partner-title {
   font-size: 1.5em;
   margin-bottom: 10px;
 }
 
+.partner-description {
+  font-size: 1em;
+  margin-bottom: 15px;
+}
+
+.partner-logo {
+  max-width: 80%;
+  margin-bottom: 15px;
+}
+
+/* ====== Pogas stils ====== */
+.code-block a {
+  display: block; /* aizņem visu pogas bloka laukumu */
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease, filter 0.3s ease;
+  text-align: center;
+}
+
+/* Krāsas pogām */
+.skinclub-button a {
+  background-color: #ff00ba;
+}
+
+.hellcase-button a {
+  background-color: #ff6100;
+}
+
+.skinbaron-button a {
+  background-color: #2e2660;
+}
+
+/* Hover efekts tikai pogām */
+.code-block a:hover {
+  filter: brightness(0.9);
+}
+
+/* ====== Responsive ====== */
 @media (max-width: 768px) {
   .main-header {
     height: auto;
@@ -535,35 +487,6 @@ body {
     flex-direction: column;
     align-items: flex-start;
   }
-
- @media (max-width: 1440px) {
-  /* styles */
-}
-
-@media (max-width: 1024px) {
-  /* styles */
-}
-
-@media (max-width: 768px) {
-  /* styles */
-}
-
-@media (max-width: 600px) {
-  /* styles */
-}
-
-@media (max-width: 480px) {
-  /* styles */
-}
-
-  @media (max-width: 768px) {
-  .main-header {
-    height: auto;
-    padding: 10px 20px;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
 
   .main-nav {
     position: static;
@@ -648,45 +571,7 @@ body {
   }
 }
 
-.partner-description {
-  font-size: 1em;
-  margin-bottom: 15px;
-}
-
-.partner-logo {
-  max-width: 80%;
-  margin-bottom: 15px;
-}
-
-.code-block {
-  padding: 12px;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 1.1em;
-  transition: background-color 0.3s ease;
-}
-
-.code-block a {
-  color: white;
-  text-decoration: none;
-}
-
-.skinclub-button {
-  background-color: #ff00ba;
-}
-
-.hellcase-button {
-  background-color: #ff6100;
-}
-
-.skinbaron-button {
-  background-color: #2e2660;
-}
-
-.code-block:hover {
-  filter: brightness(0.9);
-}
-
+/* ====== Store Items Grid ====== */
 .store-items {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -694,84 +579,113 @@ body {
   padding: 20px;
 }
 
+/* ====== Store Item ====== */
 .store-item {
   background: rgba(255, 255, 255, 0.05);
   padding: 20px;
   border-radius: 20px;
   text-align: center;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 10px rgba(0, 255, 70, 0.2);
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.4s ease;
-  cursor: pointer;
-  perspective: 1000px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 6px rgba(0, 255, 70, 0.15);
   position: relative;
   overflow: hidden;
+  cursor: default;
 }
 
+/* Hover efekts ir atslēgts */
 .store-item:hover {
-  transform: translateY(-20px) rotateX(8deg) rotateY(8deg);
-  box-shadow: 0 15px 30px rgba(0, 255, 70, 0.6);
+  transform: none;
+  box-shadow: 0 0 6px rgba(0, 255, 70, 0.15);
 }
 
+/* ====== Image Animations ====== */
 .store-item img {
   width: 100%;
   border-radius: 15px;
-  transition: filter 0.6s ease;
-  animation: pulseGlow 3s infinite ease-in-out alternate;
+  animation: pulseGlow 3.5s infinite ease-in-out alternate;
+  will-change: filter;
+  pointer-events: none;
+  transition: filter 0.4s ease;
 }
 
-.store-item:hover img {
+.store-item img:hover {
   filter: brightness(1.15) saturate(1.2);
-  animation-play-state: paused;
 }
 
 @keyframes pulseGlow {
-  0% {
-    filter: drop-shadow(0 0 4px #00ff47);
-  }
-  100% {
-    filter: drop-shadow(0 0 15px #00ff47);
-  }
+  0% { filter: drop-shadow(0 0 2px #00ff47); }
+  50% { filter: drop-shadow(0 0 6px #00ff47); }
+  100% { filter: drop-shadow(0 0 2px #00ff47); }
 }
 
+/* ====== Titles ====== */
 .store-item h3 {
   font-size: 1.7em;
   margin: 15px 0 10px;
   color: #00ff47;
-  text-shadow: 0 0 8px #00ff47;
+  text-shadow: 0 0 5px #00ff47;
   font-weight: 700;
   letter-spacing: 1.5px;
+  pointer-events: none;
 }
 
-/* Mobilā versija - nedaudz ātrāka, maigāka pulsācija */
-@media (max-width: 600px) {
-  .store-item img {
-    animation: pulseGlow 2s infinite ease-in-out alternate;
-  }
-}
-
+/* ====== Buy Button ====== */
 .buy-btn {
   display: inline-block;
   margin-top: 12px;
-  padding: 12px 28px;
-  border-radius: 25px;
+  padding: 14px 32px;
+  border-radius: 30px;
   background: linear-gradient(270deg, #ffb22c, #00ff47, #0ff, #ffb22c);
-  background-size: 600% 600%;
+  background-size: 400% 400%;
   color: #121212;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 2px;
   text-decoration: none;
-  box-shadow: 0 0 15px rgba(0, 255, 70, 0.7);
-  transition: background-position 3s ease, transform 0.3s ease;
+  border: none;
+  box-shadow: 0 4px 14px rgba(0, 255, 70, 0.5);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-position 3s ease;
+}
+
+/* Shine effect */
+.buy-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75px;
+  width: 50px;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.5), transparent);
+  transform: skewX(-25deg);
+  transition: left 0.5s ease;
 }
 
 .buy-btn:hover {
   background-position: 100% 0;
-  transform: scale(1.15);
-  color: #fff;
-  box-shadow: 0 0 25px rgba(0, 255, 70, 1);
+  transform: translateY(-2px) scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 255, 70, 0.7);
+}
+
+.buy-btn:hover::after {
+  left: 120%;
+}
+
+.buy-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 3px 10px rgba(0, 255, 70, 0.5);
+}
+
+/* ====== Mobile Adjustments ====== */
+@media (max-width: 600px) {
+  .store-item h3 {
+    font-size: 1.4em;
+  }
+  .buy-btn {
+    padding: 12px 26px;
+    font-size: 0.9rem;
+  }
 }
 
 /* Videos grid tagad parādīs visus video blakus datora versijā */
