@@ -213,7 +213,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  position: absolute; /* lai varētu nolikt stūrī */
+  position: absolute; /* lai noliktu stūrī */
   top: 15px;
   right: 15px;
   z-index: 1001; /* virs izvēlnes */
@@ -227,7 +227,7 @@ body {
   transition: 0.3s;
 }
 
-/* Navigācija */
+/* Navigācija desktop */
 .main-nav {
   display: flex;
   gap: 15px;
@@ -242,19 +242,24 @@ body {
   .main-nav {
     display: none;
     flex-direction: column;
-    background: rgba(0, 0, 0, 0.9); /* tumšs fons */
-    position: absolute;
+    justify-content: center;   /* centrē vertikāli */
+    align-items: center;       /* centrē horizontāli */
+    background: rgba(0, 0, 0, 0.9); /* tumšs caurspīdīgs fons */
+    position: fixed;           /* pilnekrāna pārklājums */
     top: 0;
-    right: 0;
-    width: 200px;
-    padding-top: 60px; /* vieta zem pogas */
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 1000;
   }
 
   .main-nav a {
-    padding: 10px 15px;
+    padding: 15px 0;
+    font-size: 1.4rem; /* lielāki burti */
     color: white;
     text-decoration: none;
+    text-align: center;
+    width: 100%;
   }
 
   .main-nav a:hover {
