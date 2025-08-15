@@ -187,33 +187,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ====== Mobilās izvēlnes hamburger ar X animāciju ======
-  const menuToggle = document.getElementById('menu-toggle');
-  const mainNav = document.getElementById('main-nav');
-
-  if (menuToggle && mainNav) {
-    menuToggle.addEventListener('click', () => {
-      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-
-      // Toggle tikai tad, ja klase nav nejauši izdzēsta
-      if (!mainNav.classList.contains('active')) {
-        mainNav.classList.add('active');
-        menuToggle.classList.add('active');
-        menuToggle.setAttribute('aria-expanded', 'true');
-      } else {
-        mainNav.classList.remove('active');
-        menuToggle.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    // Automātiska aizvēršana, ja uzspiež uz linka mobilajā
-    mainNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mainNav.classList.remove('active');
-        menuToggle.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-      });
+  // ====== Vienkāršais hamburger pogas toggler ======
+  const hamburgerBtn = document.getElementById('hamburger');
+  if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', function () {
+      document.getElementById('main-nav').classList.toggle('show');
     });
   }
 });
