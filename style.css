@@ -205,84 +205,48 @@ body {
   padding-right: 25px;
 }
 
-/* Hamburgera poga (desktop slēpta) */
-.menu-toggle {
-  display: none;
+/* Hamburger poga */
+.hamburger {
+  width: 30px;
+  height: 22px;
+  display: none; /* sākumā slēpta uz lieliem ekrāniem */
   flex-direction: column;
   justify-content: space-between;
-  width: 35px;
-  height: 25px;
-  background: none;
-  border: none;
   cursor: pointer;
-  padding: 0;
-  transition: transform 0.3s ease;
-  z-index: 1101; /* virs navigācijas */
 }
 
-.menu-toggle .bar {
+.hamburger span {
+  display: block;
   height: 4px;
-  width: 100%;
-  background-color: black; /* noklusējuma desktop */
-  border-radius: 3px;
-  transition: all 0.4s ease;
+  background-color: #333;
+  border-radius: 2px;
+  transition: 0.3s;
 }
 
-/* X animācija */
-.menu-toggle.active .bar:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
+/* Navigācija */
+.main-nav {
+  display: flex;
+  gap: 15px;
 }
 
-.menu-toggle.active .bar:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-toggle.active .bar:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-
-/* ===== Mobilā versija ===== */
+/* Mobilais izkārtojums */
 @media (max-width: 768px) {
-  /* Hamburgera poga mobilajā */
-  .menu-toggle {
+  .hamburger {
     display: flex;
-    position: absolute;
-    top: 20px;
-    right: 20px;
   }
 
-  /* Baltas svītras mobilajā */
-  .menu-toggle .bar {
-    background-color: white;
-  }
-
-  /* Mobilajā - izvēlne sākumā slēpta */
   .main-nav {
     display: none;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    background-color: white;
+    background: #f5f5f5;
     position: absolute;
-    top: 60px;
-    right: 20px;
-    padding: 20px 25px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    border-radius: 8px;
-    min-width: 200px;
-    z-index: 1100;
+    top: 50px; /* atkarībā no header augstuma */
+    right: 10px;
+    padding: 10px;
+    border-radius: 5px;
   }
 
-  .main-nav a {
-    color: black;
-    font-size: 16px;
-    text-decoration: none;
-    padding: 5px 0;
-    width: 100%;
-  }
-
-  /* Kad aktīva */
-  .main-nav.active {
+  .main-nav.show {
     display: flex;
   }
 }
