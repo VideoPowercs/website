@@ -209,20 +209,20 @@ body {
 .hamburger {
   width: 30px;
   height: 22px;
-  display: none; /* sākumā slēpta uz lieliem ekrāniem */
+  display: none;
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  position: absolute; /* lai noliktu stūrī */
+  position: absolute;
   top: 15px;
   right: 15px;
-  z-index: 1001; /* virs izvēlnes */
+  z-index: 1001;
 }
 
 .hamburger span {
   display: block;
   height: 4px;
-  background-color: white; /* baltas svītras */
+  background-color: white;
   border-radius: 2px;
   transition: 0.3s;
 }
@@ -242,24 +242,27 @@ body {
   .main-nav {
     display: none;
     flex-direction: column;
-    justify-content: center;   /* centrē vertikāli */
-    align-items: center;       /* centrē horizontāli */
-    background: rgba(0, 0, 0, 0.9); /* tumšs caurspīdīgs fons */
-    position: fixed;           /* pilnekrāna pārklājums */
+    justify-content: center;   /* vertikāli centrēts */
+    align-items: center;       /* horizontāli centrēts */
+    background: rgba(0, 0, 0, 0.95); /* tumšs pilns fons */
+    position: fixed;           /* pilnekrāna fons */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    padding: 0;                /* nav liekas vietas */
+    margin: 0;
     z-index: 1000;
   }
 
   .main-nav a {
-    padding: 15px 0;
-    font-size: 1.4rem; /* lielāki burti */
+    padding: 15px 20px;
+    font-size: 1.5rem;  /* lielāki, bet optimizēti burti */
     color: white;
     text-decoration: none;
     text-align: center;
     width: 100%;
+    box-sizing: border-box; /* lai padding netraucē */
   }
 
   .main-nav a:hover {
