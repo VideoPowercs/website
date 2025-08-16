@@ -259,7 +259,8 @@ body {
 
   .main-nav a {
     padding: 12px 18px;
-    font-size: 20px; /* lielāki burti mobilajā */
+    font-size: 16px; /* mazāki burti mobilajā */
+    text-align: center; /* teksts centrēts horizontāli */
   }
 
   /* Hover efekts mobilajam */
@@ -275,8 +276,9 @@ body {
 /* Īpaši maziem ekrāniem (piem., <480px) */
 @media (max-width: 480px) {
   .main-nav a {
-    font-size: 22px; /* vēl lielāki burti uz ļoti maziem ekrāniem */
-    padding: 14px 20px;
+    font-size: 14px; /* vēl mazāki burti uz ļoti maziem ekrāniem */
+    padding: 12px 16px;
+    text-align: center; /* arī mazajos ekrānos centrēts */
   }
 }
 
