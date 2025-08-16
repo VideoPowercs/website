@@ -233,6 +233,12 @@ body {
   gap: 15px;
 }
 
+.main-nav a {
+  color: white;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
 /* Mobilais izkārtojums */
 @media (max-width: 768px) {
   .hamburger {
@@ -246,23 +252,31 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    width: 200px;
+    width: 220px;
     padding-top: 60px; /* vieta zem pogas */
     z-index: 1000;
   }
 
   .main-nav a {
-    padding: 10px 15px;
-    color: white;
-    text-decoration: none;
+    padding: 12px 18px;
+    font-size: 20px; /* lielāki burti mobilajā */
   }
 
+  /* Hover efekts mobilajam */
   .main-nav a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1); /* burti palielinās hover laikā */
   }
 
   .main-nav.show {
     display: flex;
+  }
+}
+
+/* Īpaši maziem ekrāniem (piem., <480px) */
+@media (max-width: 480px) {
+  .main-nav a {
+    font-size: 22px; /* vēl lielāki burti uz ļoti maziem ekrāniem */
+    padding: 14px 20px;
   }
 }
 
