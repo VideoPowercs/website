@@ -388,7 +388,7 @@ body {
   gap: 20px;
 }
 
-/* ====== Partneru kartiņas ar pulsējošu border ====== */
+/* ====== Partneru kartiņas ====== */
 .partner-card {
   background-color: #1a1a1a;
   padding: 20px;
@@ -396,174 +396,105 @@ body {
   text-align: center;
   margin: 15px;
   color: white;
-  border: 2px solid rgba(255, 255, 255, 0.3); /* sākuma border */
-  animation: pulse-border 2s infinite ease-in-out; /* pulsēšana */
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* mīksts starojums */
-  cursor: default; /* nav pointer uz kartiņas */
-  pointer-events: none; /* ignorē hover un klikšķus kartiņām */
-  position: relative; /* lai pogai varētu atļaut klikšķus */
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  animation: pulse-border 2s infinite ease-in-out;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  cursor: default;
+  pointer-events: none;
+  position: relative;
 }
 
-/* ====== Pogas - visu pogas laukumu var klikšķināt ====== */
-.partner-card .code-block {
-  pointer-events: auto; /* ļauj klikšķus */
-  display: inline-block; /* saglabā iepriekšējo pogas lielumu */
-  cursor: pointer;
-}
-
-/* ====== Pulsējošās border animācija ====== */
+/* Pulsējošās border animācija */
 @keyframes pulse-border {
-  0% {
-    border-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-  }
-  50% {
-    border-color: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-  }
-  100% {
-    border-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-  }
+  0% { border-color: rgba(255, 255, 255, 0.3); box-shadow: 0 0 10px rgba(255,255,255,0.1);}
+  50% { border-color: rgba(255, 255, 255, 0.9); box-shadow: 0 0 20px rgba(255,255,255,0.3);}
+  100% { border-color: rgba(255, 255, 255, 0.3); box-shadow: 0 0 10px rgba(255,255,255,0.1);}
 }
 
-/* ====== Partneru saturs ====== */
-.partner-title {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-}
-
-.partner-description {
-  font-size: 1em;
-  margin-bottom: 15px;
-}
-
-.partner-logo {
-  max-width: 80%;
-  margin-bottom: 15px;
+/* ====== Pogas laukums ====== */
+.partner-card .code-block {
+  pointer-events: auto;
+  display: inline-block;
+  cursor: pointer;
 }
 
 /* ====== Pogas stils ====== */
 .code-block a {
-  display: block; /* aizņem visu pogas bloka laukumu */
+  display: block;
   color: white;
   text-decoration: none;
   padding: 12px 20px;
   border-radius: 8px;
   font-weight: bold;
   font-size: 1.1em;
-  transition: background-color 0.3s ease, filter 0.3s ease;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+
+  /* Smooth hover */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.code-block a:hover {
+  transform: scale(1.07);
+  box-shadow: 0 5px 12px rgba(255, 255, 255, 0.2); /* Mazāks shadow */
 }
 
 /* Krāsas pogām */
-.skinclub-button a {
-  background-color: #ff00ba;
+.skinclub-button a { background-color: #ff00ba; }
+.hellcase-button a { background-color: #ff6100; }
+.skinbaron-button a { background-color: #2e2660; }
+
+/* ====== Ultra-smooth spīdīgais efekts ====== */
+.code-block a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.6) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  transform: skewX(-30deg);
+  z-index: 1;
+  pointer-events: none;
+
+  /* Smooth fade-in */
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
-.hellcase-button a {
-  background-color: #ff6100;
+/* Active shine on hover */
+.code-block a:hover::after {
+  opacity: 1;
+  animation: ultra-shine 1.0s linear infinite;
 }
 
-.skinbaron-button a {
-  background-color: #2e2660;
-}
-
-/* Hover efekts tikai pogām */
-.code-block a:hover {
-  filter: brightness(0.9);
+/* Ultra-smooth keyframes */
+@keyframes ultra-shine {
+  0% { left: -60%; }
+  100% { left: 130%; }
 }
 
 /* ====== Responsive ====== */
 @media (max-width: 768px) {
-  .main-header {
-    height: auto;
-    padding: 10px 20px;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .main-nav {
-    position: static;
-    transform: none;
-    flex-direction: column;
-    gap: 15px;
-    font-size: 1rem;
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  .main-nav a {
-    padding: 10px 0;
-    width: 100%;
-  }
-
-  .hero {
-    padding: 40px 15px;
-  }
-
-  .hero-content {
-    font-size: 1rem;
-    transform: translateY(10px);
-  }
-
-  .character-img {
-    max-width: 180px;
-  }
-
-  .btn {
-    padding: 12px 20px;
-    font-size: 1rem;
-  }
-
-  .floating-images img {
-    max-width: 240px;
-    margin: 0 5px;
-  }
-
-  .section {
-    padding: 40px 15px;
-  }
-
   .partners-grid,
   .videos-grid,
   .store-items {
     grid-template-columns: 1fr !important;
     gap: 15px;
   }
-
-  .partner-card {
-    margin: 10px 0;
-    padding: 15px;
-  }
-
-  .partner-title {
-    font-size: 1.2em;
-  }
+  .partner-card { margin: 10px 0; padding: 15px; }
+  .partner-title { font-size: 1.2em; }
 }
 
 @media (max-width: 480px) {
-  html,
-  body {
-    font-size: 8px;
-  }
-
-  .main-nav {
-    font-size: 0.9rem;
-  }
-
-  .btn {
-    padding: 10px 15px;
-    font-size: 0.9rem;
-  }
-
-  .character-img {
-    max-width: 140px;
-  }
-
-  .hero-content {
-    font-size: 0.9rem;
-  }
+  html, body { font-size: 8px; }
 }
 
 /* ====== Store Items Grid ====== */
@@ -1552,22 +1483,69 @@ canvas#stars {
   justify-content: center;
 }
 
-.custom-banner {
+#specials .custom-banner {
   flex: 0 0 500px;
   height: 310px;
   border-radius: 12px;
   overflow: hidden;
   position: relative;
   max-width: 100%; /* lai nekad nepārsniegtu konteineru */
+  cursor: pointer;
 }
 
-.custom-banner .banner-hover-bg img {
+#specials .custom-banner .banner-hover-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top;
   display: block;
   border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+/* Shine efekts tikai specials sekcijai */
+#specials .custom-banner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%; /* sāk ārpus bildes */
+  width: 50%; /* svītras platums */
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.5) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  transform: skewX(-25deg);
+  opacity: 0;
+  pointer-events: none;
+  border-radius: 12px;
+}
+
+/* Hover efekts tikai specials sekcijai */
+#specials .custom-banner:hover::after {
+  opacity: 1;
+  animation: specials-shine 1s forwards;
+}
+
+@keyframes specials-shine {
+  0% {
+    left: -75%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    left: 125%;
+    opacity: 0;
+  }
+}
+
+/* Papildu hover efekts uz bildes (mazliet palielina) */
+#specials .custom-banner:hover .banner-hover-bg img {
+  transform: scale(1.03);
 }
 
 /* Mobilajā versijā */
@@ -1575,18 +1553,18 @@ canvas#stars {
   #specials .section {
     flex-direction: column; /* baneri viens zem otra */
     gap: 15px; /* mazāka atstarpe */
-    align-items: center; /* lai centrētu kolonnā */
+    align-items: center; /* centrē kolonnā */
   }
 
-  .custom-banner {
+  #specials .custom-banner {
     flex: none; /* atsakāmies no fiksētās flex platuma */
-    width: 500px;       /* saglabā to pašu platumu */
-    max-width: 90vw;    /* bet ne vairāk par 90% no viewport platuma */
-    height: 310px;      /* fiksēts augstums */
-    max-height: auto;   /* ļauj augstumam pielāgoties, ja vajag */
+    width: 500px;
+    max-width: 90vw; /* ne vairāk par 90% no viewport */
+    height: 310px; 
+    max-height: auto;
   }
 
-  .custom-banner .banner-hover-bg img {
+  #specials .custom-banner .banner-hover-bg img {
     height: 100%; /* lai aizpildītu banneru */
   }
 }
